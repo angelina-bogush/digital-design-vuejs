@@ -1,6 +1,6 @@
 <template>
 <div>
-    <article class="task item" v-for="task in tasks" :key="task">
+    <article class="task item">
         <div class="task__content content">
             <div class="task__description-container">
                 <p class="task__title title">{{task["title"]}}</p>
@@ -30,31 +30,10 @@
 
 <script>
 export default{
-    data(){
-        return{
-            tasks:[
-                {
-                title: 'Описание задачи',
-                number: '1',
-                creator: 'Здесь описание создания',
-                changes: 'Здесь описание изменений'
-                 },
-                 {
-                title: 'Описание задачи',
-                number: '1',
-                creator: 'Здесь описание создания',
-                changes: 'Здесь описание изменений'
-                 },
-                 {
-                title: 'Описание задачи',
-                number: '1',
-                creator: 'Здесь описание создания',
-                changes: 'Здесь описание изменений'
-                 }
-
-            ]
-        }
-    }
+name: 'task',
+props:{
+    task: Object
+}
 }
 </script>
 

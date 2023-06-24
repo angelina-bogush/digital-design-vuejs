@@ -1,6 +1,6 @@
 <template>
 <div>
-    <article class="project item" v-for="project in projects" :key="index">
+    <article class="project item" v-for="project in projects">
         <div class="project__content content">
         <p class="project__title title">{{project["name"]}}</p>
         <div class="project__description description">

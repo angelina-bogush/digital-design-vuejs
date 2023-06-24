@@ -9,7 +9,9 @@
 </template>
 
 <script>
-
+export default{
+    name: 'emptyProject'
+}
 </script>
 
 <style lang="scss">

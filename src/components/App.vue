@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-   <navigation></navigation>
-   <Project></Project> 
-   <Task></Task>
-   <EmptyProject></EmptyProject>
+   <pageTasks></pageTasks>
+   <!-- <pageProjects></pageProjects> -->
   </div>
 </template>
 
 
 <script>
-import navigation from '@/components/navigation/navigation.vue';
-import Project from '@/components/project/project.vue';
-import Task from '@/components/task/task.vue';
-import EmptyProject from '@/components/empty-project/emptyProject.vue'
+import pageTasks from '@/views/pageTasks.vue'
+import pageProjects from '@/views/pageProjects.vue'
 export default{
   name: 'app',
   data(){     
@@ -21,10 +17,8 @@ export default{
     }
   },
   components: {
-    navigation,
-    Project,
-    Task,
-    EmptyProject
+    pageTasks,
+    pageProjects
   }
 }
 </script>

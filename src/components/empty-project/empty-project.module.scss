@@ -1,0 +1,48 @@
+@import '@/components/navigation/navigation.module.scss'; 
+body{
+    height: 100vh;
+}
+#app{
+    height: 100%
+}
+.container {
+    padding: $gap;
+    height: calc(100% - 90px)
+}
+
+.page {
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    height: 100%;
+} 
+
+ .page__text {
+    font-size: $regular-font-size;
+}
+
+.page__button  {
+    height: 42px;
+    width: 98px;
+    color: $color-white;
+    background-color: $primary-default-color;
+} 
+
+ .page__button:hover {
+    background-color: $primary-hover-color;
+    color: $color-white
+}
+
+.page__button:active {
+    background-color: $primary-active-color;
+    color: $color-white
+}
+
+.page__button:disabled {
+    background-color: $primary-disabled-color;
+    color: $disabled-font-button;
+}

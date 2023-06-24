@@ -1,31 +1,40 @@
 <template>
   <div id="app">
-   <toDoList :list="todos"/>
+   <navigation></navigation>
+   <Project></Project> 
+   <Task></Task>
+   <EmptyProject></EmptyProject>
   </div>
 </template>
 
 
 <script>
-import toDoList from './toDoList.vue';
+import navigation from '@/components/navigation/navigation.vue';
+import Project from '@/components/project/project.vue';
+import Task from '@/components/task/task.vue';
+import EmptyProject from '@/components/empty-project/emptyProject.vue'
 export default{
   name: 'app',
   data(){
     return {
-      todos: ['Домашка по вью', 'Приготовить завтрак', 'выпить кофе']
+     
     }
   },
   components: {
-    toDoList
+    navigation,
+    Project,
+    Task,
+    EmptyProject
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 </style>

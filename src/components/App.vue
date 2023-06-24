@@ -15,7 +15,7 @@ import Task from '@/components/task/task.vue';
 import EmptyProject from '@/components/empty-project/emptyProject.vue'
 export default{
   name: 'app',
-  data(){
+  data(){     
     return {
      
     }

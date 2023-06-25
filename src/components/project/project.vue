@@ -1,14 +1,14 @@
 <template>
 <div>
-    <article class="project item" v-for="project in projects">
+    <article class="project item">
         <div class="project__content content">
-        <p class="project__title title">{{project["name"]}}</p>
+        <p class="project__title title">{{name}}</p>
         <div class="project__description description">
             <div class="project__description-creation description-creation">
-                <p class="project__number number">#{{project["number"]}}</p>
-                <p class="project__creator creator">{{project["creator"]}}</p>
+                <p class="project__number number">#{{number}}</p>
+                <p class="project__creator creator">{{creator}}</p>
             </div>
-            <p class="project__description-changes description-changes">{{project["changes"]}}</p>
+            <p class="project__description-changes description-changes">{{changes}}</p>
         </div>
     </div>
     <button class="project__menu menu" data-dropdown="menu-1">
@@ -27,33 +27,12 @@
 
 <script>
 export default{
-    data(){
-        return{
-            projects:[ 
-                {
-            name: 'Название',
-            number: '1',
-            creator: 'Здесь описание создания',
-            changes: 'описание изменений'
-    
-            },
-            {
-            name: 'Название',
-            number: '2',
-            creator: 'Здесь описание создания',
-            changes: 'описание изменений'
-    
-            },
-            {
-            name: 'Название',
-            number: '3',
-            creator: 'Здесь описание создания',
-            changes: 'описание изменений'
-    
-            }
-        ]
-        }
-    }
+   props:{
+    name: String,
+    creator: String,
+    changes: String,
+    number: Number
+   }
 }
 </script>
 

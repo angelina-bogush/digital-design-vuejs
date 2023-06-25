@@ -1,11 +1,14 @@
 <template>
     <div class="pageTask">
         <navigation></navigation>
-        <template v-if="tasks.length">
-            <div v-for="task in tasks" :key="task.number">
-            <task :task="task"></task>
-            </div>
-        </template>
+        <ul v-if="tasks.length">
+            <li v-for="(task, index) in tasks" :key="index">
+            <task :title="task.title"
+                :number='index + 1'
+                :creator="task.creator"
+                :changes="task.changes" /> 
+            </li>
+        </ul>
             <template v-else>
             <emptyProject></emptyProject>
              </template>
@@ -28,19 +31,26 @@ export default{
             tasks:[
                 {
                 title: 'Описание задачи',
-                number: '1',
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
                 title: 'Описание задачи',
-                number: '2',
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
                 title: 'Описание задачи',
-                number: '3',
+                creator: 'Здесь описание создания',
+                changes: 'Здесь описание изменений'
+                 },
+                 {
+                title: 'Описание задачи',
+                creator: 'Здесь описание создания',
+                changes: 'Здесь описание изменений'
+                 },
+                 {
+                title: 'Описание задачи',
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  }
@@ -50,8 +60,14 @@ export default{
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
  .pageTask{
     height:  100%;
+ }
+ li{
+    list-style-type: none;
+ }
+ ul{
+ padding: 0;
  }
 </style>

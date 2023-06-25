@@ -3,16 +3,16 @@
     <article class="task item">
         <div class="task__content content">
             <div class="task__description-container">
-                <p class="task__title title">{{task["title"]}}</p>
+                <p class="task__title title">{{title}}</p>
                 <span class="user-avatar task__user-avatar"></span>
             </div>
             <div class="task__description description">
                 <div class="task__description-creation description-creation">
-                    <p class="task__number number">#{{task["number"]}}</p>
-                    <p class="task__creator creator">{{task["creator"]}}</p>
+                    <p class="task__number number">#{{number}}</p>
+                    <p class="task__creator creator">{{ creator}}</p>
                     <p class="status task__status">Черновик</p>
                 </div>
-                <p class="task__description-changes description-changes">{{task["changes"]}}</p>
+                <p class="task__description-changes description-changes">{{changes}}</p>
             </div>
         </div>
         <button class="task__menu menu" data-dropdown="menu-2">
@@ -31,8 +31,11 @@
 <script>
 export default{
 name: 'task',
-props:{
-    task: Object
+props: {
+    title: String,
+    number: Number,
+    creator: String,
+    changes: String
 }
 }
 </script>

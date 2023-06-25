@@ -2,14 +2,11 @@
    <div>
     <div class="navigation">
         <div class="navigation__container">
-            <button class="button navigation__button" v-for="button in buttonsName">{{button}}</button>
-            <!-- <button class="button navigation__button">Задачи</button>
-            <button class="button navigation__button">Пользователи</button> -->
+            <buttonNav v-for="button in buttonsName" :buttonName="button"/>
             <div class="navigation__user">
                 <button class="navigation__user-container">
                 <span class="user-avatar navigation__user-avatar"></span>
-                <svg class="navigation__user-button"><use xlink:href="#nav"></use>
-                </svg>
+                <svgIcon icon-class="nav" class-name="navigation__user-button" />
                 <div class="dropdown nav-dropdown">
                         <ul class="dropdown__list nav-dropdown">
                             <li><a class="dropdown__link nav-dropdown">Профиль</a></li>
@@ -23,12 +20,16 @@
 </template>
 
 <script>
-import '@/assets/icons/nav.svg'
+import buttonNav from '@/components/button/button.vue'
 export default{
 data(){
     return{
         buttonsName:['Проекты', 'Задачи', "Пользователи"]
     }
+},
+components: {
+    buttonNav
+  
 }
 }
 </script>

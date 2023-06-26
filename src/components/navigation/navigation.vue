@@ -37,4 +37,7 @@ components: {
 
 <style lang="scss">
 @import '@/components/navigation/navigation.module.scss';
+.navigation__user-button{
+    color: black
+}
 </style>

@@ -1,14 +1,16 @@
 <template>
-<buttonUser>
-     <svg-icon icon-class="nav" class-name="navigation__user-button" />
-</buttonUser>
+ <div>
+ <button class="button navigation__button" :class="buttonClass" @click="clickButton">
+ <iconButton></iconButton>
+</button>
+ </div> 
 </template>
 
 <script>
-import buttonUser from '../button/button.vue';
+import iconButton from '../iconButton/iconButton.vue';
 export default{
     components:{
-    buttonUser
+    iconButton
 }
 }
 </script>

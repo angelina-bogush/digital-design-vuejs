@@ -12,7 +12,7 @@
             <template v-else>
             <emptyProject></emptyProject>
              </template>
-            
+             
     </div>
 </template> 
 
@@ -20,12 +20,14 @@
 import navigation from '@/components/navigation/navigation.vue';
 import task from '@/components/task/task.vue';
 import emptyProject from '@/components/empty-project/emptyProject.vue';
+import dropdownButton from '@/components/dropdownButton/dropdownButton.vue';
 
 export default{
     components: {
      navigation,
      task,
      emptyProject
+     
     },
     data(){
         return{

@@ -1,0 +1,24 @@
+@import '@/components/navigation/navigation.module.scss';
+$border-hover: rgba(#121316, 0.5);
+$border-error: #EE4222;
+input{
+    padding: 10px 12px;
+    border: 1px solid rgba($color-black, 0.15);
+    border-radius: 4px;
+    &:hover{
+        border-color: $border-hover
+    };
+    &:active{
+        border-color: $color-black;
+        outline: none
+    }
+
+
+}
+.input_disabled{
+    background-color: $primary-disabled-color;
+    color: $disabled-font-button
+};
+.input_error{
+    border-color: $border-error
+}

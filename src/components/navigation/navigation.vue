@@ -2,11 +2,11 @@
    <div>
     <div class="navigation">
         <div class="navigation__container">
-            <buttonNav v-for="button in buttonsName" :buttonName="button"/>
+            <buttonNav v-for="button in buttonsName" :buttonName="button" />
             <div class="navigation__user">
                 <button class="navigation__user-container">
                 <span class="user-avatar navigation__user-avatar"></span>
-                <svgIcon icon-class="nav" class-name="navigation__user-button" />
+                <svg-icon icon-class="nav" class-name="navigation__user-button" />
                 <div class="dropdown nav-dropdown">
                         <ul class="dropdown__list nav-dropdown">
                             <li><a class="dropdown__link nav-dropdown">Профиль</a></li>
@@ -32,6 +32,7 @@ components: {
   
 }
 }
+
 </script>
 
 <style lang="scss">

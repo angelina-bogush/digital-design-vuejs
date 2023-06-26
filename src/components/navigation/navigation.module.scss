@@ -8,6 +8,7 @@ $primary-hover-color: #1068BF;
 $primary-active-color: #0B5CAD;
 $primary-disabled-color: #DCDCDE;
 $disabled-font-button: #8E8E8E;
+$default-placeholder: #D9D9D9;
 $hover-button-color: #ECECEF;
 $color-black: #1C1C1C;
 $color-white: #fff;
@@ -64,9 +65,9 @@ body {
     background-color: $hover-button-color;
         color: $color-black; 
 }
-.button:active{
-    background-color: $hover-button-color;
-        color: $color-black; 
+.button_is_disabled{
+    color: $disabled-font-button;
+    background-color: $primary-disabled-color;
 }
 .button_is_active{
     background-color: $color-white;

@@ -12,7 +12,7 @@
         </div>
     </div>
     <button class="project__menu menu" data-dropdown="menu-1">
-        <svg class="menu-image"><use xlink:href="#project-menu"></use></svg>
+        <svg-icon icon-class="project-menu" class-name="menu-image" />
         <div class="project-dropdown project-dropdown-opened">
                         <ul class="dropdown__list project-dropdown-opened">
                             <li><a class="dropdown__link project-dropdown__link project-dropdown-opened">Редактировать</a></li>

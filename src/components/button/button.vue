@@ -1,6 +1,6 @@
 <template>
     <div>
-    <button class="button navigation__button">{{buttonName}}</button>
+    <button class="button navigation__button" :class="buttonClass" @click="clickButton">{{buttonName}}</button>
     </div> 
 </template>
 
@@ -8,8 +8,29 @@
 export default{
    props: {
     buttonName: String
+   },
+   data(){
+    return {
+        isActive: false,
+        isDisabled: false
    }
+},
+computed: {
+  buttonClass(){
+    if(this.isActive){
+        return 'button_is_active'
+    }
+     if (this.isDisabled){
+        return 'button_is_disabled'
+    }
+  }
 
+},
+methods: {
+    clickButton(){
+        this.isActive = !this.isActive;
+}
+}
 }
 </script>
 

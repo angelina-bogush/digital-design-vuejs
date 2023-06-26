@@ -1,7 +1,8 @@
 <template>
   <div id="app">
    <pageTasks></pageTasks>
-   <!-- <pageProjects></pageProjects> -->
+   <!-- <pageProjects></pageProjects>
+   <pageUser></pageUser>  -->
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 <script>
 import pageTasks from '@/views/pageTasks.vue'
 import pageProjects from '@/views/pageProjects.vue'
+import pageUser from '@/views/pageUser.vue'
 export default{
   name: 'app',
   data(){     
@@ -18,7 +20,8 @@ export default{
   },
   components: {
     pageTasks,
-    pageProjects
+    pageProjects,
+    pageUser
   }
 }
 </script>

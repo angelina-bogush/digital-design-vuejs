@@ -12,13 +12,14 @@
             <template v-else>
             <emptyProject></emptyProject>
              </template>
+            
     </div>
 </template> 
 
 <script>
 import navigation from '@/components/navigation/navigation.vue';
 import task from '@/components/task/task.vue';
-import emptyProject from '@/components/empty-project/emptyProject.vue'
+import emptyProject from '@/components/empty-project/emptyProject.vue';
 
 export default{
     components: {

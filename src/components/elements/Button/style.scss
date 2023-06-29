@@ -1,0 +1,70 @@
+$primary-default-color:#1F75CB;
+$primary-hover-color: #1068BF;
+$primary-active-color: #0B5CAD;
+$primary-disabled-color: #DCDCDE;
+$disabled-font-button: #8E8E8E;
+$default-placeholder: #D9D9D9;
+$hover-button-color: #ECECEF;
+$color-white: #fff;
+.button_default{
+    padding: 11px 16px; 
+    border-radius: 4px;
+        
+}
+.button_default_nav{
+    background-color: $primary-default-color;
+    border: 1px solid $color-white;
+    cursor: pointer;
+    color:$color-white;
+        &:hover{
+        background-color: $hover-button-color;
+            color: $color-black; 
+    }
+        &:active, &_active{
+        background-color: $color-white;
+        color: $color-black;
+    }
+}
+
+.button_default_primary{
+    background-color: $primary-default-color;
+    border: 1px solid $color-white;
+    cursor: pointer;
+    color:$color-white;
+        &:hover{
+            background-color: $primary-hover-color;
+        }
+        &:active{
+            background-color: $primary-active-color;
+        }
+
+}
+.button_default_secondary{
+    background-color: $color-white;
+    color: $color-black;
+    border: 1px solid $color-border-default;
+     &:hover{
+       border-color: rgba($color-border-hover, .5);
+       background-color: $hover-button-color
+     };
+     &:active{
+        background-color: $color-secondary-active;
+        border-color: $color-black
+     }
+     
+
+}
+.button_primary_disabled{
+    background-color: $primary-disabled-color;
+    color: $disabled-font-button;
+    border: none
+}
+.button_nav_disabled{
+    color: $disabled-font-button;
+    background-color: $primary-disabled-color;
+}
+.button_secondary_disabled{
+    background-color: $color-white;
+    color: $disabled-font-button;
+    border: 1px solid $color-border-default;
+}

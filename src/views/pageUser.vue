@@ -10,7 +10,7 @@
         <span class="status user__status">Активен</span>
     </div>
         <template class="button__user">
-        <buttonUser></buttonUser>
+        <!-- <buttonUser></buttonUser> -->
     </template>
       </div>
       <p><span>О себе</span></p>
@@ -23,18 +23,15 @@
 
 <script>
 import navigation from '@/components/navigation/navigation.vue';
-import buttonUser from '@/components/button/button.vue';
 export default{
 components:{
-    navigation,
-    buttonUser
+    navigation
 }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/components/navigation/navigation.module.scss';
-@import '@/components/task/task.module.scss';
+@import '@/components/elements/variables.scss';
 span{
     color:$disabled-font-button;
 }

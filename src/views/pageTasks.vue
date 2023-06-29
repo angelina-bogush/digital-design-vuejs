@@ -1,31 +1,25 @@
 <template>
     <div class="pageTask">
         <navigation></navigation>
-        <ul v-if="tasks.length">
-            <li v-for="(task, index) in tasks" :key="index">
-            <task :title="task.title"
-                :number='index + 1'
-                :creator="task.creator"
-                :changes="task.changes" /> 
-            </li>
-        </ul>
-            <template v-else>
+        <template v-if="tasks.length">
+            <TaskList :tasks='tasks' />
+        </template>
+        <template v-else>
             <emptyProject></emptyProject>
-             </template>
-             
+        </template>
+
     </div>
 </template> 
 
 <script>
 import navigation from '@/components/navigation/navigation.vue';
-import task from '@/components/task/task.vue';
+import TaskList from '@/components/tasks/TaskList/TaskList.vue';
 import emptyProject from '@/components/empty-project/emptyProject.vue';
-import dropdownButton from '@/components/dropdownButton/dropdownButton.vue';
 
 export default{
     components: {
      navigation,
-     task,
+     TaskList,
      emptyProject
      
     },

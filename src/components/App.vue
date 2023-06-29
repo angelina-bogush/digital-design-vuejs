@@ -22,7 +22,7 @@ export default{
     pageTasks,
     pageProjects,
     pageUser
-  }
+}
 }
 </script>
 

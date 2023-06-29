@@ -4,6 +4,7 @@
 
 <script>
 export default{
+    name: 'Input',
     data(){
         return{
             isDisabled: false,
@@ -24,5 +25,6 @@ computed:{
 </script>
 
 <style lang="scss">
-@import '@/components/input/input.module.scss'
+@import '@/components/elements/variables.scss';
+@import './style.scss'
 </style>

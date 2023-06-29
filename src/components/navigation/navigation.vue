@@ -2,7 +2,19 @@
    <div>
     <div class="navigation">
         <div class="navigation__container">
-            <buttonNav v-for="button in buttonsName" :buttonName="button" />
+        <Button 
+            :type="'disabled'"
+            :name="'Проекты'" 
+            :variant="'primary'">
+         </Button>
+         <Button
+            :name="'Задачи'"
+            :type="'disabled'"
+            :variant="'secondary'">
+        </Button>
+            <Button :type="'not'" 
+            :name="'Пользователи'"
+            :variant="'nav'"></Button>
             <div class="navigation__user">
                 <button class="navigation__user-container">
                 <span class="user-avatar navigation__user-avatar"></span>
@@ -20,23 +32,18 @@
 </template>
 
 <script>
-import buttonNav from '@/components/button/button.vue'
 export default{
 data(){
     return{
-        buttonsName:['Проекты', 'Задачи', "Пользователи"]
     }
-},
-components: {
-    buttonNav
-  
 }
 }
 
 </script>
 
 <style lang="scss">
-@import '@/components/navigation/navigation.module.scss';
+@import '@/components/elements/variables.scss';
+@import './style.scss';
 .navigation__user-button{
     color: black
 }

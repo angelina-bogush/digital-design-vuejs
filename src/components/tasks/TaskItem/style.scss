@@ -1,5 +1,6 @@
-@import '@/components/navigation/navigation.module.scss';
+@import '@/components/elements/variables.scss';
 @import '@/components/project/project.module.scss';
+$color-bronze: #9E6955;
 .task__title{
     padding-top: 0;
 }
@@ -21,4 +22,8 @@ display: block
     line-height: $regular-line-height;
     padding: 0 8px;
     border-radius: 4px;
+}
+.dropdown-container{
+    position: relative;
+    margin:auto
 }

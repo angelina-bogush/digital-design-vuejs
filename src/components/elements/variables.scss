@@ -1,0 +1,25 @@
+$primary-default-color:#1F75CB;
+$primary-hover-color: #1068BF;
+$primary-active-color: #0B5CAD;
+$primary-disabled-color: #DCDCDE;
+$disabled-font-button: #8E8E8E;
+$default-placeholder: #D9D9D9;
+$hover-button-color: #ECECEF;
+$color-black: #1C1C1C;
+$color-white: #fff;
+$color-bronze: #9E6955;
+$color-secondary-active: #DCDCDE;
+$color-border-default: rgba(0,0,0,.15);
+$color-border-hover: #121316;
+$text-color-disabled: #8E8E8E;
+$color-menu-border:#1C1C1C;
+$gap: 24px;
+$regular-font-size: 14px;
+$regular-font-weight: 400px;
+$regular-line-height: 19px;
+
+@mixin font-regular {
+    font-size: $regular-font-size;
+    font-weight: $regular-font-weight;
+    line-height:$regular-line-height; 
+}

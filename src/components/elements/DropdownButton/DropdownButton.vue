@@ -1,7 +1,8 @@
 <template>
  
  <button class="button" v-on="listeners">
- <Icon></Icon>
+ <slot name="icon"></slot>
+ <slot name="menu"></slot>
 </button>
 
 </template>
@@ -9,8 +10,6 @@
 <script>
 export default{
     name: 'DropdownButton',
-    components:{
-},
 data(){
     return{
 

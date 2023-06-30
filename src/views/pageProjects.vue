@@ -1,15 +1,10 @@
 <template>
     <div class="pageProject">
  <navigation></navigation>
- <ul v-if="projects.length">
- <li v-for="(project, index) in projects" :key="index">
-<project
-        :name="project.name"
-        :number="index + 1"
-        :creator="project.creator"
-        :changes="project.changes"/>
-</li>
-</ul>
+ <template v-if="projects.length">
+<ProjectList
+        :projects="projects"/>
+</template>
 <template v-else>
 <emptyProject></emptyProject>
 </template>
@@ -19,43 +14,48 @@
 <script>
 import navigation from '@/components/navigation/navigation.vue';
 import emptyProject from '@/components/empty-project/emptyProject.vue';
-import project from '@/components/project/project.vue'
+import ProjectList from '@/components/projects/ProjectList/ProjectList.vue'
 
 export default{
     name: 'pageProjects',
     components: {
     navigation,
-    project,
+    ProjectList,
     emptyProject
     },
     data(){
         return{
             projects:[ 
                 {
+                    number: 1,
             name: 'Название',
             creator: 'Здесь описание создания',
             changes: 'описание изменений'
     
             },
             {
+                number: 2,
             name: 'Название',
             creator: 'Здесь описание создания',
             changes: 'описание изменений'
     
             },
             {
+                number: 3,
             name: 'Название',
             creator: 'Здесь описание создания',
             changes: 'описание изменений'
     
             },
             {
+                number: 4,
             name: 'Название',
             creator: 'Здесь описание создания',
             changes: 'описание изменений'
     
             },
             {
+                number: 5,
             name: 'Название',
             creator: 'Здесь описание создания',
             changes: 'описание изменений'

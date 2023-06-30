@@ -1,5 +1,5 @@
 @import '@/components/elements/variables.scss';
-@import '@/components/project/project.module.scss';
+@import '@/components/projects/ProjectItem/style.scss';
 $color-bronze: #9E6955;
 .task__title{
     padding-top: 0;
@@ -26,4 +26,7 @@ display: block
 .dropdown-container{
     position: relative;
     margin:auto
+}
+.dropdown__link_delete{
+    color: red
 }

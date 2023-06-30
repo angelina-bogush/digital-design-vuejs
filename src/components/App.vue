@@ -1,8 +1,8 @@
 <template>
   <div id="app">
    <pageTasks></pageTasks>
-   <!-- <pageProjects></pageProjects>
-   <pageUser></pageUser>  -->
+    <!-- <pageProjects></pageProjects>  -->
+   <!-- <pageUser></pageUser>   -->
   </div>
 </template>
 
@@ -30,8 +30,10 @@ export default{
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    margin: 0;
-    box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+}
+*{
+  box-sizing: border-box;
+  margin: 0;
 }
 </style>

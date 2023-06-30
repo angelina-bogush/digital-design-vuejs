@@ -1,10 +1,4 @@
-@import '@/components/navigation/style.scss';
-
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-
+@import '@/components/elements/variables.scss';
 .main-container {
     padding: 0 24px;
 }
@@ -96,9 +90,4 @@ display:block;
     white-space: nowrap;
     overflow: hidden;
     line-height: $regular-line-height;
-}
-
-.project-dropdown{
-    span{
-    color: red}
 }

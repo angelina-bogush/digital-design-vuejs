@@ -1,11 +1,9 @@
 <template>
 <div class="container">
     <TaskItem v-for="(task, index) in tasks" :key="index"
-     :number='index + 1'
-     :creator="task.creator"
-     :changes="task.changes"
-     :title="task.title"
-     :tasks="tasks" ></TaskItem>
+     :task="task"
+     @editTask="editTaskClick" 
+     @deleteTask="deleteTaskClick"></TaskItem>
 </div>
 </template>
 
@@ -13,10 +11,21 @@
 import TaskItem from '@/components/tasks/TaskItem/TaskItem.vue'
 export default{
 props: {
-   tasks: Array
+   tasks: {
+    type: Array,
+    default: () => []
+   }
 },
 components:{
  TaskItem
+},
+methods:{
+ editTaskClick(){
+    console.log('Редактировать задачу')
+ },
+deleteTaskClick(){
+    console.log('Удалить задачу')
+}
 }
 }
 </script>

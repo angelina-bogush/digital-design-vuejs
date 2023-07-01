@@ -9,8 +9,8 @@
          </Button>
          <Button
             :name="'Задачи'"
-            :type="'disabled'"
-            :variant="'secondary'">
+            :type="''"
+            :variant="'primary'">
         </Button>
             <Button :type="'not'" 
             :name="'Пользователи'"

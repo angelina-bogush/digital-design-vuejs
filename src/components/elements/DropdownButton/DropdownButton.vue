@@ -1,6 +1,6 @@
 <template>
  
- <button class="button" v-on="listeners">
+ <button class="button_default" v-on="listeners" :class="buttonClass">
  <slot name="icon"></slot>
  <slot name="menu"></slot>
 </button>
@@ -8,25 +8,42 @@
 </template>
 
 <script>
-export default{
+export default {
     name: 'DropdownButton',
-data(){
-    return{
-
-    }
-},
- computed:{
-listeners(){
-    return{
-        ...this.$listeners
+    props: {
+        variant: String,
+        type: String,
+    },
+    data() {
+        return {
+            isDisabled: false
+        }
+    },
+    computed: {
+        listeners() {
+            return {
+                ...this.$listeners
+            }
+        },
+    buttonClass(){
+        if (this.type === 'disabled' && this.variant === 'primary') {
+                return 'button_primary_disabled'
+            }
+            if (this.type === 'disabled' && this.variant === 'secondary') {
+                return 'button_secondary_disabled'
+            }
+        if(this.variant === 'primary'){
+            return 'button_default_primary'
+        }
+        if(this.variant === 'secondary'){
+           return  'button_default_secondary'
+        }
     }
 }
- }
 }
 </script>
 
-<style>
-.menu-image{
-    margin: 0
-}
+<style lang="scss">
+@import '@/components/elements/Button/style.scss';
+
 </style>

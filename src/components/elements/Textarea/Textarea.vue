@@ -1,6 +1,6 @@
 <template>
     <div class="textarea-container">
-   <textarea placeholder="Введите текст..." :class="inputClass" v-bind="$attrs" class="textarea_default"/>
+   <textarea :class="inputClass" v-bind="$attrs" class="textarea_default"/>
    </div>
    </template>
    
@@ -31,12 +31,15 @@
     border-radius: 4px;
     min-height: 120px;
     width: 100%;
-    padding: 10px 12px
+    padding: 10px 12px;
+    resize: none
 }
 .textarea_error{
     border: 1px solid red;
 }
-textarea{
-    resize: none
+textarea::placeholder{
+    color: $default-placeholder;
+    font-size: 14px;
+    font-family:'Open Sans';
 }
 </style>

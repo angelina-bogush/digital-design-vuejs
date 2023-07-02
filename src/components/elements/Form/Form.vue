@@ -2,12 +2,12 @@
     <div>
         <form class="form" name="editForm" v-bind="$attrs">
             <div class="input-container">
-                <label class="form__label" for="name">Название<span>  *</span></label><Input placeholder="Введите название..." id="name" type="text"
+                <label class="form__label" for="name">Название<span>  *</span></label><Input placeholder="Введите текст..." id="name" type="text"
                     class="input-name" :variant="''"></Input>
             </div>
             <div class="input-container">
                 <label class="form__label" for="description">Описание</label>
-                <Textarea id="description" type="text" :variant="''"></Textarea>
+                <Textarea id="description" type="text" :variant="''" placeholder="Введите текст..."></Textarea>
             </div>
         </form>
     </div>
@@ -40,7 +40,6 @@ export default{
 
 .input-container {
     display: flex;
-    align-items: center;
     gap: 8px;
 }
 

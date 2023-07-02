@@ -1,37 +1,45 @@
 <template>
- <div>
-<input  :class="inputClass" class="input_default_empty" v-bind="$attrs" required />
-</div>
+    <div>
+        <input :class="inputClass" class="input_default_empty" v-bind="$attrs" required />
+    </div>
 </template>
 
 <script>
-export default{
+export default {
     name: 'Input',
     inheritAttrs: false,
-    props:{
+    props: {
         variant: String
     },
-    data(){
-        return{
+    data() {
+        return {
             isError: false
         }
     },
-computed:{
-      inputClass(){
-          if(this.variant === 'disabled'){
-             return 'input_disabled'
-          }
-          if(this.isError){
-            return 'input_error'
-          }
-      }
-}
+    computed: {
+        inputClass() {
+            if (this.variant === 'disabled') {
+                return 'input_disabled'
+            }
+            if (this.isError) {
+                return 'input_error'
+            }
+        }
+    }
 }
 </script>
 
 <style lang="scss">
 @import '@/components/elements/variables.scss';
 @import './style.scss';
-input{
- width: 100%}
+
+input {
+    width: 100%
+}
+
+input::placeholder {
+    color: $default-placeholder;
+    font-size: 14px;
+    font-family: 'Open Sans'
+}
 </style>

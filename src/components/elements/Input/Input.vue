@@ -1,19 +1,24 @@
 <template>
-<input placeholder="Введите текст..." :class="inputClass">
+ <div>
+<input  :class="inputClass" class="input_default_empty" v-bind="$attrs" required />
+</div>
 </template>
 
 <script>
 export default{
     name: 'Input',
+    inheritAttrs: false,
+    props:{
+        variant: String
+    },
     data(){
         return{
-            isDisabled: false,
-            isError: false,
+            isError: false
         }
     },
 computed:{
       inputClass(){
-          if(this.isDisabled){
+          if(this.variant === 'disabled'){
              return 'input_disabled'
           }
           if(this.isError){
@@ -26,5 +31,7 @@ computed:{
 
 <style lang="scss">
 @import '@/components/elements/variables.scss';
-@import './style.scss'
+@import './style.scss';
+input{
+ width: 100%}
 </style>

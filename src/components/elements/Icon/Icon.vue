@@ -2,7 +2,9 @@
     <div>
         <svg-icon
         v-bind="$attrs"
-        :class-name="iconDisabled"/>
+        :class-name="iconDisabled"
+        :width="width"
+        :height="height"/>
         <!-- <svg-icon icon-class="nav" class-name="navigation__user-button" /> -->
     </div>
 </template>
@@ -11,9 +13,11 @@
 export default{
     name: 'Icon',
     props:{
-        class: String,
+        className: String,
         icon: String,
-        type: String
+        type: String,
+        width: String,
+        height: String
     },
     inheritAttrs: false,
     data(){

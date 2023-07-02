@@ -12,10 +12,11 @@
         </div>
     </div>
         <div class="dropdown-container">
-            <DropdownButton class="menu" @click="clickButton"
+            <DropdownButton class="menu" @click="clickButton" :variant="'secondary'" :type="''"
                 > 
                 <template #icon>
-                    <Icon></Icon>
+                    <Icon :className="'menu-image'" :iconClass="'project-menu'"
+                    width="14px" height="14px"></Icon>
                 </template>
                 <template #menu>
                 <div class="project-dropdown" :class="{'project-dropdown_opened': isActive}">

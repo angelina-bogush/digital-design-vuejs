@@ -1,25 +1,22 @@
 <template>
     <div class="pageProject">
- <navigation></navigation>
  <template v-if="projects.length">
 <ProjectList
         :projects="projects"/>
 </template>
 <template v-else>
-<emptyProject></emptyProject>
+<emptyProject :text="'Не создан ни один проект'"></emptyProject>
 </template>
     </div>
 </template>
 
 <script>
-import navigation from '@/components/navigation/navigation.vue';
 import emptyProject from '@/components/empty-project/emptyProject.vue';
 import ProjectList from '@/components/projects/ProjectList/ProjectList.vue'
 
 export default{
     name: 'pageProjects',
     components: {
-    navigation,
     ProjectList,
     emptyProject
     },
@@ -69,6 +66,6 @@ export default{
 
 <style lang="scss">
 .pageProject{
-    height: 100%
+    height: calc(100% - 90px)
 }
 </style>

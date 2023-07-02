@@ -3,14 +3,16 @@
     <div class="navigation">
         <div class="navigation__container">
         <Button 
-            :type="'disabled'"
+            :type="''"
             :name="'Проекты'" 
-            :variant="'primary'">
+            :variant="'nav'"
+            @click="showProjects">
          </Button>
          <Button
             :name="'Задачи'"
             :type="''"
-            :variant="'primary'">
+            :variant="'nav'"
+            @click="showTasks">
         </Button>
             <Button :type="'not'" 
             :name="'Пользователи'"
@@ -33,8 +35,12 @@
 
 <script>
 export default{
-data(){
-    return{
+methods:{
+    showProjects(){
+        this.$emit('changePage', 'pageProjects')
+    },
+    showTasks(){
+        this.$emit('changePage', 'pageTasks')
     }
 }
 }

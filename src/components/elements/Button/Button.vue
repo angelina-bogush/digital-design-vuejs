@@ -3,7 +3,7 @@
     <button class="button_default"
      v-bind="$attrs" 
     :class="buttonClass"
-     @click="clickButton">{{name}}</button>
+    v-on="listeners">{{name}}</button>
   </div>
 </template>
 
@@ -41,13 +41,13 @@ computed: {
     if(this.variant === 'secondary'){
       return 'button_default_secondary' 
     }
-  }
+  },
+  listeners() {
+            return {
+                ...this.$listeners
+            }
+        }
 
-},
-methods: {
-    clickButton(){
-
-}
 }
 }
 </script>

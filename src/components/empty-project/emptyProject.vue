@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="page">
-           <p class="page__text">Не создан ни один проект</p>
+           <p class="page__text">{{ text }}</p>
            <button class="button page__button">Добавить</button>
         </div>
     </div>
@@ -10,11 +10,14 @@
 
 <script>
 export default{
-    name: 'emptyProject'
+    name: 'emptyProject',
+    props:{
+        text: String
+    }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 @import './style.scss'
 </style>

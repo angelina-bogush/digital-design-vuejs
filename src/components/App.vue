@@ -7,7 +7,6 @@
   </div>
 </template>
 
-
 <script>
 import navigation from '@/components/navigation/navigation.vue';
 import pageCreateTask from '@/views/pageCreateTask.vue'

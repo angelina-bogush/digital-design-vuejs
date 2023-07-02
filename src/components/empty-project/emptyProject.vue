@@ -16,5 +16,5 @@ export default{
 
 <style lang="scss">
 @import '@/components/elements/variables.scss';
-@import './empty-project.module.scss'
+@import './style.scss'
 </style>

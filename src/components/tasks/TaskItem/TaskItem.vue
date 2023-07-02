@@ -78,6 +78,7 @@ background-color: $color-white;
 left: -90px;
 top: 45px;
 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+z-index: 2;
 }
 
 </style>

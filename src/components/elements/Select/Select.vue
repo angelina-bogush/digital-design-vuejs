@@ -1,9 +1,12 @@
 <template>
     <div class="select-container">
-        <p 
+        <div 
         class="select-title"
-        @click="areOptionsSeen = !areOptionsSeen"
-        :class="{'active': areOptionsSeen}">{{ selected }}</p>
+        :class="{'active': areOptionsSeen}"
+        @click="areOptionsSeen = !areOptionsSeen">{{ selected }}
+        <slot name="icon"></slot>
+    
+    </div>
         <div class="options"
         v-if="areOptionsSeen">
             <p v-for="option in options"
@@ -55,7 +58,10 @@ methods:{
     border: 1px solid $color-border-default;
     cursor: pointer;
     padding: 10px;
+    padding-bottom: 5px;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
 }
 .active{
     border: 1px solid $color-black
@@ -65,7 +71,7 @@ methods:{
     padding: 8px 0;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
     position: absolute;
-    top:40px;
+    top:45px;
     left: 0px;
     width: 100%;
     cursor: pointer;

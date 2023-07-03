@@ -4,7 +4,9 @@
         v-bind="$attrs"
         :class-name="iconDisabled"
         :width="width"
-        :height="height"/>
+        :height="height"
+        :color="color"
+        v-on="listeners"/>
         <!-- <svg-icon icon-class="nav" class-name="navigation__user-button" /> -->
     </div>
 </template>
@@ -17,7 +19,8 @@ export default{
         icon: String,
         type: String,
         width: String,
-        height: String
+        height: String,
+        color: String
     },
     inheritAttrs: false,
     data(){
@@ -29,7 +32,12 @@ computed:{
     iconDisabled(){
   if(this.type === 'disabled'){
     return 'disabled'
-  }}
+  }},
+  listeners() {
+            return {
+                ...this.$listeners
+            }
+        }
 }}
 </script>
 

@@ -25,6 +25,11 @@
                 @selectOption="selectOptionClick"
                 :selected="selected"
                  class="input-select">
+                 <template #icon>
+                    <Icon :className="'navigation__user-button'" :iconClass="'nav-down'"
+                    :color="'#8E8E8E'"
+                    width="24px" height="24px"></Icon>
+                </template>
                 </Select>
             </div>
         </form>

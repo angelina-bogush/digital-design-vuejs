@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navigation @changePage="changePageClick"></navigation>
+    <!-- <navigation @changePage="changePageClick"></navigation>
    <pageTasks v-if="currentPage === 'pageTasks'"></pageTasks>
-    <pageProjects v-if="currentPage === 'pageProjects'"></pageProjects>  
+    <pageProjects v-if="currentPage === 'pageProjects'"></pageProjects>   -->
     <pageCreateTask></pageCreateTask>
   </div>
 </template>
@@ -31,7 +31,6 @@ export default{
 methods:{
    changePageClick(page){
     this.currentPage = page;
-    console.log(page)
    }
 }
 }

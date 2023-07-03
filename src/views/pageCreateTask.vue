@@ -5,12 +5,13 @@
             <div class="page">
                 <h1 class='create-title'>Создание задачи</h1>
                 <div class="form-container">
-                    <Form></Form>
+                    <Form ref="formComponent"></Form>
                 </div>
                 <div class="form-button-container">
                     <Button :name="'Отмена'"
                     :variant="'secondary'"></Button>
-                    <Button :name="'Создать задачу'" 
+                    <Button @click="createTaskClick"
+                    :name="'Создать задачу'" 
                     :variant="'primary'"></Button>
                 </div>
             </div>
@@ -26,6 +27,11 @@ export default {
     components: {
         navigation,
         Form
+    },
+    methods:{
+        createTaskClick(){
+            this.$refs.formComponent.createTask();
+        }
     }
 }
 </script>

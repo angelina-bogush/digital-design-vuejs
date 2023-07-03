@@ -2,12 +2,30 @@
     <div>
         <form class="form" name="editForm" v-bind="$attrs">
             <div class="input-container">
-                <label class="form__label" for="name">Название<span>  *</span></label><Input placeholder="Введите текст..." id="name" type="text"
-                    class="input-name" :variant="''"></Input>
+                <label class="form__label" for="name">Название<span>  *</span></label>
+                <Input placeholder="Введите текст..." id="name" type="text"
+                    class="input-name"
+                     :variant="''"
+                     v-model="inputText"
+                    >
+                </Input>
             </div>
             <div class="input-container">
                 <label class="form__label" for="description">Описание</label>
-                <Textarea id="description" type="text" :variant="''" placeholder="Введите текст..."></Textarea>
+                 <Textarea 
+                 id="description" 
+                 type="text"
+                 :variant="''" 
+                 placeholder="Введите текст..."
+                  v-model="textareaText"></Textarea>
+            </div>
+            <div class="input-container">
+                <label class="form__label" for="project">Проект<span>  *</span></label>
+                <Select :options="options" 
+                @selectOption="selectOptionClick"
+                :selected="selected"
+                 class="input-select">
+                </Select>
             </div>
         </form>
     </div>
@@ -16,7 +34,34 @@
 
 <script>
 export default{
-    name: 'Form'
+    name: 'Form',
+    data(){
+        return{
+            options: [
+                {name:'Проект1', value: '1'},
+                {name:'Проект2', value: '2'},
+                {name:'Проект3', value: '3'},
+                {name:'Проект4', value: '4'},
+            ],
+            selected: 'Проект1',
+            inputText: '',
+            textareaText: ''
+        }
+    },
+    methods:{
+        selectOptionClick(selectedOption){
+            this.selected = selectedOption
+        },
+        createTask(){
+            const task = {
+                name: this.inputText,
+                description: this.textareaText,
+                project: this.selected
+            }
+            console.log(task)
+            // this.$emit('createTaskForm', task);
+        }
+    }
 }
 </script>
 
@@ -43,7 +88,7 @@ export default{
     gap: 8px;
 }
 
-.input-name {
+.input-name, .input-select {
     width: calc(100% - 120px)
 }
 </style>

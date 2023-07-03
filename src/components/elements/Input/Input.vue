@@ -1,12 +1,20 @@
 <template>
     <div>
-        <input :class="inputClass" class="input_default_empty" v-bind="$attrs" required />
+        <input
+        :class="inputClass" class="input_default_empty" 
+        v-bind="$attrs" required 
+        @input="$emit('input', $event.target.value)"
+        />
     </div>
 </template>
 
 <script>
 export default {
     name: 'Input',
+    model:{
+        prop: 'value',
+        event: 'input'
+    },
     inheritAttrs: false,
     props: {
         variant: String

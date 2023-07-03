@@ -1,6 +1,8 @@
 <template>
     <div class="textarea-container">
-   <textarea :class="inputClass" v-bind="$attrs" class="textarea_default"/>
+   <textarea :class="inputClass" 
+   v-bind="$attrs" class="textarea_default"
+   @input="$emit('input', $event.target.value)"/>
    </div>
    </template>
    

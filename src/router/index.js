@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import PageProjects from '@/views/PageProjects'
 
 Vue.use(VueRouter)
 

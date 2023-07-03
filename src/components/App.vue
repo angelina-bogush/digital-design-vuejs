@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <!-- <navigation @changePage="changePageClick"></navigation>
+    <navigation @changePage="changePageClick"></navigation>
    <pageTasks v-if="currentPage === 'pageTasks'"></pageTasks>
-    <pageProjects v-if="currentPage === 'pageProjects'"></pageProjects>   -->
-    <pageCreateTask></pageCreateTask>
+    <pageProjects v-if="currentPage === 'pageProjects'"></pageProjects>  
+    <!-- <pageCreateTask></pageCreateTask> -->
   </div>
 </template>
 

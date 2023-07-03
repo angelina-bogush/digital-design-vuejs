@@ -1,10 +1,9 @@
 <template>
- 
- <button class="button_default" v-on="listeners" :class="buttonClass">
- <slot name="icon"></slot>
- <slot name="menu"></slot>
-</button>
-
+    <button class="button_default" v-on="listeners" :class="buttonClass">
+        <slot name="avatar"></slot>
+        <slot name="icon"></slot>
+        <slot name="menu"></slot>
+    </button>
 </template>
 
 <script>
@@ -25,25 +24,27 @@ export default {
                 ...this.$listeners
             }
         },
-    buttonClass(){
-        if (this.type === 'disabled' && this.variant === 'primary') {
+        buttonClass() {
+            if (this.type === 'disabled' && this.variant === 'primary') {
                 return 'button_primary_disabled'
             }
             if (this.type === 'disabled' && this.variant === 'secondary') {
                 return 'button_secondary_disabled'
             }
-        if(this.variant === 'primary'){
-            return 'button_default_primary'
-        }
-        if(this.variant === 'secondary'){
-           return  'button_default_secondary'
+            if (this.variant === 'nav') {
+                return 'button_default_nav'
+            }
+            if (this.variant === 'primary') {
+                return 'button_default_primary'
+            }
+            if (this.variant === 'secondary') {
+                return 'button_default_secondary'
+            }
         }
     }
-}
 }
 </script>
 
 <style lang="scss">
 @import '@/components/elements/Button/style.scss';
-
 </style>

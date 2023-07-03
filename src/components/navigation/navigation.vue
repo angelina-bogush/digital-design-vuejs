@@ -18,7 +18,7 @@
             :name="'Пользователи'"
             :variant="'nav'"></Button>
             <div class="navigation__user">
-                <button class="navigation__user-container">
+                <!-- <button class="navigation__user-container">
                 <span class="user-avatar navigation__user-avatar"></span>
                 <svg-icon icon-class="nav" class-name="navigation__user-button" />
                 <div class="dropdown nav-dropdown">
@@ -26,7 +26,25 @@
                             <li><a class="dropdown__link nav-dropdown">Профиль</a></li>
                             <li><a class="dropdown__link nav-dropdown">Выход</a></li>
                         </ul>
-                    </div> </button>
+                    </div> </button> -->
+                    <DropdownButton :variant="'nav'" :type="''" class="navigation__dropdown"
+                > 
+                <template #avatar>
+                    <span class="user-avatar"></span>
+                </template>
+                <template #icon>
+                    <Icon :className="''" :iconClass="'nav'"
+                    width="14px" height="14px"></Icon>
+                </template>
+                <template #menu>
+                <div class="project-dropdown" :class="{'project-dropdown_opened': isActive}">
+                                <ul class="dropdown__list">
+                                    <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
+                                    <li><span class="dropdown__link_delete" @click="deleteClick">Удалить</span></li>
+                                </ul>
+                </div>
+            </template>
+            </DropdownButton>
             </div>
         </div>
     </div>
@@ -52,5 +70,10 @@ methods:{
 @import './style.scss';
 .navigation__user-button{
     color: black
+}
+.navigation__dropdown{
+    display: flex;
+    align-items: center;
+    gap: 8px
 }
 </style>

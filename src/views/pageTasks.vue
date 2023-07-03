@@ -62,7 +62,7 @@ export default{
 </script>
 <style lang="scss">
  .pageTask{
-    height:  100%;
+    height: calc(100% - 90px);
  }
  li{
     list-style-type: none;

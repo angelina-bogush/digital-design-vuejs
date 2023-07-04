@@ -6,8 +6,18 @@
             :type="''"
             :name="'Проекты'" 
             :variant="'nav'"
-            @click="showProjects">
+            @click="showProjects"
+            >
          </Button>
+         <router-link to="/projects">
+         <Button 
+         :type="''"
+         :name="'Проекты'" 
+         :variant="'nav'"
+        
+         >
+      </Button>
+    </router-link>
          <Button
             :name="'Задачи'"
             :type="''"

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import pageProjects from '@/views/pageProjects'
+import ViewsProjects from '@/views/ViewsProjects'
+import ViewsTasks from '@/views/ViewsTasks'
 
 Vue.use(VueRouter)
 
@@ -19,8 +20,13 @@ const routes = [
   },
   {
     path: '/projects',
-    name: 'pageProjects',
-    component: pageProjects
+    name: 'ViewsProjects',
+    component: ViewsProjects
+  },
+  {
+    path:'/tasks',
+    name: 'ViewsTasks',
+    component: ViewsTasks
   }
 ]
 

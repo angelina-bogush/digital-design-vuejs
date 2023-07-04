@@ -12,8 +12,6 @@
 <script>
 import navigation from '@/components/navigation/navigation.vue';
 import pageCreateTask from '@/views/pageCreateTask.vue'
-import pageTasks from '@/views/pageTasks.vue'
-import pageProjects from '@/views/pageProjects.vue'
 import pageUser from '@/views/pageUser.vue'
 export default{
   name: 'app',
@@ -24,8 +22,6 @@ export default{
   },
   components: {
     navigation,
-    pageTasks,
-    pageProjects,
     pageUser,
     pageCreateTask
 },

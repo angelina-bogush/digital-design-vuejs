@@ -2,14 +2,7 @@
    <div>
     <div class="navigation">
         <div class="navigation__container">
-        <Button 
-            :type="''"
-            :name="'Проекты'" 
-            :variant="'nav'"
-            @click="showProjects"
-            >
-         </Button>
-         <router-link to="/projects">
+     <router-link to="/projects">
          <Button 
          :type="''"
          :name="'Проекты'" 
@@ -18,12 +11,13 @@
          >
       </Button>
     </router-link>
+    <router-link to="/tasks">
          <Button
             :name="'Задачи'"
             :type="''"
-            :variant="'nav'"
-            @click="showTasks">
+            :variant="'nav'">
         </Button>
+    </router-link>
             <Button :type="'not'" 
             :name="'Пользователи'"
             :variant="'nav'"></Button>
@@ -45,14 +39,14 @@
 
 <script>
 export default{
-methods:{
-    showProjects(){
-        this.$emit('changePage', 'pageProjects')
-    },
-    showTasks(){
-        this.$emit('changePage', 'pageTasks')
+    methods: {
+        showProjects() {
+            this.$emit("changePage", "pageProjects");
+        },
+        showTasks() {
+            this.$emit("changePage", "pageTasks");
+        }
     }
-}
 }
 
 </script>

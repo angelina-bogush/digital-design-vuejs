@@ -15,7 +15,7 @@ import emptyProject from '@/components/empty-project/emptyProject.vue';
 import ProjectList from '@/components/projects/ProjectList/ProjectList.vue'
 
 export default{
-    name: 'pageProjects',
+    name: 'ViewsProjects',
     components: {
     ProjectList,
     emptyProject

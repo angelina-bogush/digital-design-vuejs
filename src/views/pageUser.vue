@@ -1,6 +1,5 @@
 <template>
     <div>
-<navigation></navigation>
 <div class="user-container">
     <img class="user__image" src="../assets/images/userImage.png">
     <div class="user__info-container">
@@ -22,11 +21,7 @@
 </template>
 
 <script>
-import navigation from '@/components/navigation/navigation.vue';
 export default{
-components:{
-    navigation
-}
 }
 </script>
 

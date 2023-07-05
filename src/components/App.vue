@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <navigation></navigation>
-    <router-view />
-    <!-- <navigation @changePage="changePageClick"></navigation> -->
-   <!-- <pageTasks v-if="currentPage === 'pageTasks'"></pageTasks>
-    <pageProjects v-if="currentPage === 'pageProjects'"></pageProjects>  
-    <pageCreateTask></pageCreateTask> -->
+    <router-view></router-view>
+    <!-- <ViewLayout></ViewLayout> -->
   </div>
 </template>
 
 <script>
-import navigation from '@/components/navigation/navigation.vue';
-import pageCreateTask from '@/views/pageCreateTask.vue'
-import pageUser from '@/views/pageUser.vue'
+import ViewLayout from '@/views/ViewLayout.vue'
 export default{
   name: 'app',
   data(){     
@@ -21,9 +15,7 @@ export default{
     }
   },
   components: {
-    navigation,
-    pageUser,
-    pageCreateTask
+   ViewLayout,
 },
 methods:{
    changePageClick(page){
@@ -35,6 +27,7 @@ methods:{
 </script>
 
 <style lang="scss">
+@import '@/components/elements/variables.scss';
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,5 +37,9 @@ methods:{
 *{
   box-sizing: border-box;
   margin: 0;
+}
+a{
+  color: $color-black;
+  text-decoration: none;
 }
 </style>

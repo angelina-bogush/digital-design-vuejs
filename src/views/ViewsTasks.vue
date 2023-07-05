@@ -25,30 +25,35 @@ export default{
         return{
             tasks:[
                 {
+                id: 1,
                 title: 'Описание задачи',
                 number: 1,
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
+                 id: 2,
                 title: 'Описание задачи',
                 number: 2,
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
+                    id: 3,
                 title: 'Описание задачи',
                 number: 3,
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
+                    id: 4,
                 title: 'Описание задачи',
                 number: 4,
                 creator: 'Здесь описание создания',
                 changes: 'Здесь описание изменений'
                  },
                  {
+                    id: 5,
                 title: 'Описание задачи',
                 number: 5,
                 creator: 'Здесь описание создания',
@@ -62,7 +67,7 @@ export default{
 </script>
 <style lang="scss">
  .pageTask{
-    height:  100%;
+    height: calc(100% - 90px);
  }
  li{
     list-style-type: none;

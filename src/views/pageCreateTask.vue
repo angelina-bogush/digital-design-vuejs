@@ -1,6 +1,5 @@
 <template>
     <div class="page-create-task">
-        <navigation></navigation>
         <div class="container">
             <div class="page">
                 <h1 class='create-title'>Создание задачи</h1>
@@ -20,11 +19,9 @@
 </template>
 
 <script>
-import navigation from '@/components/navigation/navigation.vue';
 import Form from '@/components/elements/Form/Form.vue'
 export default {
     components: {
-        navigation,
         Form
     }
 }

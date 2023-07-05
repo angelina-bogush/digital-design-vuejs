@@ -1,9 +1,7 @@
 <template>
 <div class="container">
     <TaskItem v-for="(task, index) in tasks" :key="index"
-     :task="task"
-     @editTask="editTaskClick" 
-     @deleteTask="deleteTaskClick"></TaskItem>
+     :task="task"></TaskItem>
 </div>
 </template>
 
@@ -19,14 +17,6 @@ props: {
 components:{
  TaskItem
 },
-methods:{
- editTaskClick(){
-    console.log('Редактировать задачу')
- },
-deleteTaskClick(){
-    console.log('Удалить задачу')
-}
-}
 }
 </script>
 

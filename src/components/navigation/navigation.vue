@@ -11,16 +11,16 @@
          >
       </Button>
     </router-link>
-    <router-link to="/tasks">
+    <router-link to="/">
          <Button
             :name="'Задачи'"
             :type="''"
             :variant="'nav'">
         </Button>
     </router-link>
-            <Button :type="'not'" 
+  <router-link to="/auth"> <Button :type="'not'" 
             :name="'Пользователи'"
-            :variant="'nav'"></Button>
+            :variant="'nav'"></Button> </router-link>
             <div class="navigation__user">
                 <button class="navigation__user-container">
                 <span class="user-avatar navigation__user-avatar"></span>
@@ -39,6 +39,7 @@
 
 <script>
 export default{
+    name: 'Navigation',
     methods: {
         showProjects() {
             this.$emit("changePage", "pageProjects");

@@ -61,7 +61,7 @@ methods: {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 @import  './style.scss';
 *{

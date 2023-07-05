@@ -3,7 +3,7 @@
         <article class="item">
             <div class="content">
                 <div class="task__description-container">
-                    <p class="task__title title">{{ task.title }}</p>
+                    <router-link :to="{name: 'TaskCard', params: {id: task.id},}"> <p class="task__title title">{{ task.title }}</p> </router-link>
                     <span class="user-avatar task__user-avatar"></span>
                 </div>
                 <div class="description">

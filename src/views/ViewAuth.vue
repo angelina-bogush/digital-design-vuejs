@@ -2,7 +2,8 @@
     <div class="container">
     <div class="page">
         <h2>Страница авторизации</h2>
-        <Button variant="primary" name="Войти" @click="changeAuth"></Button>
+       <router-link to="/users"> <Button variant="primary" name="Войти"></Button></router-link>
+       <Button variant="secondary" name="Войти" @click="changeAuth"></Button>
     </div>
 </div>
     </template>
@@ -19,9 +20,10 @@
         changeAuth(){
             this.isAuth = !this.isAuth;
             localStorage.setItem('auth', this.isAuth);
+            console.log(localStorage.getItem('auth'))
            
         }
-      }
+      },
     }
     </script>
     

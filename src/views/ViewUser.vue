@@ -11,6 +11,13 @@
     <script>
     export default{
     name:'ViewUser',
+    beforeRouteEnter(to,from,next){
+        if(localStorage.getItem('auth') === 'true'){
+          next()
+        } else {
+          next('/')
+        }
+      }
     }
     </script>
     

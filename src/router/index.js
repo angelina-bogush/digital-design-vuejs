@@ -43,7 +43,14 @@ const routes = [
       {
         path:'/users',
         name:'ViewUser',
-        component: () => import ('@/views/ViewUser.vue')
+        component: () => import ('@/views/ViewUser.vue'),
+        beforeEnter: (to, from, next) => {
+          if(localStorage.getItem('auth')){
+            next()
+          } else {
+            next({name: 'ViewsTasks'})
+          }
+        }
       }
     ]
   },

@@ -15,7 +15,7 @@ export default{
     name: 'ViewError',
     methods:{
         goHome(){
-            this.$router.push('/tasks')
+            this.$router.push('/')
         }
     }
     

@@ -7,7 +7,7 @@
             </div>
             <div class="input-container">
                 <label class="form__label" for="description">Описание</label>
-                <Textarea id="description" type="text" :variant="''" placeholder="Введите текст..."></Textarea>
+                <Textarea id="description" type="text" placeholder="Введите текст..."></Textarea>
             </div>
         </form>
     </div>

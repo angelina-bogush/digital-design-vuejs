@@ -1,18 +1,10 @@
 <template>
     <div class="container">
-      <div class="user-search-container">
-        <Input :inputStyle="'input_search_default'" 
-        placeholder="Поиск...">
-        <template #search>
-          <Icon :className="'search-input'" :iconClass="'search'"
-          width="24px" height="24px"></Icon>
-      </template>
-      </Input>
-
-
-        <DropdownButton :variant="'secondary'">
+      <div class="search-container">
+       <SearchInput v-model="inputSearch" @clickSearchIcon="searchUser"></SearchInput>
+        <DropdownButton :variant="'secondary'" @click="isArrowUp = !isArrowUp">
           <template #icon>
-            <Icon :iconClass="'arrow-up'"
+            <Icon :iconClass="iconClass"
             width="16px" 
             height="16px"></Icon>
         </template>
@@ -31,6 +23,16 @@
     components:{
       UsersList
     },
+    computed: {
+      iconClass(){
+        if(this.isArrowUp){
+          return 'arrow-up'
+        }
+        if(!this.isArrowUp){
+          return 'arrow-down'
+        }
+      }
+    },
     beforeRouteEnter(to,from,next){
         if(localStorage.getItem('auth') === 'true'){
           next()
@@ -40,6 +42,8 @@
       },
       data(){
         return{
+          isArrowUp: true,
+          inputSearch: '',
           users:[
             {name:'Котов Сергей в', id: 1},
             {name:'Котов Сергей в', id: 2},
@@ -47,18 +51,24 @@
             {name:'Котов Сергей в', id: 4}
           ]
         }
+      },
+      methods:{
+        searchUser(){
+          const user = {
+            name: this.inputSearch
+          }
+          console.log(user);
+          this.inputSearch = ''
+        }
       }
     }
     </script>
     
     <style lang="scss">
     @import '@/components/elements/variables.scss';
-  .user-search-container{
+  .search-container{
     display: flex;
     gap: $gap;
-  }
-  .user__search-input{
-    width: 910px
   }
   .arrow-up{
     width: 24px;

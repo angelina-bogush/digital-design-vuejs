@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Navigation></Navigation>
-    <ViewUser></ViewUser>
-    <!-- <router-view></router-view> -->
+    <!-- <Navigation></Navigation> -->
+    <!-- <ViewUser></ViewUser> -->
+    <!-- <ViewsProjects></ViewsProjects> -->
+    <router-view></router-view>
     <!-- <ViewLayout></ViewLayout> -->
   </div>
 </template>
@@ -11,13 +12,15 @@
 import ViewLayout from '@/views/ViewLayout.vue'
 import Navigation from './navigation/Navigation.vue';
 import ViewUser from '@/views/ViewUser.vue'
+import ViewsProjects from '@/views/ViewsProjects.vue';
 export default{
   name: 'app',
  
   components: {
-   ViewLayout,
-   Navigation,
-   ViewUser
+    ViewLayout,
+    Navigation,
+    ViewUser,
+    ViewsProjects
 },
 methods:{
    changePageClick(page){

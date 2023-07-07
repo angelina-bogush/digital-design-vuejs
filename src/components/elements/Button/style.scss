@@ -9,12 +9,14 @@ $hover-button-color: #ECECEF;
 $color-white: #fff;
 .button_default{
     padding: 12px 13px;
-    border-radius: 4px;
     font-size: 14px;
-        
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
 }
 .button_default_nav{
     background-color: $primary-default-color;
+    border-radius: 4px;
     border: 1px solid $color-white;
     cursor: pointer;
     color:$color-white;
@@ -30,6 +32,7 @@ $color-white: #fff;
 
 .button_default_primary{
     background-color: $primary-default-color;
+    border-radius: 4px;
     border: 1px solid $color-white;
     cursor: pointer;
     color:$color-white;
@@ -43,6 +46,7 @@ $color-white: #fff;
 }
 .button_default_secondary{
     background-color: $color-white;
+    border-radius: 4px;
     color: $color-black;
     border: 1px solid $color-border-default;
      &:hover{
@@ -52,10 +56,19 @@ $color-white: #fff;
      &:active{
         background-color: $color-secondary-active;
         border-color: $color-black
-     }
-     
+     };
 
 }
+.border-radius_right{
+    border-top-left-radius: none;
+    border-bottom-left-radius: none
+  
+ }
+ .border-radius_left{
+     border-top-right-radius: none;
+     border-bottom-right-radius: none
+      
+ }
 .button_primary_disabled{
     background-color: $primary-disabled-color;
     color: $disabled-font-button;

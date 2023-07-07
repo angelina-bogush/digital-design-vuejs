@@ -5,10 +5,10 @@
         <p class="project__title title">{{project.name}}</p>
         <div class="project__description description">
             <div class="project__description-creation description-creation">
-                <p class="project__number number">#{{project.number}}</p>
-                <p class="project__creator creator">{{project.creator}}</p>
+                <p class="project__number number">#{{project.code}}</p>
+                <p class="project__creator creator">{{project.dateCreated}}</p>
             </div>
-            <p class="project__description-changes description-changes">{{project.changes}}</p>
+            <p class="project__description-changes description-changes">{{project.dateEdited}}</p>
         </div>
     </div>
         <div class="dropdown-container">

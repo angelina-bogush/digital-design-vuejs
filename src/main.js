@@ -31,30 +31,3 @@ const checkAnswer = (res) => {
   }
 };
 
-//запрос токена
-function token() {
-  return fetch("http://45.12.239.156:8081/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      login: "bogush.a",
-      password: "jc63fk",
-    }),
-  })
-    .then(checkAnswer)
-    .then((res) => {
-      let token = res.token;
-      localStorage.setItem('token', token)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-let taskId;
-let id;
-token()
-//получение проекта
-
-searchProjectFetch()

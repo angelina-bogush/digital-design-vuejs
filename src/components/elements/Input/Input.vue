@@ -1,7 +1,6 @@
 <template>
   <div class="input-container">
-        <input v-bind="$attrs" :class='inputClass' required>
-        <slot class="slot-search" name="search"></slot>
+        <input v-bind="$attrs" class='input_default_empty' required>
     </div>
 </template>
 
@@ -11,7 +10,6 @@ export default {
     inheritAttrs: false,
     props: {
         variant: String,
-        inputStyle: String
     },
     data() {
         return {
@@ -25,8 +23,6 @@ export default {
             }
             if (this.isError) {
                 return 'input_error'
-            } else {
-                return this.inputStyle
             }
         }
     }

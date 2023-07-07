@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div >
         <ProjectItem v-for="(project, index) in projects" :key="index"
          :project="project"
          @editTask="editProjectClick" 

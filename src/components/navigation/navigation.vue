@@ -23,7 +23,7 @@
             :variant="'nav'"></Button> </router-link>
             <div class="navigation__user">
                 <button class="navigation__user-container">
-                <span class="user-avatar navigation__user-avatar"></span>
+                <span class="user-avatar"></span>
                 <svg-icon icon-class="nav" class-name="navigation__user-button" />
                 <div class="dropdown nav-dropdown">
                         <ul class="dropdown__list nav-dropdown">

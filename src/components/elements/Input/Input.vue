@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <input :class="inputClass" class="input_default_empty" v-bind="$attrs" required />
+  <div class="input-container">
+        <input v-bind="$attrs" :class='inputClass' required>
+        <slot class="slot-search" name="search"></slot>
     </div>
 </template>
 
@@ -9,7 +10,8 @@ export default {
     name: 'Input',
     inheritAttrs: false,
     props: {
-        variant: String
+        variant: String,
+        inputStyle: String
     },
     data() {
         return {
@@ -23,6 +25,8 @@ export default {
             }
             if (this.isError) {
                 return 'input_error'
+            } else {
+                return this.inputStyle
             }
         }
     }
@@ -33,13 +37,20 @@ export default {
 @import '@/components/elements/variables.scss';
 @import './style.scss';
 
-input {
-    width: 100%
-}
 
 input::placeholder {
     color: $default-placeholder;
     font-size: 14px;
     font-family: 'Open Sans'
+}
+.input-container{
+width: 100%;
+display: flex;
+position: relative;
+}
+.slot-search{
+    position: absolute;
+    top: 10px;
+    right: 20px
 }
 </style>

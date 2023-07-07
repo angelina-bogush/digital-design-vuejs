@@ -1,26 +1,27 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <Navigation></Navigation>
+    <ViewUser></ViewUser>
+    <!-- <router-view></router-view> -->
     <!-- <ViewLayout></ViewLayout> -->
   </div>
 </template>
 
 <script>
 import ViewLayout from '@/views/ViewLayout.vue'
+import Navigation from './navigation/Navigation.vue';
+import ViewUser from '@/views/ViewUser.vue'
 export default{
   name: 'app',
-  data(){     
-    return {
-     currentPage: 'pageTasks'
-    }
-  },
+ 
   components: {
    ViewLayout,
+   Navigation,
+   ViewUser
 },
 methods:{
    changePageClick(page){
     this.currentPage = page;
-    console.log(page)
    }
 }
 }

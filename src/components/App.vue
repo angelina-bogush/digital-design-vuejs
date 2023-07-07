@@ -3,8 +3,9 @@
     <!-- <Navigation></Navigation> -->
     <!-- <ViewUser></ViewUser> -->
     <!-- <ViewsProjects></ViewsProjects> -->
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
     <!-- <ViewLayout></ViewLayout> -->
+    <ModalProjectCreate></ModalProjectCreate>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import ViewLayout from '@/views/ViewLayout.vue'
 import Navigation from './navigation/Navigation.vue';
 import ViewUser from '@/views/ViewUser.vue'
 import ViewsProjects from '@/views/ViewsProjects.vue';
+import ModalProjectCreate from '@/views/ModalProjectCreate.vue'
 export default{
   name: 'app',
  
@@ -20,7 +22,8 @@ export default{
     ViewLayout,
     Navigation,
     ViewUser,
-    ViewsProjects
+    ViewsProjects,
+    ModalProjectCreate
 },
 methods:{
    changePageClick(page){

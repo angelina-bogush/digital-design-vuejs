@@ -4,6 +4,7 @@ import Input from '@/components/elements/Input/Input.vue'
 import Icon from '@/components/elements/Icon/Icon.vue'
 import Textarea from '@/components/elements/Textarea/Textarea.vue'
 import SearchInput from '@/components/elements/SearchInput/SearchInput.vue'
+import ProjectEditModal from '@/components/projects/EditModal/ProjectEditModal.vue'
 
 export default [
     Button,
@@ -11,5 +12,6 @@ export default [
     Input,
     Icon,
     Textarea,
-    SearchInput
+    SearchInput,
+    ProjectEditModal
 ]

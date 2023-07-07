@@ -22,7 +22,7 @@
                 </template>
             </DropdownButton>
            </div>
-            <Button :variant="'secondary'" :name="'Добавить'"></Button>
+            <Button :variant="'secondary'" :name="'Добавить'" @click="createProject"></Button>
         </div>
         <template v-if="allProjects.length">
             <ProjectList :projects="allProjects" />
@@ -63,7 +63,12 @@ export default{
             return this.$store.getters.allProjects;
         }
     },
-    methods: mapActions(['searchProjectFetch']),
+    methods: {
+       ...mapActions(['searchProjectFetch', 'createProjectAxios']),
+     createProject(){
+        this.createProjectAxios()
+     }
+    },
     async mounted(){
         this.searchProjectFetch()
     }

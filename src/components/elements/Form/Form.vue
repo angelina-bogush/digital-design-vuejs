@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <form class="form" name="editForm" v-bind="$attrs">
             <div class="input-container">
@@ -9,6 +9,15 @@
                 <label class="form__label" for="description">Описание</label>
                 <Textarea id="description" type="text" placeholder="Введите текст..."></Textarea>
             </div>
+        </form>
+    </div>
+
+</template> -->
+<template>
+    <div>
+        <form class="form" name="editForm" v-bind="$attrs">
+            <slot name="input"></slot>
+            <slot name="textarea"></slot>
         </form>
     </div>
 

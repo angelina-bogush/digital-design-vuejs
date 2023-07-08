@@ -3,7 +3,7 @@
         <div class="search-container">
             <SearchInput v-model="inputSearch"></SearchInput>
             <div class="dropdowns-container">
-            <DropdownButton :variant="'secondary'" :borderRadius="'right'">
+            <!-- <DropdownButton :variant="'secondary'" :borderRadius="'right'">
                 <template #nameButton>
                     <p>По названию</p>
                 </template>
@@ -12,7 +12,17 @@
                     width="16px" 
                     height="16px"></Icon>
                 </template>
-            </DropdownButton>
+            </DropdownButton> -->
+            <Select :options="options" 
+                @selectOption="selectOptionClick"
+                :selected="selected"
+                 class="input-select">
+                 <template #icon>
+                    <Icon :iconClass="'nav'"
+                    :color="'#8E8E8E'"
+                    width="24px" height="24px"></Icon>
+                </template>
+                </Select>
             <DropdownButton :variant="'secondary'" 
             :borderRadius="'right'" @click="isArrowUp = !isArrowUp">
                 <template #icon>
@@ -44,6 +54,12 @@ export default{
         return{
         isArrowUp: true,
           inputSearch: '',
+          options:[
+            {name: 'По названию'},
+            {name: 'По автору'},
+            {name: 'По дате создания'},
+            {name: 'По дане обновления'}
+          ]
         }
     },
     components: {

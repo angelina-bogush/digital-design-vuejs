@@ -5,7 +5,7 @@
     <div class="form-container">
       <Form class="modal-form">
         <div class="input-container">
-        <label class="form__label" for="code">Код<p> *</p></label>
+        <label class="form__label" for="code">Код<p>*</p></label>
          <Input placeholder="Введите текст..."/>
         </div>
         <div class="input-container">

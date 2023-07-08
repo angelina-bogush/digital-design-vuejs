@@ -13,11 +13,14 @@ border-bottom: 1px solid $color-border-default
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
     p{
         color: red;
         font-size: 20px;
         padding: 0;
         display: inline;
+        position: absolute;
+        top: -4px;
     }
 }
 .modal-form{
@@ -26,7 +29,8 @@ border-bottom: 1px solid $color-border-default
     gap: $gap
 }
 .form__label{
-    color: $disabled-font-button
+    color: $disabled-font-button;
+    position: relative;
 }
 .modal-footer{
     padding: $gap

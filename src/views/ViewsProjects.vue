@@ -30,7 +30,8 @@
         </template>
         
         <template v-else>
-            <emptyProject :text="'Не создан ни один проект'"></emptyProject>
+            <emptyProject :text="'Ни один проект не соответствует результатам поиска'">
+            </emptyProject>
         </template>
     </div>
 </template>
@@ -126,7 +127,8 @@ export default{
     padding: $gap;
     display: flex;
     flex-direction: column;
-    gap: $gap
+    gap: $gap;
+    height: calc(100% - 90px);
 }
 .search-container{
     max-height: 42px;

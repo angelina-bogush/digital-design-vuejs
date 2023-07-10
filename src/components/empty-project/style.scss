@@ -6,8 +6,8 @@ body{
     height: 100%
 }
 .container {
-    padding: $gap;
-    height: calc(100% - 90px)
+    // padding-top: $gap;
+    height: calc(100% - 42px);
 }
 
 .page {

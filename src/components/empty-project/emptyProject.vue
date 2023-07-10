@@ -2,7 +2,8 @@
     <div class="container">
         <div class="page">
            <p class="page__text">{{ text }}</p>
-           <button class="button page__button">Добавить</button>
+           <slot name="button"></slot>
+           <!-- <button class="button">Добавить</button> -->
         </div>
     </div>
 

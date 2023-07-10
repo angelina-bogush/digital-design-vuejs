@@ -1,7 +1,7 @@
 <template>
     <div class="pageTask">
         <div class="search-container">
-            <SearchInput v-model="inputSearch" @input="searchTasks"></SearchInput>
+            <SearchInput v-model="inputSearch" @input="searchTasksInput"></SearchInput>
             <div class="dropdowns-container">
             <Select 
             :options="tasksOptions" 
@@ -29,7 +29,8 @@
             <TaskList :tasks='allTasks' />
         </template>
         <template v-else>
-            <emptyProject :text="'Не создана ни одна задача'"></emptyProject>
+            <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
+            </emptyProject>
         </template>
 
     </div>
@@ -66,15 +67,16 @@ export default{
             searchTasks: 'tasks/searchTaskAxios',
             setSortField: 'tasks/setSortField',
             setSortType: 'tasks/setSortType', 
-            setFilterName: 'tasks/setFilterName'
+            setFilterName: 'tasks/setFilterName',
+            setInputSearch: 'tasks/setInputSearch'
         }),
         selectOptionClick(selectedOption, selectedValue) {
             this.selected = selectedOption;
             this.setSortField(selectedValue);
             this.searchTasks()
         },
-        sortByType(type) {
-            this.setSortType(type);
+        filterByName(searchName){
+            this.setFilterName(searchName);
             this.searchTasks()
         },
         setSortTypeClick(){
@@ -84,9 +86,18 @@ export default{
             } else {
                 this.sortType = 'desc'
             }
-            this.sortByType(this.sortType)
-
+            this.setSortType(this.sortType);
+            this.searchTasks()
         },
+        searchTasksInput(){
+            if(this.inputSearch.length !== 0){
+            const searchValue = this.inputSearch.toLowerCase();
+            this.filterByName(searchValue);
+            } else {
+                this.setFilterName(''); // Сбросить фильтр
+                this.searchTasks()
+            }
+        }
     },
     data(){
         return{
@@ -94,44 +105,6 @@ export default{
             isArrowUp: true,
             sortType: 'ask',
             selected: 'По названию',
-            // tasks:[
-            //     {
-            //     id: 1,
-            //     title: 'Описание задачи',
-            //     number: 1,
-            //     creator: 'Здесь описание создания',
-            //     changes: 'Здесь описание изменений'
-            //      },
-            //      {
-            //      id: 2,
-            //     title: 'Описание задачи',
-            //     number: 2,
-            //     creator: 'Здесь описание создания',
-            //     changes: 'Здесь описание изменений'
-            //      },
-            //      {
-            //         id: 3,
-            //     title: 'Описание задачи',
-            //     number: 3,
-            //     creator: 'Здесь описание создания',
-            //     changes: 'Здесь описание изменений'
-            //      },
-            //      {
-            //         id: 4,
-            //     title: 'Описание задачи',
-            //     number: 4,
-            //     creator: 'Здесь описание создания',
-            //     changes: 'Здесь описание изменений'
-            //      },
-            //      {
-            //         id: 5,
-            //     title: 'Описание задачи',
-            //     number: 5,
-            //     creator: 'Здесь описание создания',
-            //     changes: 'Здесь описание изменений'
-            //      }
-            // ]
-            
         }
     },
     mounted(){
@@ -143,7 +116,10 @@ export default{
 @import '@/components/elements/variables.scss';
  .pageTask{
     height: calc(100% - 90px);
-    padding: $gap
+    padding: $gap;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
  }
  li{
     list-style-type: none;

@@ -5,7 +5,7 @@ import { user, token, checkAnswer } from './data.js'
     CREATE_TASK: 'CREATE_TASK',
     SET_SORT_FIELD: 'SET_SORT_FIELD',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
-    SET_FILTER_NAME: 'SET_FILTER_NAME'
+    SET_FILTER_NAME: 'SET_FILTER_NAME',
   }
 export default {
   namespaced: true,
@@ -60,6 +60,9 @@ export default {
   },
   actions: {
     //установка значения в поле сортировки
+    setInputSearch({commit}, input){
+        commit('SET_INPUTSEARCH', input)
+    },
     setSortField({ commit }, field) {
       commit('SET_SORT_FIELD', field);
     },

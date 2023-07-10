@@ -2,7 +2,7 @@
 <div>
     <article class="project item">
         <div class="project__content content">
-        <p class="project__title title">{{project.name}}</p>
+       <router-link to="/tasks"> <p class="project__title title">{{project.name}}</p> </router-link>
         <div class="project__description description">
             <div class="project__description-creation description-creation">
                 <p class="project__number number">#{{project.code}}</p>

@@ -8,21 +8,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-  },
-  {
     path:'/',
     name: 'ViewsLayout',
     component: ViewLayout,
     children: [
       {
         path:'',
-        name: 'ViewsTasks',
-        component: ViewsTasks,
+        name: 'ViewsProjects',
+        component: ViewsProjects,
         
       },
       {
@@ -31,9 +24,9 @@ const routes = [
         component: () => import ('@/components/tasks/TaskCard/TaskCard.vue')
       },
       {
-        path: '/projects',
-        name: 'ViewsProjects',
-        component: ViewsProjects
+        path: '/tasks',
+        name: ' ViewsTasks',
+        component: ViewsTasks
       },
       {
         path:'/auth',

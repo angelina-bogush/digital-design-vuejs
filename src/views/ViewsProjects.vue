@@ -1,30 +1,21 @@
 <template>
     <div class="pageProject">
         <div class="search-container">
-            <SearchInput v-model="inputSearch"></SearchInput>
+            <SearchInput v-model="inputSearch" @input="searchProjects"></SearchInput>
             <div class="dropdowns-container">
-            <!-- <DropdownButton :variant="'secondary'" :borderRadius="'right'">
-                <template #nameButton>
-                    <p>По названию</p>
-                </template>
-                <template #icon>
-                    <Icon :iconClass="'nav'"
-                    width="16px" 
-                    height="16px"></Icon>
-                </template>
-            </DropdownButton> -->
-            <Select :options="options" 
-                @selectOption="selectOptionClick"
-                :selected="selected"
-                 class="input-select">
+            <Select 
+            :options="options" 
+            @selectOption="selectOptionClick"
+            :selected="selected"
+            class="input-select">
                  <template #icon>
                     <Icon :iconClass="'nav'"
                     :color="'#8E8E8E'"
-                    width="24px" height="24px"></Icon>
+                    width="16px" height="16px"></Icon>
                 </template>
-                </Select>
+            </Select>
             <DropdownButton :variant="'secondary'" 
-            :borderRadius="'right'" @click="isArrowUp = !isArrowUp">
+             @click="setSortTypeClick">
                 <template #icon>
                     <Icon :iconClass="iconClass"
                     width="16px" 
@@ -32,11 +23,12 @@
                 </template>
             </DropdownButton>
            </div>
-            <Button :variant="'secondary'" :name="'Добавить'" @click="createProject"></Button>
+            <Button :variant="'secondary'" :name="'Добавить'" ></Button>
         </div>
-        <template v-if="allProjects.length">
-            <ProjectList :projects="allProjects" />
+        <template v-if="displayProjects.length">
+            <ProjectList :projects="displayProjects" />
         </template>
+        
         <template v-else>
             <emptyProject :text="'Не создан ни один проект'"></emptyProject>
         </template>
@@ -53,12 +45,15 @@ export default{
     data(){
         return{
         isArrowUp: true,
+        sortType: 'ask',
           inputSearch: '',
+          filteredProjects: [],
+          selected: 'По названию',
           options:[
-            {name: 'По названию'},
-            {name: 'По автору'},
-            {name: 'По дате создания'},
-            {name: 'По дане обновления'}
+            {name: 'По названию', value: 'name'},
+            {name: 'По автору', value: 'author'},
+            {name: 'По дате создания',  value: 'dateCreated'},
+            {name: 'По дате обновления',  value: 'dateEdited'}
           ]
         }
     },
@@ -66,32 +61,70 @@ export default{
     ProjectList,
     emptyProject
     },
-    computed:{
-      iconClass(){
-        if(this.isArrowUp){
-          return 'arrow-up'
-        }
-        if(!this.isArrowUp){
-          return 'arrow-down'
-        }
-      },
-        allProjects(){
+    computed: {
+        iconClass() {
+            if (this.isArrowUp) {
+                return 'arrow-up'
+            }
+            if (!this.isArrowUp) {
+                return 'arrow-down'
+            }
+        },
+        allProjects() {
             return this.$store.getters.allProjects;
-        }
+        },
+        displayProjects() {
+            return this.filteredProjects.length ? this.filteredProjects : this.allProjects;
+  }
     },
     methods: {
-       ...mapActions(['searchProjectFetch', 'createProjectAxios']),
-     createProject(){
-        this.createProjectAxios()
-     }
+        ...mapActions(['createProjectAxios', 'searchProjectAxios', 'setSortField', 'setSortType', 'setFilterName']),
+        // createProject() {
+        // },
+        //передаем значение полей сортировки в  store
+        sortByField(field) {
+            this.setSortField(field); // передаем в store
+            this.searchProjectAxios()
+        },
+        //значение по убыванию/возрастанию
+        sortByType(type) {
+            this.setSortType(type);
+            this.searchProjectAxios()
+        },
+        setSortTypeClick(){
+            this.isArrowUp = !this.isArrowUp;
+            if(this.isArrowUp){
+               this.sortType = 'ask'
+            } else {
+                this.sortType = 'desc'
+            }
+            this.sortByType(this.sortType)
+            console.log(this.sortType)
+
+        },
+        filterByName(searchName){
+            this.setFilterName(searchName);
+            this.searchProjectAxios()
+        },
+        //выбор опции сортировки при клике
+        selectOptionClick(selectedOption, selectedValue) {
+            this.selected = selectedOption;
+            this.sortByField(selectedValue)
+        },
+        searchProjects() {
+            if(this.inputSearch.length !== 0){
+            const searchValue = this.inputSearch.toLowerCase();
+            this.filterByName(searchValue);
+            } 
+        }
     },
     async mounted(){
-        this.searchProjectFetch()
+       this.searchProjectAxios()
     }
 }
 </script>   
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 .pageProject{
     padding: $gap;

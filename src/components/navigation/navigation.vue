@@ -2,7 +2,7 @@
    <div>
     <div class="navigation">
         <div class="navigation__container">
-     <router-link to="/projects">
+     <router-link to="/">
          <Button 
          :type="''"
          :name="'Проекты'" 
@@ -11,7 +11,7 @@
          >
       </Button>
     </router-link>
-    <router-link to="/">
+    <router-link to="/tasks">
          <Button
             :name="'Задачи'"
             :type="''"

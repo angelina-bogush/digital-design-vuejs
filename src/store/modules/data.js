@@ -6,7 +6,7 @@ export const user = {
       localStorage.getItem('token')
   };
   
-  const checkAnswer = (res) => {
+ export const checkAnswer = (res) => {
     if (res.ok) {
       return res.json();
     } else {
@@ -15,7 +15,7 @@ export const user = {
   };
   
   //запрос токена
-  function token() {
+  export function token() {
     return fetch("http://45.12.239.156:8081/api/login", {
       method: "POST",
       headers: {

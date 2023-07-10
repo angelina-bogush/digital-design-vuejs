@@ -11,6 +11,7 @@
         v-if="areOptionsSeen">
             <p v-for="option in options"
              :key="option.value"
+             :value="option.value"
              @click="chooseOption">
                 {{ option.name }}
 
@@ -42,7 +43,8 @@ data(){
 methods:{
     chooseOption(event){
         const selectedOption = event.target.textContent;
-        this.$emit('selectOption', selectedOption);
+        const selectedValue = event.target.getAttribute('value');
+        this.$emit('selectOption', selectedOption, selectedValue);
         this.areOptionsSeen = false
     }
 }
@@ -53,15 +55,18 @@ methods:{
 @import '@/components/elements/variables.scss';
 .select-container{
     position: relative;
+    z-index: 100;
 }
 .select-title{
     border: 1px solid $color-border-default;
     cursor: pointer;
-    padding: 10px;
-    padding-bottom: 5px;
+    padding: 12px 6px 12px 10px;
     border-radius: 4px;
+    width:172px;
     display: flex;
     justify-content: space-between;
+    white-space: nowrap;
+    font-size: 14px;
 }
 .active{
     border: 1px solid $color-black
@@ -74,12 +79,18 @@ methods:{
     top:45px;
     left: 0px;
     width: 100%;
+    z-index: 100;
+    background-color: $color-white;
     cursor: pointer;
     p{
-        padding: 8px 16px
+        padding: 8px 16px;
+        white-space: nowrap;
+        z-index: 100;
+        font-size: 14px;
     }
 }
 .options p:hover{
     background-color: $color-secondary-active;
+    z-index: 100;
 }
 </style>

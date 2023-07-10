@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <Navigation></Navigation> -->
     <!-- <ViewUser></ViewUser> -->
     <!-- <ViewsProjects></ViewsProjects> -->
     <router-view></router-view>
@@ -10,7 +9,6 @@
 
 <script>
 import ViewLayout from '@/views/ViewLayout.vue'
-import Navigation from './navigation/Navigation.vue';
 import ViewUser from '@/views/ViewUser.vue'
 import ViewsProjects from '@/views/ViewsProjects.vue';
 export default{
@@ -18,15 +16,9 @@ export default{
  
   components: {
     ViewLayout,
-    Navigation,
     ViewUser,
     ViewsProjects
 },
-methods:{
-   changePageClick(page){
-    this.currentPage = page;
-   }
-}
 }
 </script>
 
@@ -36,6 +28,7 @@ methods:{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
      
 }
 *{

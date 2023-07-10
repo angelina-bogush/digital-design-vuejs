@@ -6,14 +6,14 @@
                ></Button> 
          <div class="task-card">
             <div class="task__about">
-               <h3 class="task__title">Код проекта</h3>
-               <h3 class="task__title">Название задачи {{ id }}</h3>
+               <h3 class="task__title">#{{code}}</h3>
+               <h3 class="task__title"> {{name}}</h3>
                <div class="task__info">
-                <p class="status">Черновик</p>
+                <p class="status">{{ status }}</p>
                     <p class="task__date">Создана 17 сен 2022 в 13:55</p>
                     <div class="task__user">
                         <span class="user-avatar"></span>
-                        <span>Котов С.В.</span>
+                        <span>{{author}}</span>
                     </div>
 
                </div>
@@ -38,6 +38,18 @@ export default{
     computed:{
         id(){
             return this.$route.params.id
+        },
+        name(){
+            return this.$route.params.name
+        },
+        code(){
+            return this.$route.params.code
+        },
+        author(){
+            return this.$route.params.author
+        },
+        status(){
+            return this.$route.params.status
         }
     },
 }

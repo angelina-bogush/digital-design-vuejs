@@ -3,16 +3,16 @@
         <article class="item">
             <div class="content">
                 <div class="task__description-container">
-                    <router-link :to="{name: 'TaskCard', params: {id: task.id},}"> <p class="task__title title">{{ task.title }}</p> </router-link>
+                    <router-link :to="{name: 'TaskCard', params: {id: task._id, name: task.name, code: task.number, author: task.author, status: task.status},}"> <p class="task__title title">{{ task.name }}</p> </router-link>
                     <span class="user-avatar task__user-avatar"></span>
                 </div>
                 <div class="description">
                     <div class="task__description-creation description-creation">
                         <p class="number">#{{ task.number }}</p>
-                        <p class="creator">{{ task.creator }}</p>
-                        <p class="status">Черновик</p>
+                        <p class="creator">{{ task.dateCreated }}</p>
+                        <p class="status">{{ task.status }}</p>
                     </div>
-                    <p class="description-changes">{{ task.changes }}</p>
+                    <p class="description-changes">{{ task.dateEdited }}</p>
                 </div>
             </div>
             <div class="dropdown-container">

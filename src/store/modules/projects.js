@@ -8,6 +8,7 @@ import { user, token, checkAnswer } from './data.js'
     SET_FILTER_NAME: 'SET_FILTER_NAME'
   }
 export default {
+  namespaced: true,
   state: {
     projects: [],
     filter: {

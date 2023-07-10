@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div>
     <TaskItem v-for="(task, index) in tasks" :key="index"
      :task="task"></TaskItem>
 </div>
@@ -22,7 +22,4 @@ components:{
 
 <style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
-.container{
-    padding: 0 $gap;
-}
 </style>

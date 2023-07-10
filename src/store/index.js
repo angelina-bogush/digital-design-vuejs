@@ -33,9 +33,9 @@ export default new Vuex.Store({
    }
   },
   modules: { 
-    projects,
-    tasks,
-    users
+    projects: projects,
+    tasks: tasks,
+    users: users
   }
 
 })

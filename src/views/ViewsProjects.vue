@@ -38,7 +38,7 @@
 <script>
 import emptyProject from '@/components/empty-project/emptyProject.vue';
 import ProjectList from '@/components/projects/ProjectList/ProjectList.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default{
     name: 'ViewsProjects',
@@ -62,6 +62,9 @@ export default{
     emptyProject
     },
     computed: {
+        ...mapGetters({
+            allProjects: 'projects/allProjects'
+        }),
         iconClass() {
             if (this.isArrowUp) {
                 return 'arrow-up'
@@ -70,27 +73,19 @@ export default{
                 return 'arrow-down'
             }
         },
-        allProjects() {
-            return this.$store.getters.allProjects;
-        },
         displayProjects() {
             return this.filteredProjects.length ? this.filteredProjects : this.allProjects;
   }
     },
     methods: {
-        ...mapActions(['createProjectAxios', 'searchProjectAxios', 'setSortField', 'setSortType', 'setFilterName']),
+        ...mapActions({
+            createProjectAxios: 'projects/createProjectAxios', 
+            searchProjectAxios: 'projects/searchProjectAxios', 
+            setSortField: 'projects/setSortField',
+            setSortType: 'projects/setSortType', 
+            setFilterName: 'projects/setFilterName'}),
         // createProject() {
         // },
-        //передаем значение полей сортировки в  store
-        sortByField(field) {
-            this.setSortField(field); // передаем в store
-            this.searchProjectAxios()
-        },
-        //значение по убыванию/возрастанию
-        sortByType(type) {
-            this.setSortType(type);
-            this.searchProjectAxios()
-        },
         setSortTypeClick(){
             this.isArrowUp = !this.isArrowUp;
             if(this.isArrowUp){
@@ -98,8 +93,8 @@ export default{
             } else {
                 this.sortType = 'desc'
             }
-            this.sortByType(this.sortType)
-            console.log(this.sortType)
+            this.setSortType(this.sortType);
+            this.searchProjectAxios()
 
         },
         filterByName(searchName){
@@ -109,7 +104,8 @@ export default{
         //выбор опции сортировки при клике
         selectOptionClick(selectedOption, selectedValue) {
             this.selected = selectedOption;
-            this.sortByField(selectedValue)
+            this.setSortField(selectedValue);
+            this.searchProjectAxios()
         },
         searchProjects() {
             if(this.inputSearch.length !== 0){
@@ -124,7 +120,7 @@ export default{
 }
 </script>   
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/components/elements/variables.scss';
 .pageProject{
     padding: $gap;

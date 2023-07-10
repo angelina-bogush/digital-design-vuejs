@@ -4,7 +4,7 @@
     <span class="user-avatar"></span>
     <p class="user__name">{{ user.name }}</p>
     </div>
-    <p class="status" :class="{'status_inactive': !isActive}">Не активен</p>
+    <p class="status" :class="{'status_inactive': !isActive}">{{ user.status }}</p>
 </div>
 
 </template>

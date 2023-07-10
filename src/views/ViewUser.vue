@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+  <div class="pageUsers">
       <div class="search-container">
        <SearchInput v-model="inputSearch" @clickSearchIcon="searchUser"></SearchInput>
         <DropdownButton :variant="'secondary'" @click="isArrowUp = !isArrowUp">
@@ -12,12 +12,13 @@
         </DropdownButton>
 
       </div>
-    <UsersList :users="users"></UsersList>
+    <UsersList :users="allUsers"></UsersList>
 </div>
     </template>
     
     <script>
     import UsersList from '@/components/users/UsersList/UsersList.vue'
+    import { mapActions, mapGetters } from 'vuex'
     export default{
     name:'ViewUser',
     components:{
@@ -44,34 +45,42 @@
         return{
           isArrowUp: true,
           inputSearch: '',
-          users:[
-            {name:'Котов Сергей в', id: 1},
-            {name:'Котов Сергей в', id: 2},
-            {name:'Котов Сергей в', id: 3},
-            {name:'Котов Сергей в', id: 4}
-          ]
         }
       },
+      computed:{
+        ...mapGetters({
+          allUsers: 'users/allUsers'
+        })
+      },
       methods:{
-        searchUser(){
-          const user = {
-            name: this.inputSearch
-          }
-          console.log(user);
-          this.inputSearch = ''
-        }
+       ...mapActions({
+        searchUser: 'users/searchUserAxios'
+       }) 
+
+      },
+      mounted(){
+        this.searchUser()
       }
     }
     </script>
     
     <style lang="scss">
     @import '@/components/elements/variables.scss';
-  .search-container{
-    display: flex;
-    gap: $gap;
-  }
-  .arrow-up{
-    width: 24px;
-    height: 24px
-  }
-    </style>
+
+    .pageUsers {
+      height: calc(100% - 90px);
+      padding: $gap;
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+    }
+
+    .search-container {
+      display: flex;
+      gap: $gap;
+    }
+
+    .arrow-up {
+      width: 24px;
+      height: 24px
+}</style>

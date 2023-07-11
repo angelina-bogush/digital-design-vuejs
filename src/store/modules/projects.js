@@ -10,6 +10,7 @@ import { user, token, checkAnswer } from './data.js'
 export default {
   namespaced: true,
   state: {
+    isLoading: false,
     projects: [],
     filter: {
       search: {
@@ -23,6 +24,7 @@ export default {
   },
   getters: {
     allProjects: (state) => state.projects,
+    getLoading: (state) => state.isLoading
   },
 
   mutations: {
@@ -56,6 +58,7 @@ export default {
     },
     //вывод проектов
     searchProjectAxios({ commit, state}) {
+      this.isLoading = true;
       const stateFilterSort = state.filter.sort;
       const stateFilterSearch = state.filter.search;
       axios
@@ -76,10 +79,14 @@ export default {
         )
         .then((res) => {
           commit("LOAD_PROJECTS", res.data);
+          this.isLoading = false
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     // createProjectAxios({ commit }) {
     //   axios

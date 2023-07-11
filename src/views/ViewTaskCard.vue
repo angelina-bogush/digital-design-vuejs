@@ -15,10 +15,10 @@
                 <h3 class="task__title"> {{ this.getTask.name }}</h3>
                 <div class="task__info">
                     <p class="status">{{ this.getTask.status }}</p>
-                    <p class="task__date">Создана {{ this.getTask.dateCreated }}</p>
+                    <p class="task__date">Создана {{ created }}</p>
                     <div class="task__user">
                         <span class="user-avatar"></span>
-                        <span>{{ this.getTask.author }}</span>
+                        <span>{{ getUserNameCreated()}}</span>
                     </div>
 
                 </div>
@@ -27,10 +27,10 @@
             <div class="task__about">
                 <p>{{ this.getTask.description }}</p>
                 <div class="task__info">
-                    <p class="task__date">Задача отредактирована {{ this.getTask.dateEdited }}</p>
+                    <p class="task__date">Задача отредактирована {{ edited }}</p>
                     <div class="task__user">
                         <span class="user-avatar"></span>
-                        <span>{{ this.getTask.author }}</span>
+                        <span>{{ getUserNameEdited() }}</span>
                     </div>
 
                 </div>
@@ -43,7 +43,7 @@
         <div class="task-card task-card_select">
             <div class="select_executor select">
                 <label>Исполнитель</label>
-                <Select :options="options" 
+                <Select :options="this.getUsers" 
                 @selectOption="selectOptionClick"
                 :selected="selected"
                 class="input-select">
@@ -85,7 +85,8 @@ export default {
     },
     methods: {
         ...mapActions({
-        searchTask: 'tasks/searchTaskId'
+        searchTask: 'tasks/searchTaskId',
+        searchUserAxios:'users/searchUserAxios'
     }),
         goHome() {
             this.$router.go(-1);
@@ -93,48 +94,50 @@ export default {
         selectOptionClick(selectedOption) {
             this.selected = selectedOption;
         },
+        getUserNameCreated(){
+           const taskId = this.getTask.author;
+           const author = this.getUsers.find((user) => user._id === taskId);
+           if(author !== undefined){
+            return author.name
+           }
+        },
+        getUserNameEdited(){
+            const taskEdited = this.getTask.authorEdited;
+           const author = this.getUsers.find((user) => user._id === taskEdited);
+           if(author !== undefined){
+            return author.name
+           }
+        }
+
     
     },
     computed: {
         ...mapGetters({
             formatDate: 'formatDate',
-            getTask: 'tasks/getTask'
-            }),
+            getTask: 'tasks/getTask',
+            getUsers: 'users/allUsers'
+        }),
+        created() {
+            return this.formatDate(this.getTask.dateCreated);
         },
-        mounted(){
-    this.searchTask(this.id)
+        edited() {
+            return this.formatDate(this.getTask.dateEdited)
+        },
+    },
+
+    mounted() {
+        this.searchTask(this.id),
+            this.searchUserAxios()
+    }
 }
-        // id() {
-        //     return this.$route.params.id;
-        // },
-        // name() {
-        //     return this.$route.params.name;
-        // },
-        // code() {
-        //     return this.$route.params.code;
-        // },
-        // author() {
-        //     return this.$route.params.author;
-        // },
-        // status() {
-        //     return this.$route.params.status;
-        // },
-        // created() {
-        //     return this.$route.params.created;
-        // },
-        // edited() {
-        //     return this.$route.params.edited;
-        // },
-        // description() {
-        //     return this.$route.params.description;
-        // }
-}
+
 </script>
 
 <style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 @import '@/components/tasks/TaskItem/style.scss';
 .container{
+    height: calc(100% - 90px);
     padding: $gap;
 }
 .task-card {
@@ -196,7 +199,7 @@ export default {
     border-right: 1px solid $color-border-default;
 }
 .input-select{
-    width: 100%
+    width: 100%;
 }
 .select{
     display: flex;

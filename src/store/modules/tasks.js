@@ -84,7 +84,7 @@ export default {
         .post(
           `${user.baseUrl}/tasks/search`,
           {
-            limit: 10,
+            limit: 20,
             sort: {
               field: state.sort.field,
               type: state.sort.type,
@@ -102,7 +102,6 @@ export default {
         )
         .then((res) => {
           commit("LOAD_TASKS", res.data);
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

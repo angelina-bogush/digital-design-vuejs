@@ -72,6 +72,8 @@ methods:{
 }
 .options{
     border: 1px solid $color-border-default;
+    overflow-y: scroll; 
+    max-height: 216px;
     padding: 8px 0;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
     position: absolute;
@@ -88,5 +90,14 @@ methods:{
 }
 .options p:hover{
     background-color: $color-secondary-active;
+}
+.options::-webkit-scrollbar{
+width: 17px
+}
+.options::-webkit-scrollbar-track{
+background-color: #F1F1F1;
+}
+.options::-webkit-scrollbar-thumb{
+background-color: #C1C1C1;
 }
 </style>

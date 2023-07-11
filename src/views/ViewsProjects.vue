@@ -1,5 +1,9 @@
 <template>
     <div class="pageProject">
+        <div v-if="getLoading" class="loader-container">
+        <div class="loader">
+        </div>
+       </div>
         <div class="search-container">
             <SearchInput v-model="inputSearch" @input="searchProjectsInput"></SearchInput>
             <div class="dropdowns-container">
@@ -65,6 +69,7 @@ export default{
     computed: {
         ...mapGetters({
             allProjects: 'projects/allProjects',
+            getLoading: 'projects/getLoading'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -121,6 +126,7 @@ export default{
     },
     async mounted(){
        this.searchProjectAxios()
+       console.log(this.getLoading)
     }
 }
 </script>   
@@ -144,5 +150,25 @@ export default{
 }
 .filter{
     border-radius: none;
+}
+.loader{
+    animation: spin 2s linear infinite; 
+    border: 5px solid $primary-disabled-color; 
+    border-top: 5px solid $primary-default-color; 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loader-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%
 }
 </style>

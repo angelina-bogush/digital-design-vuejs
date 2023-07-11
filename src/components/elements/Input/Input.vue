@@ -1,6 +1,6 @@
 <template>
   <div class="input-container">
-        <input v-bind="$attrs" class='input_default_empty' required>
+        <input v-bind="$attrs" class='input_default_empty' v-on="listeners" required>
     </div>
 </template>
 
@@ -24,7 +24,13 @@ export default {
             if (this.isError) {
                 return 'input_error'
             }
+        },
+        listeners() {
+            return {
+                ...this.$listeners
+            }
         }
+
     }
 }
 </script>

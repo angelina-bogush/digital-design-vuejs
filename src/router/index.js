@@ -20,8 +20,9 @@ const routes = [
       },
       {
         path:'task/:id',
-        name: 'TaskCard',
-        component: () => import ('@/components/tasks/TaskCard/TaskCard.vue')
+        name: 'ViewTaskCard',
+        props: true,
+        component: () => import ('@/views/ViewTaskCard.vue')
       },
       {
         path: '/tasks',

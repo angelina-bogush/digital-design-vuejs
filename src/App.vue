@@ -1,23 +1,14 @@
 <template>
   <div id="app">
-    <!-- <ViewUser></ViewUser> -->
-    <!-- <ViewsProjects></ViewsProjects> -->
     <router-view></router-view>
-    <!-- <ViewLayout></ViewLayout> -->
   </div>
 </template>
 
 <script>
-import ViewLayout from '@/views/ViewLayout.vue'
-import ViewUser from '@/views/ViewUser.vue'
-import ViewsProjects from '@/views/ViewsProjects.vue';
 export default{
   name: 'app',
  
   components: {
-    ViewLayout,
-    ViewUser,
-    ViewsProjects
 },
 }
 </script>

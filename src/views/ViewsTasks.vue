@@ -75,10 +75,10 @@ export default{
             this.setSortField(selectedValue);
             this.searchTasks()
         },
-        filterByName(searchName){
-            this.setFilterName(searchName);
-            this.searchTasks()
-        },
+        // filterByName(searchName){
+        //     this.setFilterName(searchName);
+        //     this.searchTasks()
+        // },
         setSortTypeClick(){
             this.isArrowUp = !this.isArrowUp;
             if(this.isArrowUp){
@@ -90,9 +90,10 @@ export default{
             this.searchTasks()
         },
         searchTasksInput(){
-            if(this.inputSearch.length !== 0){
+        if(this.inputSearch.length !== 0){
             const searchValue = this.inputSearch.toLowerCase();
-            this.filterByName(searchValue);
+            this.setFilterName(searchValue);
+            this.searchTasks()
             } else {
                 this.setFilterName(''); // Сбросить фильтр
                 this.searchTasks()
@@ -126,5 +127,16 @@ export default{
  }
  ul{
  padding: 0;
+ }
+ .search-container{
+    max-height: 42px;
+    display: flex;
+    gap: 120px
+}
+ .input-select{
+    width: 175px
+ }
+ .dropdowns-container{
+    display: flex;
  }
 </style>

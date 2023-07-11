@@ -6,7 +6,7 @@
         <div class="project__description description">
             <div class="project__description-creation description-creation">
                 <p class="project__number number">#{{project.code}}</p>
-                <p class="project__creator creator">{{project.dateCreated}}</p>
+                <p class="project__creator creator">{{formattedDate}}</p>
             </div>
             <p class="project__description-changes description-changes">{{project.dateEdited}}</p>
         </div>
@@ -15,7 +15,7 @@
             <DropdownButton class="menu" @click="clickButton" :variant="'secondary'" :type="''"
                 > 
                 <template #icon>
-                    <Icon :className="'menu-image'" :iconClass="'project-menu'"
+                    <Icon :className="'menu-image'" :iconClass="'menu'"
                     width="14px" height="14px"></Icon>
                 </template>
                 <template #menu>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default{
     name: 'ProjectItem',
    props:{
@@ -47,12 +48,20 @@ export default{
         isActive: false
     }
 },
+computed:{
+    ...mapGetters({
+        formatDate: 'formatDate'
+    }),
+    formattedDate(){
+       return this.formatDate(this.project.dateCreated)
+    }
+},
 methods: {
     clickButton() {
     this.isActive =! this.isActive
   },
   editClick(){
-   this.$emit('editTask')
+   this.$emit('editTask');
   },
   deleteClick(){
     this.$emit('deleteTask')
@@ -61,7 +70,7 @@ methods: {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/components/elements/variables.scss';
 @import  './style.scss';
 *{

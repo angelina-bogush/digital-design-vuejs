@@ -55,14 +55,13 @@ methods:{
 @import '@/components/elements/variables.scss';
 .select-container{
     position: relative;
-    z-index: 100;
 }
 .select-title{
     border: 1px solid $color-border-default;
     cursor: pointer;
     padding: 12px 6px 12px 10px;
     border-radius: 4px;
-    width:172px;
+    width:100%;
     display: flex;
     justify-content: space-between;
     white-space: nowrap;
@@ -79,18 +78,15 @@ methods:{
     top:45px;
     left: 0px;
     width: 100%;
-    z-index: 100;
-    background-color: $color-white;
     cursor: pointer;
     p{
         padding: 8px 16px;
         white-space: nowrap;
-        z-index: 100;
         font-size: 14px;
+        background-color: $color-white;
     }
 }
 .options p:hover{
     background-color: $color-secondary-active;
-    z-index: 100;
 }
 </style>

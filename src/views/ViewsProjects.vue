@@ -1,7 +1,7 @@
 <template>
     <div class="pageProject">
         <div class="search-container">
-            <SearchInput v-model="inputSearch" @input="searchProjects"></SearchInput>
+            <SearchInput v-model="inputSearch" @input="searchProjectsInput"></SearchInput>
             <div class="dropdowns-container">
             <Select 
             :options="options" 
@@ -64,7 +64,7 @@ export default{
     },
     computed: {
         ...mapGetters({
-            allProjects: 'projects/allProjects'
+            allProjects: 'projects/allProjects',
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -108,11 +108,15 @@ export default{
             this.setSortField(selectedValue);
             this.searchProjectAxios()
         },
-        searchProjects() {
-            if(this.inputSearch.length !== 0){
+        searchProjectsInput(){
+        if(this.inputSearch.length !== 0){
             const searchValue = this.inputSearch.toLowerCase();
-            this.filterByName(searchValue);
-            } 
+            this.setFilterName(searchValue);
+            this.searchProjectAxios()
+            } else {
+                this.setFilterName(''); // Сбросить фильтр
+                this.searchProjectAxios()
+            }
         }
     },
     async mounted(){
@@ -121,7 +125,7 @@ export default{
 }
 </script>   
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 .pageProject{
     padding: $gap;
@@ -132,6 +136,8 @@ export default{
 }
 .search-container{
     max-height: 42px;
+    display: flex;
+    gap: 120px
 }
 .dropdowns-container{
     display: flex;

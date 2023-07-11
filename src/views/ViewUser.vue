@@ -1,15 +1,18 @@
 <template>
   <div class="pageUsers">
       <div class="search-container">
-       <SearchInput v-model="inputSearch" @clickSearchIcon="searchUser"></SearchInput>
-        <DropdownButton :variant="'secondary'" @click="isArrowUp = !isArrowUp">
-          <template #icon>
-            <Icon :iconClass="iconClass"
-            width="16px" 
-            height="16px"></Icon>
-        </template>
-
-        </DropdownButton>
+        <div class="search-input-container">
+       <SearchInput v-model="inputSearch" @input="searchUsersInput"></SearchInput>
+       <DropdownButton :variant="'secondary'" 
+             @click="setSortTypeClick">
+                <template #icon>
+                    <Icon :iconClass="iconClass"
+                    width="16px" 
+                    height="16px"></Icon>
+                </template>
+            </DropdownButton>
+          </div>
+            <Button class="button__user" :variant="'primary'" :name="'Добавить пользователя'"></Button>
 
       </div>
     <UsersList :users="allUsers"></UsersList>
@@ -32,7 +35,10 @@
         if(!this.isArrowUp){
           return 'arrow-down'
         }
-      }
+      },
+      ...mapGetters({
+          allUsers: 'users/allUsers'
+        })
     },
     beforeRouteEnter(to,from,next){
         if(localStorage.getItem('auth') === 'true'){
@@ -45,26 +51,45 @@
         return{
           isArrowUp: true,
           inputSearch: '',
+          sortType: 'ask',
         }
-      },
-      computed:{
-        ...mapGetters({
-          allUsers: 'users/allUsers'
-        })
       },
       methods:{
        ...mapActions({
-        searchUser: 'users/searchUserAxios'
-       }) 
+        searchUsers: 'users/searchUserAxios',
+        setSortType: 'users/setSortType',
+        setFilterName: 'users/setFilterName'
+       }),
+       setSortTypeClick(){
+        this.isArrowUp = !this.isArrowUp;
+            if(this.isArrowUp){
+               this.sortType = 'ask'
+            } else {
+                this.sortType = 'desc'
+            }
+            this.setSortType(this.sortType);
+            console.log(this.sortType)
+            this.searchUsers()
+       },
+       searchUsersInput(){
+        if(this.inputSearch.length !== 0){
+            const searchValue = this.inputSearch.toLowerCase();
+            this.setFilterName(searchValue);
+            this.searchUsers()
+            } else {
+                this.setFilterName(''); // Сбросить фильтр
+                this.searchUsers()
+            }
+       }
 
       },
       mounted(){
-        this.searchUser()
+        this.searchUsers()
       }
     }
     </script>
     
-    <style lang="scss">
+    <style lang="scss" scoped>
     @import '@/components/elements/variables.scss';
 
     .pageUsers {
@@ -77,10 +102,14 @@
 
     .search-container {
       display: flex;
-      gap: $gap;
+      gap: 120px
     }
-
+.search-input-container{
+  display: flex;
+      gap: $gap;
+}
     .arrow-up {
       width: 24px;
       height: 24px
-}</style>
+}
+</style>

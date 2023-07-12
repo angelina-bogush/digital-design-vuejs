@@ -5,12 +5,14 @@ import { user, token, checkAnswer } from './data.js'
     CREATE_USER: 'CREATE_USER',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
     SET_FILTER_NAME: 'SET_FILTER_NAME',
-    SET_LOADING: 'SET_LOADING'
+    SET_LOADING: 'SET_LOADING',
+    SET_TOKEN: 'SET_TOKEN'
   }
 export default {
   namespaced: true,
   state: {
     isLoading: false,
+    token: '',
     users: [],
     page: 1,
     filter: {
@@ -21,7 +23,8 @@ export default {
   },
   getters: {
     allUsers: (state) => state.users,
-    getLoading: (state) => state.isLoading
+    getLoading: (state) => state.isLoading,
+    getToken: (state) => state.token
   },
 
   mutations: {
@@ -41,6 +44,9 @@ export default {
     [mutation.SET_LOADING]: (state, value) => {
       state.isLoading = value
     },
+    [mutation.SET_TOKEN]: (state, value) => {
+      state.token = value
+    }
   },
   actions: {
     //установка значения в поле сортировки
@@ -85,6 +91,35 @@ export default {
         .finally(() => {
           commit('SET_LOADING', false);
         })
-    } 
+    },
+    authUser({commit}, auth){
+      commit('SET_LOADING', true);
+    axios
+    .post(
+    `${user.baseUrl}/login`,
+      {
+        login: auth.login,
+        password: auth.password
+      },
+      {
+        headers: {
+          authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((res) => {
+     commit('SET_TOKEN', res.data.token)
+     commit('SET_LOADING', false)
+     localStorage.setItem('token', res.data.token)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      commit('SET_LOADING', false)
+    })
+  
+    }
   }
 };

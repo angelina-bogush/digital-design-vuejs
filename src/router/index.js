@@ -11,6 +11,7 @@ const routes = [
     path:'/',
     name: 'ViewsLayout',
     component: ViewLayout,
+    meta: { requiresAuth: true },
     children: [
       {
         path:'',
@@ -27,8 +28,13 @@ const routes = [
       {
         path: '/tasks',
         name: ' ViewsTasks',
-        component: ViewsTasks
+        component: ViewsTasks,
       },
+      {
+        path: '/create-task',
+        name: 'ViewCreateTask',
+        component: () => import ('@/views/ViewCreateTask.vue')
+        },
       {
         path:'/auth',
         name: 'ViewAuth',
@@ -48,8 +54,11 @@ const routes = [
       }
     ]
   },
-  
-
+  {
+    path: '/login',
+    name: 'ViewAuth',
+    component: () => import  ('@/views/ViewAuth.vue')
+  },
   {
     path: '*',
     name: 'ViewError',

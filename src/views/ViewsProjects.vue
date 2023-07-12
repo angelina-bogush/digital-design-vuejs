@@ -70,8 +70,12 @@ export default{
     computed: {
         ...mapGetters({
             allProjects: 'projects/allProjects',
-            getLoading: 'projects/getLoading'
+            getLoading: 'projects/getLoading',
+            getToken: 'users/getToken'
         }),
+    //     setGetLoading(value) {
+    //   this.$store.commit('setLoading', value);
+    //     },
         iconClass() {
             if (this.isArrowUp) {
                 return 'arrow-up'
@@ -102,6 +106,7 @@ export default{
             }
             this.setSortType(this.sortType);
             this.searchProjectAxios()
+            console.log(this.getToken)
 
         },
         filterByName(searchName){
@@ -125,9 +130,17 @@ export default{
             }
         }
     },
-    async mounted(){
+beforeRouteEnter(to, from, next){
+    const isAuth = localStorage.getItem('token');
+    if(!isAuth){
+        next('/login')
+    } else {
+        next()
+    }
+},
+
+    mounted(){
        this.searchProjectAxios()
-       console.log(this.getLoading)
     }
 }
 </script>   

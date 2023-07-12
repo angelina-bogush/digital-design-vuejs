@@ -1,7 +1,6 @@
 <template>
 <div class="layout">
 <Navigation></Navigation>
-<ViewAuth></ViewAuth>
 <router-view />
 </div>
 

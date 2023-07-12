@@ -1,7 +1,6 @@
 <template>
   <div class="pageUsers" :class="{ disabled: getLoading}">
     <div v-if='getLoading' class="loader-container">
-      <!-- <div class="overlay"></div> -->
       <div class="loader">
       </div>
     </div>

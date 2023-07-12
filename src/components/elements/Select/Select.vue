@@ -59,11 +59,11 @@ methods:{
 .select-title{
     border: 1px solid $color-border-default;
     cursor: pointer;
-    padding: 12px 6px 12px 10px;
+    padding: 12px 8px 12px 10px;
     border-radius: 4px;
     width:100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     white-space: nowrap;
     font-size: 14px;
 }

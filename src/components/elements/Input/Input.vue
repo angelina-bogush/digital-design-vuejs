@@ -1,10 +1,8 @@
 <template>
-  <div class="input">
+  <div class="input-cont">
         <input v-bind="$attrs"
          class='input_default_empty' 
-         v-on="listeners" 
          @input="$emit('input', $event.target.value)" 
-         
           required>
         
     </div>
@@ -31,11 +29,11 @@ export default {
                 return 'input_error'
             }
         },
-        listeners() {
-            return {
-                ...this.$listeners
-            }
-        }
+        // listeners() {
+        //     return {
+        //         ...this.$listeners
+        //     }
+        // }
 
     }
 }
@@ -51,7 +49,7 @@ input::placeholder {
     font-size: 14px;
     font-family: 'Open Sans'
 }
-.input{
+.input-cont{
 width: 100%;
 display: flex;
 position: relative;

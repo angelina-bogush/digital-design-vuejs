@@ -28,7 +28,7 @@
                 </template>
             </DropdownButton>
            </div>
-            <Button :variant="'secondary'" :name="'Добавить'" ></Button>
+            <Button :buttonClass="'button_default_secondary'" :name="'Добавить'" ></Button>
         </div>
         <template v-if="allTasks.length">
             <TaskList :tasks='allTasks' />

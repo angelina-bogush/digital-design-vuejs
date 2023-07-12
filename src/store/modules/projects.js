@@ -5,7 +5,8 @@ import { user, token, checkAnswer } from './data.js'
     CREATE_PROJECT: 'CREATE_PROJECT',
     SET_SORT_FIELD: 'SET_SORT_FIELD',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
-    SET_FILTER_NAME: 'SET_FILTER_NAME'
+    SET_FILTER_NAME: 'SET_FILTER_NAME',
+    SET_LOADING: 'SET_LOADING'
   }
 export default {
   namespaced: true,
@@ -41,6 +42,9 @@ export default {
     [mutation.LOAD_PROJECTS]: (state, response) => {
       state.projects = response.projects;
     },
+    [mutation.SET_LOADING]: (state, value) => {
+      state.isLoading = value
+    },
     [mutation.CREATE_PROJECT]: (state, res) => {
       state.projects.push(res.data);
     },
@@ -58,7 +62,7 @@ export default {
     },
     //вывод проектов
     searchProjectAxios({ commit, state}) {
-      this.isLoading = true;
+      commit('SET_LOADING', true);
       const stateFilterSort = state.filter.sort;
       const stateFilterSearch = state.filter.search;
       axios
@@ -79,13 +83,13 @@ export default {
         )
         .then((res) => {
           commit("LOAD_PROJECTS", res.data);
-          this.isLoading = false
+          commit('SET_LOADING', false)
         })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
-          this.isLoading = false
+          commit('SET_LOADING', false)
         })
     },
     // createProjectAxios({ commit }) {

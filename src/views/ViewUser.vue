@@ -1,26 +1,28 @@
 <template>
-  <div class="pageUsers">
-      <div class="search-container">
-        <div class="search-input-container">
-       <SearchInput v-model="inputSearch" @input="searchUsersInput"></SearchInput>
-       <DropdownButton :variant="'secondary'" 
-             @click="setSortTypeClick">
-                <template #icon>
-                    <Icon :iconClass="iconClass"
-                    width="16px" 
-                    height="16px"></Icon>
-                </template>
-            </DropdownButton>
-          </div>
-            <Button class="button__user" :variant="'primary'" :name="'Добавить пользователя'"></Button>
-
+  <div class="pageUsers" :class="{ disabled: getLoading}">
+    <div v-if='getLoading' class="loader-container">
+      <!-- <div class="overlay"></div> -->
+      <div class="loader">
       </div>
+    </div>
+    <div class="search-container">
+      <div class="search-input-container">
+        <SearchInput v-model="inputSearch" @input="searchUsersInput"></SearchInput>
+        <DropdownButton :variant="'secondary'" @click="setSortTypeClick">
+          <template #icon>
+            <Icon :iconClass="iconClass" width="16px" height="16px"></Icon>
+          </template>
+        </DropdownButton>
+      </div>
+      <Button class="button__user" :variant="'primary'" :name="'Добавить пользователя'"></Button>
+
+    </div>
     <UsersList :users="allUsers"></UsersList>
-</div>
-    </template>
+  </div>
+</template>
     
     <script>
-    import UsersList from '@/components/users/UsersList/UsersList.vue'
+        import UsersList from '@/components/users/UsersList/UsersList.vue'
     import { mapActions, mapGetters } from 'vuex'
     export default{
     name:'ViewUser',
@@ -37,7 +39,8 @@
         }
       },
       ...mapGetters({
-          allUsers: 'users/allUsers'
+          allUsers: 'users/allUsers',
+          getLoading: 'users/getLoading'
         })
     },
     beforeRouteEnter(to,from,next){
@@ -111,5 +114,8 @@
     .arrow-up {
       width: 24px;
       height: 24px
+}
+.disabled{
+  pointer-events: none;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
 <div class="layout">
 <Navigation></Navigation>
+<ViewAuth></ViewAuth>
 <router-view />
 </div>
 
@@ -8,10 +9,12 @@
 
 <script>
 import Navigation from '@/components/navigation/Navigation.vue';
+import ViewAuth from './ViewAuth.vue';
 export default{
     name:'ViewLayout',
     components:{
     Navigation,
+    ViewAuth
 }
 }
 </script>

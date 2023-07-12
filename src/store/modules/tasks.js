@@ -7,10 +7,12 @@ import { user, token, checkAnswer } from './data.js'
     SET_SORT_FIELD: 'SET_SORT_FIELD',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
     SET_FILTER_NAME: 'SET_FILTER_NAME',
+    SET_LOADING: 'SET_LOADING'
   }
 export default {
   namespaced: true,
   state: {
+    isLoading: false,
     tasks: [],
     currentTask: {},
     page: 1, // нумерация страниц с единицы
@@ -40,7 +42,8 @@ export default {
   getters: {
     allTasks: (state) => state.tasks,
     tasksOptions: (state) => state.options,
-    getTask: (state) => state.currentTask
+    getTask: (state) => state.currentTask,
+    getLoading: (state) => state.isLoading
   },
 
   mutations: {
@@ -59,6 +62,9 @@ export default {
     },
     [mutation.LOAD_TASK]: (state, response) => {
       state.currentTask = response;
+    },
+    [mutation.SET_LOADING]: (state, value) => {
+      state.isLoading = value
     },
     [mutation.CREATE_TASK]: (state, res) => {
       state.tasks.push(res.data);
@@ -80,6 +86,7 @@ export default {
     },
     //вывод задач
     searchTaskAxios({ commit, state }) {
+      commit('SET_LOADING', true);
       axios
         .post(
           `${user.baseUrl}/tasks/search`,
@@ -101,11 +108,15 @@ export default {
           }
         )
         .then((res) => {
+          commit('SET_LOADING', false);
           commit("LOAD_TASKS", res.data);
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => {
+          commit('SET_LOADING', false);
+        })
     },
     searchTaskId({ commit, state }, id) {
       axios

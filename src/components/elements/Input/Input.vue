@@ -1,6 +1,12 @@
 <template>
-  <div class="input-container">
-        <input v-bind="$attrs" class='input_default_empty' v-on="listeners" required>
+  <div class="input">
+        <input v-bind="$attrs"
+         class='input_default_empty' 
+         v-on="listeners" 
+         @input="$emit('input', $event.target.value)" 
+         
+          required>
+        
     </div>
 </template>
 
@@ -35,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 @import './style.scss';
 
@@ -45,7 +51,7 @@ input::placeholder {
     font-size: 14px;
     font-family: 'Open Sans'
 }
-.input-container{
+.input{
 width: 100%;
 display: flex;
 position: relative;

@@ -1,5 +1,10 @@
 <template>
-    <div class="pageTask">
+    <div class="pageTask" :class="{ disabled: getLoading}">
+        <div v-if='getLoading' class="loader-container">
+            <!-- <div class="overlay"></div> -->
+        <div class="loader">
+        </div>
+       </div>
         <div class="search-container">
             <SearchInput v-model="inputSearch" @input="searchTasksInput"></SearchInput>
             <div class="dropdowns-container">
@@ -28,7 +33,7 @@
         <template v-if="allTasks.length">
             <TaskList :tasks='allTasks' />
         </template>
-        <template v-else>
+        <template v-else-if="getLoading = false">
             <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
             </emptyProject>
         </template>
@@ -51,7 +56,8 @@ export default{
     computed:{
         ...mapGetters({
             tasksOptions: 'tasks/tasksOptions',
-            allTasks: 'tasks/allTasks'
+            allTasks: 'tasks/allTasks',
+            getLoading: 'tasks/getLoading'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -139,4 +145,7 @@ export default{
  .dropdowns-container{
     display: flex;
  }
+ .disabled{
+    pointer-events: none;
+}
 </style>

@@ -5,6 +5,7 @@ import { user, token, checkAnswer } from './data.js'
     CREATE_USER: 'CREATE_USER',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
     SET_FILTER_NAME: 'SET_FILTER_NAME',
+    SET_LOADING: 'SET_LOADING'
   }
 export default {
   namespaced: true,
@@ -20,6 +21,7 @@ export default {
   },
   getters: {
     allUsers: (state) => state.users,
+    getLoading: (state) => state.isLoading
   },
 
   mutations: {
@@ -36,6 +38,9 @@ export default {
     [mutation.CREATE_USER]: (state, res) => {
       state.users.push(res.data);
     },
+    [mutation.SET_LOADING]: (state, value) => {
+      state.isLoading = value
+    },
   },
   actions: {
     //установка значения в поле сортировки
@@ -50,6 +55,7 @@ export default {
     },
     //вывод задач
     searchUserAxios({ commit, state}) {
+      commit('SET_LOADING', true);
       axios
         .post(
           `${user.baseUrl}/users/search`,
@@ -69,12 +75,16 @@ export default {
           }
         )
         .then((res) => {
+          commit('SET_LOADING', false);
           commit("LOAD_USERS", res.data);
           // console.log(res.data)
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => {
+          commit('SET_LOADING', false);
+        })
     } 
   }
 };

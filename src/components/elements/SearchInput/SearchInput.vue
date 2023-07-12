@@ -43,6 +43,7 @@
   @import '@/components/elements/variables.scss';
   .input_search_empty{
     padding: 13px 14px;
+    width: 100%;
   }
   .search-input-container{
 width: 100%;

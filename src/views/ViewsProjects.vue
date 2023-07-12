@@ -1,6 +1,7 @@
 <template>
-    <div class="pageProject">
-        <div v-if="getLoading" class="loader-container">
+    <div class="pageProject" :class="{ disabled: getLoading}" >
+        <div v-if='getLoading' class="loader-container">
+            <!-- <div class="overlay"></div> -->
         <div class="loader">
         </div>
        </div>
@@ -33,7 +34,7 @@
             <ProjectList :projects="displayProjects" />
         </template>
         
-        <template v-else>
+        <template v-else-if="getLoading = false">
             <emptyProject :text="'Ни один проект не соответствует результатам поиска'">
             </emptyProject>
         </template>
@@ -140,6 +141,9 @@ export default{
     gap: $gap;
     height: calc(100% - 90px);
 }
+.disabled{
+    pointer-events: none;
+}
 .search-container{
     max-height: 42px;
     display: flex;
@@ -151,24 +155,13 @@ export default{
 .filter{
     border-radius: none;
 }
-.loader{
-    animation: spin 2s linear infinite; 
-    border: 5px solid $primary-disabled-color; 
-    border-top: 5px solid $primary-default-color; 
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.loader-container{
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 90%
+.overlay{
+ position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+
 }
 </style>

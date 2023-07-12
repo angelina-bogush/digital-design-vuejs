@@ -72,6 +72,7 @@ $color-white: #fff;
 .button_primary_disabled{
     background-color: $primary-disabled-color;
     color: $disabled-font-button;
+    border-radius: 4px;
     border: none
 }
 .button_nav_disabled{

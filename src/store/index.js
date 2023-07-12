@@ -9,8 +9,11 @@ import {user} from './modules/data'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    isLoading: false
+  },
   getters: {
+    getLoading: (state) => state.isLoading,
     formatDate: () => (dateString) => {
       const date = new Date(dateString);
       const now = new Date();

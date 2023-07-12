@@ -1,6 +1,7 @@
 <template>
  <div>
-    <button class="button_default"
+    <button 
+    class="button_default"
      v-bind="$attrs" 
     :class="buttonClass"
     v-on="listeners">{{name}}</button>
@@ -22,6 +23,10 @@ export default{
    }
 },
 computed: {
+  // buttonClass() {
+  //     return ['button_default', this.$attrs.class];
+  //   },
+
   buttonClass(){
     if(this.type === 'disabled' && this.variant === 'nav'){
     return 'button_nav_disabled'
@@ -47,8 +52,7 @@ computed: {
                 ...this.$listeners
             }
         }
-
-}
+      }
 }
 </script>
 

@@ -28,7 +28,7 @@
                 </template>
             </DropdownButton>
            </div>
-            <Button :buttonClass="'button_default_secondary'" :name="'Добавить'" ></Button>
+            <router-link to="/create-task"><Button :buttonClass="'button_default_secondary'" :name="'Добавить'" ></Button></router-link>
         </div>
         <template v-if="allTasks.length">
             <TaskList :tasks='allTasks' />
@@ -37,7 +37,7 @@
             <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
             </emptyProject>
         </template>
-
+        <Pagination :total="this.getTotal"></Pagination>
     </div>
 </template> 
 
@@ -57,7 +57,8 @@ export default{
         ...mapGetters({
             tasksOptions: 'tasks/tasksOptions',
             allTasks: 'tasks/allTasks',
-            getLoading: 'tasks/getLoading'
+            getLoading: 'tasks/getLoading',
+            getTotal: 'tasks/getTotal'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -67,6 +68,9 @@ export default{
                 return 'arrow-down'
             }
         },
+        getTotalTasks(){
+            return this.allTasks/10;
+        }
     },
     methods:{
         ...mapActions({
@@ -94,6 +98,7 @@ export default{
             }
             this.setSortType(this.sortType);
             this.searchTasks()
+            console.log(this.getTotal)
         },
         searchTasksInput(){
         if(this.inputSearch.length !== 0){
@@ -124,6 +129,7 @@ export default{
  .pageTask{
     height: calc(100% - 90px);
     padding: $gap;
+    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     gap: $gap;

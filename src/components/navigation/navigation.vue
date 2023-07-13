@@ -1,23 +1,24 @@
 <template>
-   <div>
     <div class="navigation">
         <div class="navigation__container">
      <router-link to="/">
          <Button 
-         :name="'Проекты'" 
          :buttonClass="'button_default_nav'"
          >
+         <template #name>Проекты</template>
       </Button>
     </router-link>
     <router-link to="/tasks">
          <Button
-            :name="'Задачи'"
             :buttonClass="'button_default_nav'">
+            <template #name>Задачи</template>
         </Button>
     </router-link>
   <router-link to="/users"> <Button :type="'not'" 
             :name="'Пользователи'"
-            :buttonClass="'button_default_nav'"></Button> 
+            :buttonClass="'button_default_nav'">
+            <template #name>Пользователи</template>
+        </Button> 
         </router-link>
             <div class="navigation__user">
                 <button class="navigation__user-container">
@@ -32,7 +33,7 @@
             </div>
         </div>
     </div>
-   </div>
+
 </template>
 
 <script>

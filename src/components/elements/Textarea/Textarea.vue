@@ -1,6 +1,6 @@
 <template>
     <div class="textarea-container">
-   <textarea :class="inputClass" v-bind="$attrs" class="textarea_default"/>
+   <textarea :class="inputClass" v-bind="$attrs" class="textarea_default" @input="$emit('input', $event.target.value)"/>
    </div>
    </template>
    
@@ -9,11 +9,11 @@
        name: 'Textarea',
        inheritAttrs: false,
        props:{
-           variant: String
+           type: String
        },
    computed:{
          inputClass(){
-             if(this.variant === 'error'){
+             if(this.type === 'error'){
                 return 'textarea_error'
              }
          }

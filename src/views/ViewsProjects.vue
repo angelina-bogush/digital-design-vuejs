@@ -95,8 +95,6 @@ export default{
             setSortField: 'projects/setSortField',
             setSortType: 'projects/setSortType', 
             setFilterName: 'projects/setFilterName'}),
-        // createProject() {
-        // },
         setSortTypeClick(){
             this.isArrowUp = !this.isArrowUp;
             if(this.isArrowUp){

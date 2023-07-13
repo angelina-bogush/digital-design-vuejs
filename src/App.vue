@@ -22,6 +22,9 @@ export default{
     box-sizing: border-box;
      
 }
+html{
+ height: 100vh;
+}
 *{
   box-sizing: border-box;
   margin: 0;

@@ -1,10 +1,18 @@
 <template>
  <div>
+    <!-- <button 
+    class="button_default"
+     v-bind="$attrs" 
+    :class="[buttonChangeClass, buttonClass]"
+    v-on="listeners">{{name}}</button> -->
     <button 
     class="button_default"
      v-bind="$attrs" 
     :class="[buttonChangeClass, buttonClass]"
-    v-on="listeners">{{name}}</button>
+    v-on="listeners">
+   <slot name="name"> </slot>
+   <slot name="icon"></slot>
+  </button>
   </div>
 </template>
 

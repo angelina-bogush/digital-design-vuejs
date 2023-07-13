@@ -7,15 +7,20 @@ import { user, token, checkAnswer } from './data.js'
     SET_SORT_FIELD: 'SET_SORT_FIELD',
     SET_SORT_TYPE: 'SET_SORT_TYPE',
     SET_FILTER_NAME: 'SET_FILTER_NAME',
-    SET_LOADING: 'SET_LOADING'
+    SET_LOADING: 'SET_LOADING',
+    SET_PROJECT_ID: 'SET_PROJECT_ID',
+    SET_TASK_ID: 'SET_TASK_ID'
   }
 export default {
   namespaced: true,
   state: {
     isLoading: false,
+    projectId: '',
     tasks: [],
+    taskId: '',
     currentTask: {},
-    page: 1, // нумерация страниц с единицы
+    page: 1, 
+    total: '',
     //  limit: ,
     filter: {
       name: " ",
@@ -43,7 +48,11 @@ export default {
     allTasks: (state) => state.tasks,
     tasksOptions: (state) => state.options,
     getTask: (state) => state.currentTask,
-    getLoading: (state) => state.isLoading
+    getLoading: (state) => state.isLoading,
+    getProjectId: (state) => state.projectId,
+    getTaskId: (state) => state.taskId,
+    getPage: (state) => state.page,
+    getTotal: (state) => state.total
   },
 
   mutations: {
@@ -59,6 +68,8 @@ export default {
 
     [mutation.LOAD_TASKS]: (state, response) => {
       state.tasks = response.tasks;
+      state.page = response.page;
+      state.total = response.total
     },
     [mutation.LOAD_TASK]: (state, response) => {
       state.currentTask = response;
@@ -68,6 +79,12 @@ export default {
     },
     [mutation.CREATE_TASK]: (state, res) => {
       state.tasks.push(res.data);
+    },
+    [mutation.SET_PROJECT_ID]: (state, value) => {
+      state.projectId = value
+    },
+    [mutation.SET_TASK_ID]: (state, res) => {
+      state.taskId = res._id
     },
   },
   actions: {
@@ -91,7 +108,7 @@ export default {
         .post(
           `${user.baseUrl}/tasks/search`,
           {
-            limit: 20,
+            limit: 10,
             sort: {
               field: state.sort.field,
               type: state.sort.type,
@@ -110,6 +127,7 @@ export default {
         .then((res) => {
           commit('SET_LOADING', false);
           commit("LOAD_TASKS", res.data);
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(err);
@@ -128,26 +146,37 @@ export default {
         })
         .then(res => commit("LOAD_TASK", res.data));
     },
-    // createProjectAxios({ commit }) {
-    //   axios
-    //     .post(
-    //       `${user.baseUrl}/projects`,
-    //       { name: "Project 21", code: "#21" },
-    //       {
-    //         headers: {
-    //           authorization: `Bearer ${user.token}`,
-    //           "Content-Type": "application/json",
-    //         },
-    //       }
-    //     )
-    //     .then((res) => {
-    //       commit("CREATE_PROJECT", res);
-    //       // id = res.data._id;
-    //       // localStorage.setItem('id', id)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+    createTaskAxios({commit,state}, payload){
+      // commit('SET_LOADING', true)
+      axios
+      .post(
+        `${user.baseUrl}/tasks`,
+        {
+          name: payload.name,
+          description: payload.description,
+          projectId: payload.projectId,
+          executor: payload.executor
+
+        },
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => {
+          commit('SET_LOADING', false),
+          commit('CREATE_TASK', res),
+          commit('SET_TASK_ID', res.data)
+        })
+    
+    
+        // .finally(() => {
+        //   commit('SET_LOADING', false);
+        // })
+      
+    }
+  
   },
 };

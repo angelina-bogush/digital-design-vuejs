@@ -70,7 +70,7 @@ export default {
           `${user.baseUrl}/projects/search`,
           {
             _id: `${localStorage.getItem("id")}`,
-            limit: 10,
+            limit: 100,
             sort: stateFilterSort,
             filter: stateFilterSearch
             },
@@ -83,7 +83,8 @@ export default {
         )
         .then((res) => {
           commit("LOAD_PROJECTS", res.data);
-          commit('SET_LOADING', false)
+          commit('SET_LOADING', false);
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(err);

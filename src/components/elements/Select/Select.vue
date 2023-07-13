@@ -3,6 +3,7 @@
         <div 
         class="select-title"
         :class="{'active': areOptionsSeen}"
+        v-on="listeners"
         @click="areOptionsSeen = !areOptionsSeen">{{ selected }}
         <slot name="icon"></slot>
     
@@ -42,11 +43,18 @@ data(){
 },
 methods:{
     chooseOption(event){
-        const selectedOption = event.target.textContent;
+        const selectedOption = event.target.innerText;
         const selectedValue = event.target.getAttribute('value');
         this.$emit('selectOption', selectedOption, selectedValue);
-        this.areOptionsSeen = false
+        this.areOptionsSeen = false;
     }
+},
+computed:{
+    listeners() {
+            return {
+                ...this.$listeners
+            }
+        }
 }
 }
 </script>
@@ -59,7 +67,7 @@ methods:{
 .select-title{
     border: 1px solid $color-border-default;
     cursor: pointer;
-    padding: 12px 8px 12px 10px;
+    padding: 9px 8px 9px 10px;
     border-radius: 4px;
     width:100%;
     display: flex;

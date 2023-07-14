@@ -67,13 +67,14 @@ computed:{
 .select-title{
     border: 1px solid $color-border-default;
     cursor: pointer;
-    padding: 9px 8px 9px 10px;
+    padding: 8px 8px 8px 10px;
     border-radius: 4px;
     width:100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     white-space: nowrap;
     font-size: 14px;
+    align-items: center;
 }
 .active{
     border: 1px solid $color-black

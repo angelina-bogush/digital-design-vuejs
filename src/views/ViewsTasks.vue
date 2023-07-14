@@ -1,7 +1,6 @@
 <template>
     <div class="pageTask" :class="{ disabled: getLoading}">
         <div v-if='getLoading' class="loader-container">
-            <!-- <div class="overlay"></div> -->
         <div class="loader">
         </div>
        </div>
@@ -16,29 +15,33 @@
                  <template #icon>
                     <Icon :iconClass="'nav'"
                     :color="'#8E8E8E'"
-                    width="16px" height="16px"></Icon>
+                    width="24px" height="24px"></Icon>
                 </template>
             </Select>
-            <DropdownButton :buttonClass="'button_default_secondary'"
+            <Button :buttonClass="'button_default_secondary'"
              @click="setSortTypeClick">
                 <template #icon>
                     <Icon :iconClass="iconClass"
                     width="16px" 
                     height="16px"></Icon>
                 </template>
-            </DropdownButton>
+            </Button>
            </div>
             <router-link to="/create-task"><Button :buttonClass="'button_default_secondary'" ><template #name>Добавить</template></Button></router-link>
         </div>
-        <template v-if="allTasks.length">
-            <TaskList :tasks='allTasks' @deleteTask="deleteTaskClick"/>
+        <template v-if="displayTasks.length">
+            <TaskList :tasks='displayTasks' @deleteTask="deleteTaskClick"/>
             <template v-if="showModalDelete">
             <ModalDelete @clickCancel="cancelDelete" @deleteTask="deleteTaskModal">
                 <p class="modal__text">Вы уверены, что хотите <span>удалить</span> задачу?</p>
             </ModalDelete>
             </template>
         </template>
-        <template v-else-if="getLoading = false">
+        <template v-if="allTasks === 0">
+            <emptyProject :text="'Нe создана ни одна задача'"><Button :buttonClass="'button_default_primary'"><template #name>Добавить</template></Button>
+            </emptyProject>
+        </template>
+        <template v-if="displayTasks.length === 0">
             <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
             </emptyProject>
         </template>
@@ -61,7 +64,6 @@ export default{
         ...mapGetters({
             tasksOptions: 'tasks/tasksOptions',
             allTasks: 'tasks/allTasks',
-            getLoading: 'tasks/getLoading',
             getTotal: 'tasks/getTotal',
             getUserId: 'users/getUserId'
         }),
@@ -75,7 +77,10 @@ export default{
         },
         getTotalTasks(){
             return this.allTasks/10;
-        }
+        },
+        displayTasks() {
+            return this.filteredTasks.length ? this.filteredTasks : this.allTasks;
+  }
     },
     methods:{
         ...mapActions({
@@ -111,11 +116,12 @@ export default{
             const searchValue = this.inputSearch.toLowerCase();
             this.setFilterName(searchValue);
             this.searchTasks()
-            } else {
-                this.setFilterName(''); // Сбросить фильтр
-                this.searchTasks()
-            }
-        },
+        }
+            else {
+            this.setFilterName(''); // Сбросить фильтр
+            this.searchTasks();
+        }
+    },
         deleteTaskClick(taskId){
             this.showModalDelete = true;
             this.taskIdtoDelete = taskId;
@@ -136,7 +142,8 @@ export default{
             sortType: 'ask',
             selected: 'По названию',
             showModalDelete: false,
-            taskIdToDelete: ''
+            taskIdToDelete: '',
+            filteredTasks: []
         }
     },
     mounted(){

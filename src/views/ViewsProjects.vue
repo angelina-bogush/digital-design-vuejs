@@ -15,17 +15,17 @@
                  <template #icon>
                     <Icon :iconClass="'nav'"
                     :color="'#8E8E8E'"
-                    width="16px" height="16px"></Icon>
+                    width="24px" height="24px"></Icon>
                 </template>
             </Select>
-            <DropdownButton :buttonClass="'button_default_secondary'" 
+            <Button :buttonClass="'button_default_secondary'" 
              @click="setSortTypeClick">
                 <template #icon>
                     <Icon :iconClass="iconClass"
                     width="16px" 
                     height="16px"></Icon>
                 </template>
-            </DropdownButton>
+            </Button>
            </div>
             <Button :buttonClass="'button_default_secondary'"><template #name>Добавить</template></Button>
         </div>
@@ -33,8 +33,12 @@
             <ProjectList :projects="displayProjects" />
         </template>
         
-        <template v-else-if="getLoading = false">
+        <template v-if="displayProjects.length === 0">
             <emptyProject :text="'Ни один проект не соответствует результатам поиска'">
+            </emptyProject>
+        </template>
+        <template v-if="allProjects === 0">
+            <emptyProject :text="'Нe создана ни одна задача'"><Button :buttonClass="'button_default_primary'"><template #name>Добавить</template></Button>
             </emptyProject>
         </template>
     </div>
@@ -53,6 +57,7 @@ export default{
         sortType: 'ask',
           inputSearch: '',
           filteredProjects: [],
+          showEmptyProjects: false,
           selected: 'По названию',
           options:[
             {name: 'По названию', value: 'name'},

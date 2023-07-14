@@ -64,7 +64,7 @@ export default {
             isIconExecUp: false,
             inputName: '',
             inputDesc: '',
-            selectedProject: '',
+            selectedProject: 'Не выбран',
             selectedUser: 'Не выбран'
         }
     },
@@ -72,7 +72,8 @@ export default {
         ...mapActions({
             getProjectAxios: 'projects/searchProjectAxios',
             getUsersAxios: 'users/searchUserAxios',
-            createTaskAxios: 'tasks/createTaskAxios'
+            createTaskAxios: 'tasks/createTaskAxios',
+            searchTasks: 'tasks/searchTaskAxios',
         }),
         ...mapMutations({
             setProjectId: 'tasks/SET_PROJECT_ID'
@@ -104,6 +105,8 @@ export default {
             this.createTaskAxios(task)
                 .then(() => {
                     this.$router.push('/tasks');
+                    this.searchTasks()
+
                 })
                 .catch((err) => {
                     console.log(err)

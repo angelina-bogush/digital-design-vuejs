@@ -3,7 +3,7 @@
         <article class="item">
             <div class="content">
                 <div class="task__description-container">
-                    <router-link :to="{name: 'ViewTaskCard', params: {id: task._id},}"> <p class="task__title title">{{ task.name }}</p> </router-link>
+                    <router-link :to="{name: 'ViewTaskCard', params: {id: task._id, taskName: this.task.name},}"> <p class="task__title title">{{ task.name }}</p> </router-link>
                     <span class="user-avatar task__user-avatar"></span>
                 </div>
                 <div class="description">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="dropdown-container">
-                <DropdownButton class="menu"  :buttonClass="'button_default_secondary'" :type="''" @edit="editClick">
+                <DropdownButton class="menu" :buttonClass="'button_default_secondary'" :type="''" @edit="editClick" @deleteTask="deleteClick">
                     <template #icon>
                         <Icon :className="'menu-image'" :iconClass="'menu'" :width="'14px'" :height="'14px'"></Icon>
                     </template>
@@ -52,11 +52,10 @@ computed:{
     }
 },
 methods: {
-//   clickButton() {
-//     this.isActive =! this.isActive;
-//   },
   editClick(){
-this.$router.push('/edit-task')
+    this.$router.push({
+    path: '/edit-task'
+  })
   },
   deleteClick(){
     this.$emit('deleteTask', this.task._id)

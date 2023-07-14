@@ -93,26 +93,6 @@ export default {
           commit('SET_LOADING', false)
         })
     },
-    // createProjectAxios({ commit }) {
-    //   axios
-    //     .post(
-    //       `${user.baseUrl}/projects`,
-    //       { name: "Project 21", code: "#21" },
-    //       {
-    //         headers: {
-    //           authorization: `Bearer ${user.token}`,
-    //           "Content-Type": "application/json",
-    //         },
-    //       }
-    //     )
-    //     .then((res) => {
-    //       commit("CREATE_PROJECT", res);
-    //       // id = res.data._id;
-    //       // localStorage.setItem('id', id)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+  
   },
 };

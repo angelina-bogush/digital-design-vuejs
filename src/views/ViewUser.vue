@@ -7,7 +7,7 @@
     <div class="search-container">
       <div class="search-input-container">
         <SearchInput v-model="inputSearch" @input="searchUsersInput"></SearchInput>
-        <DropdownButton :variant="'secondary'" @click="setSortTypeClick">
+        <DropdownButton :buttonClass="'button_default_secondary'" @click="setSortTypeClick">
           <template #icon>
             <Icon :iconClass="iconClass" width="16px" height="16px"></Icon>
           </template>

@@ -81,6 +81,9 @@ export default {
     props:{
         id:{
             type: String
+        },
+        taskName:{
+            type: String
         }
     },
     methods: {

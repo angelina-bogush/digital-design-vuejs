@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from '@/App'
 import router from '@/router'
 import store from '@/store'
+import '@/api/axios-interceptors.js'
 import axios from 'axios'
 import './icons/index.js'
 import components from '@/components/elements'
@@ -15,12 +16,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-
-// const checkAnswer = (res) => {
-//   if (res.ok) {
-//     return res.json();
-//   } else {
-//     return Promise.reject(`Ошибка: ${res.status}`);
-//   }
-// };
 

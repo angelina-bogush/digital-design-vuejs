@@ -10,12 +10,12 @@
                     <Form class="form">
                             <div class="input">
                               <label for="login">Название<span>*</span></label>
-                              <Input type='text' placeholder="Введите текст..." class="input-column" v-model="inputName"></Input>
+                              <Input type='text' placeholder="Введите текст..." class="input-column" v-model='inputName'></Input>
                             </div>
 
                             <div class="input">
                               <label for="login">Описание</label>
-                              <Textarea type='text' placeholder="Введите текст..." class="input-column" v-model="inputDesc"></Textarea>
+                              <Textarea type='text' placeholder="" class="input-column" v-model="inputDesc"></Textarea>
                             </div>
 
                             <div class="input">
@@ -61,6 +61,9 @@ export default {
     props:{
         id:{
             type: String
+        },
+        taskName:{
+            type: String
         }
     },
     data(){
@@ -69,7 +72,7 @@ export default {
             isIconExecUp: false,
             inputName: '',
             inputDesc: '',
-            selectedProject: '',
+            selectedProject: 'Не выбран',
             selectedUser: 'Не выбран'
         }
     },
@@ -77,7 +80,8 @@ export default {
         ...mapActions({
             getProjectAxios: 'projects/searchProjectAxios',
             getUsersAxios: 'users/searchUserAxios',
-            editTaskAxios: 'tasks/editTask'
+            editTaskAxios: 'tasks/editTask',
+            searchTask: 'tasks/searchTaskId',
         }),
         ...mapMutations({
             setProjectId: 'tasks/SET_PROJECT_ID'
@@ -101,13 +105,13 @@ export default {
             this.isIconProjectUp = !this.isIconProjectUp;
         },
         editTask() {
-            const task = {
+            const updateTask = {
                 name: this.inputName,
                 description: this.inputDesc,
                 projectId: this.getProjectId,
                 taskId: this.id
             }
-            this.editTaskAxios(task)
+            this.editTaskAxios(updateTask)
                 .then((res) => {
                     console.log(res);
                     this.$router.push('/tasks');
@@ -125,8 +129,12 @@ export default {
             getUsers: 'users/allUsers',
             getProjectId: 'tasks/getProjectId',
             getLoading: 'tasks/getLoading',
+            getTask: 'tasks/getTask',
             getTaskId: 'tasks/getTaskId' // id задачи
         }),
+        inputNameTask(){
+            return this.task.name
+        },
         iconClassProject(){
             if(this.isIconProjectUp){
                 return 'nav-up'
@@ -141,6 +149,9 @@ export default {
                 return 'nav'
             }
         },
+        getTaskName(){
+            return this.taskName
+        }
 
     },
     mounted(){

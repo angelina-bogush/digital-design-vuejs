@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLoading: false
+    userId: ''
   },
   getters: {
     getLoading: (state) => state.isLoading,

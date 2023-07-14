@@ -20,29 +20,3 @@ body{
     row-gap: 10px;
     height: 100%;
 } 
-
- .page__text {
-    font-size: $regular-font-size;
-}
-
-.page__button  {
-    height: 42px;
-    width: 98px;
-    color: $color-white;
-    background-color: $primary-default-color;
-} 
-
- .page__button:hover {
-    background-color: $primary-hover-color;
-    color: $color-white
-}
-
-.page__button:active {
-    background-color: $primary-active-color;
-    color: $color-white
-}
-
-.page__button:disabled {
-    background-color: $primary-disabled-color;
-    color: $disabled-font-button;
-}

@@ -35,6 +35,12 @@ const routes = [
         name: 'ViewCreateTask',
         component: () => import ('@/views/ViewCreateTask.vue')
         },
+        {
+          path: '/edit-task',
+          name: 'ViewEditTask',
+          props: true,
+          component: () => import ('@/views/ViewEditTask.vue')
+          },
       {
         path:'/auth',
         name: 'ViewAuth',

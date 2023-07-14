@@ -1,12 +1,11 @@
 <template>
     <div class="page-create-task">
         <div v-if='getLoading' class="loader-container">
-            <!-- <div class="overlay"></div> -->
         <div class="loader">
         </div>
         </div>
             <div class="page-container">
-                <h1 class='create-title'>Создание задачи</h1>
+                <h1 class='create-title'>Редактирование задачи</h1>
                 <div class="container-form">
                     <Form class="form">
                             <div class="input">
@@ -46,9 +45,9 @@
                     </Form>
                 </div>
                 <div class="form-button-container">
-                   <router-link to="/tasks"> <Button
+                    <router-link to="/tasks"> <Button
                     :buttonClass="'button_default_secondary'"><template #name>Отмена</template></Button></router-link>
-                    <Button  :buttonClass="'button_default_primary'" @click="createTask"><template #name>Создать задачу</template></Button>
+                    <Button  :buttonClass="'button_default_primary'" @click="editTask"><template #name>Сохранить изменения</template></Button>
                 </div>
             </div>
         </div>
@@ -58,6 +57,12 @@
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
+    name:'ViewEditTask',
+    props:{
+        id:{
+            type: String
+        }
+    },
     data(){
         return{
             isIconProjectUp: false,
@@ -72,7 +77,7 @@ export default {
         ...mapActions({
             getProjectAxios: 'projects/searchProjectAxios',
             getUsersAxios: 'users/searchUserAxios',
-            createTaskAxios: 'tasks/createTaskAxios'
+            editTaskAxios: 'tasks/editTask'
         }),
         ...mapMutations({
             setProjectId: 'tasks/SET_PROJECT_ID'
@@ -95,18 +100,21 @@ export default {
             this.setProjectId(foundProjectId); // передача projectId задаче
             this.isIconProjectUp = !this.isIconProjectUp;
         },
-        createTask() {
+        editTask() {
             const task = {
                 name: this.inputName,
                 description: this.inputDesc,
-                projectId: this.getProjectId
+                projectId: this.getProjectId,
+                taskId: this.id
             }
-            this.createTaskAxios(task)
-                .then(() => {
+            this.editTaskAxios(task)
+                .then((res) => {
+                    console.log(res);
                     this.$router.push('/tasks');
+                    
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log(err);
                 });
 
             } 

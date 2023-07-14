@@ -1,7 +1,6 @@
 <template>
     <div class="pageProject" :class="{ disabled: getLoading}" >
         <div v-if='getLoading' class="loader-container">
-            <!-- <div class="overlay"></div> -->
         <div class="loader">
         </div>
        </div>
@@ -19,7 +18,7 @@
                     width="16px" height="16px"></Icon>
                 </template>
             </Select>
-            <DropdownButton :variant="'secondary'" 
+            <DropdownButton :buttonClass="'button_default_secondary'" 
              @click="setSortTypeClick">
                 <template #icon>
                     <Icon :iconClass="iconClass"
@@ -28,7 +27,7 @@
                 </template>
             </DropdownButton>
            </div>
-            <Button :variant="'secondary'" :name="'Добавить'" ></Button>
+            <Button :buttonClass="'button_default_secondary'"><template #name>Добавить</template></Button>
         </div>
         <template v-if="displayProjects.length">
             <ProjectList :projects="displayProjects" />
@@ -73,9 +72,6 @@ export default{
             getLoading: 'projects/getLoading',
             getToken: 'users/getToken'
         }),
-    //     setGetLoading(value) {
-    //   this.$store.commit('setLoading', value);
-    //     },
         iconClass() {
             if (this.isArrowUp) {
                 return 'arrow-up'

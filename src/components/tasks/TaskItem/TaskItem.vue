@@ -16,17 +16,9 @@
                 </div>
             </div>
             <div class="dropdown-container">
-                <DropdownButton class="menu" @click="clickButton" :variant="'secondary'" :type="''">
+                <DropdownButton class="menu"  :buttonClass="'button_default_secondary'" :type="''" @edit="editClick">
                     <template #icon>
                         <Icon :className="'menu-image'" :iconClass="'menu'" :width="'14px'" :height="'14px'"></Icon>
-                    </template>
-                    <template #menu>
-                        <div class="project-dropdown" :class="{ 'project-dropdown_opened': isActive }">
-                            <ul class="dropdown__list">
-                                <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
-                                <li><span class="dropdown__link_delete" @click="deleteClick">Удалить</span></li>
-                            </ul>
-                        </div>
                     </template>
                 </DropdownButton>
             </div>
@@ -60,14 +52,14 @@ computed:{
     }
 },
 methods: {
-  clickButton() {
-    this.isActive =! this.isActive;
-  },
+//   clickButton() {
+//     this.isActive =! this.isActive;
+//   },
   editClick(){
-   this.$emit('editTask')
+this.$router.push('/edit-task')
   },
   deleteClick(){
-    this.$emit('deleteTask')
+    this.$emit('deleteTask', this.task._id)
   }
 },
 

@@ -5,25 +5,21 @@
       <h2>Вход</h2>
       <div class="form-container">
       <Form>
-        <template #input>
-          <div class="input">
-            <label for="login">Логин<span>*</span></label>
-            <Input type='text' v-model="inputLogin"></Input>
-          </div>
-        </template>
-        <template #password>
-          <div class="input">
-            <label for="password">Пароль<span>*</span></label>
-            <Input type='password' v-model="inputPassword"></Input>
-            <Icon :iconClass="'password'" width="24px" height="24px" class="input-icon"></Icon>
-            
-          </div>
-        </template>
+        <div class="input">
+          <label for="login">Логин<span>*</span></label>
+          <Input type='text' v-model="inputLogin"></Input>
+        </div>
+        <div class="input">
+          <label for="password">Пароль<span>*</span></label>
+          <Input type='password' v-model="inputPassword"></Input>
+          <Icon :iconClass="'password'" width="24px" height="24px" class="input-icon"></Icon>
+          
+        </div>
       </Form>
       </div>
       <p class="error" v-if="error">{{ error }}</p>
       <div class='footer'>
-        <Button :buttonClass="'button_default_primary'" @click="getAuth" :name="'Войти'" type="submit"></Button>
+        <Button :buttonClass="'button_default_primary'" @click="getAuth" :name="'Войти'" type="submit"><template #name>Войти</template></Button>
       </div>
     </div>
   

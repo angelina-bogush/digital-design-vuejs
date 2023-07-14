@@ -1,10 +1,5 @@
 <template>
  <div>
-    <!-- <button 
-    class="button_default"
-     v-bind="$attrs" 
-    :class="[buttonChangeClass, buttonClass]"
-    v-on="listeners">{{name}}</button> -->
     <button 
     class="button_default"
      v-bind="$attrs" 

@@ -9,7 +9,8 @@ import { user, token, checkAnswer } from './data.js'
     SET_FILTER_NAME: 'SET_FILTER_NAME',
     SET_LOADING: 'SET_LOADING',
     SET_PROJECT_ID: 'SET_PROJECT_ID',
-    SET_TASK_ID: 'SET_TASK_ID'
+    SET_TASK_ID: 'SET_TASK_ID',
+    SET_UPDATED_TASK: 'SET_UPDATED_TASK'
   }
 export default {
   namespaced: true,
@@ -78,7 +79,7 @@ export default {
       state.isLoading = value
     },
     [mutation.CREATE_TASK]: (state, res) => {
-      state.tasks.push(res.data);
+      state.tasks.push(res);
     },
     [mutation.SET_PROJECT_ID]: (state, value) => {
       state.projectId = value
@@ -86,6 +87,12 @@ export default {
     [mutation.SET_TASK_ID]: (state, res) => {
       state.taskId = res._id
     },
+    [mutation.SET_UPDATED_TASK]: (state, updatedTask) => {
+      const index = state.tasks.findIndex((task) => task.id === updatedTask._id);
+    if (index !== -1) {
+      state.tasks.splice(index, 1, updatedTask);
+    }
+    }
   },
   actions: {
     //установка значения в поле сортировки
@@ -108,7 +115,7 @@ export default {
         .post(
           `${user.baseUrl}/tasks/search`,
           {
-            limit: 10,
+            limit: 150,
             sort: {
               field: state.sort.field,
               type: state.sort.type,
@@ -147,7 +154,7 @@ export default {
         .then(res => commit("LOAD_TASK", res.data));
     },
     createTaskAxios({commit,state}, payload){
-      // commit('SET_LOADING', true)
+      commit('SET_LOADING', true)
       axios
       .post(
         `${user.baseUrl}/tasks`,
@@ -166,16 +173,54 @@ export default {
         }
       )
         .then((res) => {
+          console.log(res.data);
           commit('SET_LOADING', false),
-          commit('CREATE_TASK', res),
+          commit('CREATE_TASK', res.data),
           commit('SET_TASK_ID', res.data)
         })
     
-    
-        // .finally(() => {
-        //   commit('SET_LOADING', false);
-        // })
+        .finally(() => {
+          commit('SET_LOADING', false);
+        })
       
+    },
+    editTask({commit,state}, task){
+      axios
+      .put(
+        `${user.baseUrl}/tasks`,
+        {
+          _id: task.taskId,
+          name: task.name,
+      description: task.description,
+      projectId: task.projectId,
+      executor: task.executor,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+      commit('SET_UPDATED_TASK', res.data)
+    console.log(res.data)}
+      )
+      .catch((err) => {
+        console.log(err)
+      })
+    },
+    deleteTask({commit, state}, id){
+      axios
+      .delete(
+        `${user.baseUrl}/tasks/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then(res => console.log(res.data));
     }
   
   },

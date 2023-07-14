@@ -19,7 +19,7 @@
                     width="16px" height="16px"></Icon>
                 </template>
             </Select>
-            <DropdownButton :variant="'secondary'" 
+            <DropdownButton :buttonClass="'button_default_secondary'"
              @click="setSortTypeClick">
                 <template #icon>
                     <Icon :iconClass="iconClass"
@@ -28,16 +28,21 @@
                 </template>
             </DropdownButton>
            </div>
-            <router-link to="/create-task"><Button :buttonClass="'button_default_secondary'" :name="'Добавить'" ></Button></router-link>
+            <router-link to="/create-task"><Button :buttonClass="'button_default_secondary'" ><template #name>Добавить</template></Button></router-link>
         </div>
         <template v-if="allTasks.length">
-            <TaskList :tasks='allTasks' />
+            <TaskList :tasks='allTasks' @deleteTask="deleteTaskClick"/>
+            <template v-if="showModalDelete">
+            <ModalDelete @clickCancel="cancelDelete" @deleteTask="deleteTaskModal">
+                <p class="modal__text">Вы уверены, что хотите <span>удалить</span> задачу?</p>
+            </ModalDelete>
+            </template>
         </template>
         <template v-else-if="getLoading = false">
             <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
             </emptyProject>
         </template>
-        <Pagination :total="this.getTotal"></Pagination>
+        <!-- <Pagination :total="this.getTotal"></Pagination> -->
     </div>
 </template> 
 
@@ -51,14 +56,14 @@ export default{
     components: {
      TaskList,
      emptyProject
-     
     },
     computed:{
         ...mapGetters({
             tasksOptions: 'tasks/tasksOptions',
             allTasks: 'tasks/allTasks',
             getLoading: 'tasks/getLoading',
-            getTotal: 'tasks/getTotal'
+            getTotal: 'tasks/getTotal',
+            getUserId: 'users/getUserId'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -78,17 +83,16 @@ export default{
             setSortField: 'tasks/setSortField',
             setSortType: 'tasks/setSortType', 
             setFilterName: 'tasks/setFilterName',
-            setInputSearch: 'tasks/setInputSearch'
+            setInputSearch: 'tasks/setInputSearch',
+            // getUser: 'users/getUser',
+            deleteTaskAxios: 'tasks/deleteTask'
+
         }),
         selectOptionClick(selectedOption, selectedValue) {
             this.selected = selectedOption;
             this.setSortField(selectedValue);
             this.searchTasks()
         },
-        // filterByName(searchName){
-        //     this.setFilterName(searchName);
-        //     this.searchTasks()
-        // },
         setSortTypeClick(){
             this.isArrowUp = !this.isArrowUp;
             if(this.isArrowUp){
@@ -98,7 +102,9 @@ export default{
             }
             this.setSortType(this.sortType);
             this.searchTasks()
-            console.log(this.getTotal)
+        },
+        getId(){
+          this.getUser().then(() => console.log(this.getUserId))
         },
         searchTasksInput(){
         if(this.inputSearch.length !== 0){
@@ -109,6 +115,18 @@ export default{
                 this.setFilterName(''); // Сбросить фильтр
                 this.searchTasks()
             }
+        },
+        deleteTaskClick(taskId){
+            this.showModalDelete = true;
+            this.taskIdtoDelete = taskId;
+        },
+        cancelDelete(){
+            this.showModalDelete = false
+        },
+        deleteTaskModal(){
+            this.deleteTaskAxios(this.taskIdtoDelete);
+            this.showModalDelete = false;
+            this.searchTasks();
         }
     },
     data(){
@@ -117,6 +135,8 @@ export default{
             isArrowUp: true,
             sortType: 'ask',
             selected: 'По названию',
+            showModalDelete: false,
+            taskIdToDelete: ''
         }
     },
     mounted(){

@@ -6,26 +6,17 @@
         <div class="project__description description">
             <div class="project__description-creation description-creation">
                 <p class="project__number number">#{{project.code}}</p>
-                <p class="project__creator creator">{{formattedDate}}</p>
+                <p class="project__creator creator">{{formattedDateCreate}}</p>
             </div>
-            <p class="project__description-changes description-changes">{{project.dateEdited}}</p>
+            <p class="project__description-changes description-changes">{{formattedDateEdit}}</p>
         </div>
     </div>
         <div class="dropdown-container">
-            <DropdownButton class="menu" @click="clickButton" :variant="'secondary'" :type="''"
-                > 
+            <DropdownButton class="menu" :buttonClass="'button_default_secondary'" :type="''" > 
                 <template #icon>
                     <Icon :className="'menu-image'" :iconClass="'menu'"
                     width="14px" height="14px"></Icon>
                 </template>
-                <template #menu>
-                <div class="project-dropdown" :class="{'project-dropdown_opened': isActive}">
-                                <ul class="dropdown__list">
-                                    <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
-                                    <li><span class="dropdown__link_delete" @click="deleteClick">Удалить</span></li>
-                                </ul>
-                </div>
-            </template>
             </DropdownButton>
             </div>
     </article>
@@ -43,29 +34,19 @@ export default{
         default: () => {}
     }
    },
-   data(){
-    return{
-        isActive: false
-    }
-},
 computed:{
     ...mapGetters({
         formatDate: 'formatDate'
     }),
-    formattedDate(){
+    formattedDateCreate(){
        return this.formatDate(this.project.dateCreated)
+    },
+    formattedDateEdit(){
+       return this.formatDate(this.project.dateEdited)
     }
 },
 methods: {
-    clickButton() {
-    this.isActive =! this.isActive
-  },
-  editClick(){
-   this.$emit('editTask');
-  },
-  deleteClick(){
-    this.$emit('deleteTask')
-  }
+
 }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div>
     <TaskItem v-for="(task, index) in tasks" :key="index"
-     :task="task"></TaskItem>
+     :task="task" @deleteTask="deleteClick"></TaskItem>
 </div>
 </template>
 
@@ -17,6 +17,11 @@ props: {
 components:{
  TaskItem
 },
+methods:{
+   deleteClick(taskId){
+      this.$emit('deleteTask', taskId)
+   }
+}
 }
 </script>
 

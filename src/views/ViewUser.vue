@@ -13,7 +13,7 @@
           </template>
         </DropdownButton>
       </div>
-      <Button class="button__user" :variant="'primary'" :name="'Добавить пользователя'"></Button>
+      <Button class="button__user" :buttonClass="'button_default_primary'"><template #name>Добавить пользователя</template></Button>
 
     </div>
     <UsersList :users="allUsers"></UsersList>

@@ -1,9 +1,7 @@
 <template>
     <div >
         <ProjectItem v-for="(project, index) in projects" :key="index"
-         :project="project"
-         @editTask="editProjectClick" 
-         @deleteTask="deleteProjectClick"></ProjectItem>
+         :project="project"></ProjectItem>
     </div>
     </template>
 
@@ -20,12 +18,6 @@ props:{
     }
 },
 methods:{
-    editProjectClick(){
-    console.log('Редактировать задачу')
- },
-deleteProjectClick(){
-    console.log('Удалить задачу')
-}
 }
 }
 </script>

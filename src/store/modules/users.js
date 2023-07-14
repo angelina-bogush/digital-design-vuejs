@@ -6,13 +6,15 @@ import { user, token, checkAnswer } from './data.js'
     SET_SORT_TYPE: 'SET_SORT_TYPE',
     SET_FILTER_NAME: 'SET_FILTER_NAME',
     SET_LOADING: 'SET_LOADING',
-    SET_TOKEN: 'SET_TOKEN'
+    SET_TOKEN: 'SET_TOKEN',
+    SET_USER_ID: 'SET_USER_ID'
   }
 export default {
   namespaced: true,
   state: {
     isLoading: false,
     token: '',
+    userId: '',
     users: [],
     page: 1,
     filter: {
@@ -24,7 +26,8 @@ export default {
   getters: {
     allUsers: (state) => state.users,
     getLoading: (state) => state.isLoading,
-    getToken: (state) => state.token
+    getToken: (state) => state.token,
+    getUserId: (state) => state.userId
   },
 
   mutations: {
@@ -46,6 +49,9 @@ export default {
     },
     [mutation.SET_TOKEN]: (state, value) => {
       state.token = value
+    },
+    [mutation.SET_USER_ID]: (state, value) => {
+      state.userId = value
     }
   },
   actions: {
@@ -92,6 +98,7 @@ export default {
           commit('SET_LOADING', false);
         })
     },
+
     authUser({commit}, auth){
       commit('SET_LOADING', true);
     axios
@@ -119,7 +126,19 @@ export default {
     .finally(() => {
       commit('SET_LOADING', false)
     })
-  
-    }
+    },
+
+    getUser({commit}) {
+      axios
+        .get(`${user.baseUrl}/users/current`, {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          commit('SET_USER_ID', res.data._id)
+        });
+    },
   }
 };

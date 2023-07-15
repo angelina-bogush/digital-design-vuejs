@@ -153,6 +153,7 @@ export default {
         })
         .then(res => commit("LOAD_TASK", res.data));
     },
+    
     createTaskAxios({commit,state}, payload){
       commit('SET_LOADING', true)
       axios
@@ -184,6 +185,7 @@ export default {
         })
       
     },
+
     editTask({commit,state}, task){
       axios
       .put(
@@ -210,6 +212,7 @@ export default {
         console.log(err)
       })
     },
+
     deleteTask({commit, state}, id){
       axios
       .delete(

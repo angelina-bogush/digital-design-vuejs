@@ -2,11 +2,11 @@
     <div>
         <div class="overlay">
     <div class="modal-delete">
-        <h3 class="modal__title">Удаление</h3>
+        <h3 class="modal__title">{{title}}</h3>
         <slot></slot>
         <div class="buttons-container">
-            <Button :buttonClass="'button_default_secondary'" @click="cancel"><template #name>Отмена</template></Button>
-            <Button :buttonClass="'button_default_primary'" @click="deleteClick"><template #name>Удалить</template></Button>
+            <Button :buttonClass="'button_default_secondary'" @click="cancel"><template #name>{{cancelled}}</template></Button>
+            <Button :buttonClass="'button_default_primary'" @click="createProject"><template #name>{{agree}}</template></Button>
         </div>
     </div>
 </div>
@@ -15,6 +15,21 @@
 
 <script>
 export default{
+    props: {
+     cancelled: {
+    type: String,
+    default: 'Отмена'
+  },
+  agree: {
+    type: String,
+    default: 'Cjplfnm'
+  },
+  title: {
+    type: String,
+    default: ''
+  }
+
+    },
     name:'ModalDelete',
     methods:{
         cancel(){
@@ -22,6 +37,9 @@ export default{
         },
         deleteClick(){
             this.$emit('deleteTask')
+        },
+        createProject(){
+            this.$emit('create')
         }
     }
 }
@@ -30,7 +48,7 @@ export default{
 <style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
 .modal-delete{
-    width: 500px;
+    min-width: 500px;
     display: flex;
     flex-direction: column;
     background-color: white;

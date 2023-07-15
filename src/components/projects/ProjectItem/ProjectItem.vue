@@ -2,7 +2,7 @@
 <div>
     <article class="project item">
         <div class="project__content content">
-       <router-link to="/tasks"> <p class="project__title title">{{project.name}}</p> </router-link>
+       <p class="project__title title">{{project.name}}</p> 
         <div class="project__description description">
             <div class="project__description-creation description-creation">
                 <p class="project__number number">#{{project.code}}</p>
@@ -16,6 +16,10 @@
                 <template #icon>
                     <Icon :className="'menu-image'" :iconClass="'menu'"
                     width="14px" height="14px"></Icon>
+                </template>
+                <template #dropdown>
+                    <li><span class="dropdown__link">Редактировать</span></li>
+                   <li><span class="dropdown__link_delete">Удалить</span></li>
                 </template>
             </DropdownButton>
             </div>

@@ -12,6 +12,13 @@ const routes = [
     name: 'ViewsLayout',
     component: ViewLayout,
     meta: { requiresAuth: true },
+    beforeEnter: (to, from, next) => {
+      if(localStorage.getItem('auth')){
+        next()
+      } else {
+        next({name: 'ViewAuth'})
+      }
+    },
     children: [
       {
         path:'',
@@ -42,21 +49,14 @@ const routes = [
           component: () => import ('@/views/ViewEditTask.vue')
           },
       {
-        path:'/auth',
-        name: 'ViewAuth',
-        component: () => import ('@/views/ViewAuth.vue')
-      },
-      {
         path:'/users',
         name:'ViewUser',
         component: () => import ('@/views/ViewUser.vue'),
-        beforeEnter: (to, from, next) => {
-          if(localStorage.getItem('auth')){
-            next()
-          } else {
-            next({name: 'ViewsTasks'})
-          }
-        }
+      },
+      {
+        path:'/profile',
+        name:'ViewProfile',
+        component: () => import ('@/views/ViewProfile.vue')
       }
     ]
   },

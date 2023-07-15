@@ -7,12 +7,14 @@ import { user, token, checkAnswer } from './data.js'
     SET_FILTER_NAME: 'SET_FILTER_NAME',
     SET_LOADING: 'SET_LOADING',
     SET_TOKEN: 'SET_TOKEN',
-    SET_USER_ID: 'SET_USER_ID'
+    SET_USER_ID: 'SET_USER_ID',
+    SET_USER: 'SET_USER'
   }
 export default {
   namespaced: true,
   state: {
     isLoading: false,
+    currentUser: {},
     token: '',
     userId: '',
     users: [],
@@ -27,7 +29,8 @@ export default {
     allUsers: (state) => state.users,
     getLoading: (state) => state.isLoading,
     getToken: (state) => state.token,
-    getUserId: (state) => state.userId
+    getUserId: (state) => state.userId,
+    getCurrentUser: (state) => state.currentUser
   },
 
   mutations: {
@@ -52,7 +55,11 @@ export default {
     },
     [mutation.SET_USER_ID]: (state, value) => {
       state.userId = value
+    },
+    [mutation.SET_USER]: (state, value) => {
+      state.currentUser = value
     }
+
   },
   actions: {
     //установка значения в поле сортировки
@@ -76,7 +83,6 @@ export default {
             sort: state.sort,
             filter: {
                 name: state.filter.name,
-                // _id: state.filter._id
             }
             },
           {
@@ -138,6 +144,7 @@ export default {
         })
         .then((res) => {
           commit('SET_USER_ID', res.data._id)
+          commit('SET_USER', res.data)
         });
     },
   }

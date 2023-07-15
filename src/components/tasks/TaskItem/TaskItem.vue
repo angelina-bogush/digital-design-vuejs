@@ -20,6 +20,11 @@
                     <template #icon>
                         <Icon :className="'menu-image'" :iconClass="'menu'" :width="'14px'" :height="'14px'"></Icon>
                     </template>
+                    <template #dropdown>
+                        <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
+                      <li><span class="dropdown__link_delete" @click="deleteClick">Удалить</span></li>
+                      
+                    </template>
                 </DropdownButton>
             </div>
         </article>
@@ -58,7 +63,11 @@ methods: {
   })
   },
   deleteClick(){
-    this.$emit('deleteTask', this.task._id)
+    const task = {
+        id: this.task._id,
+        taskName: this.task.name
+    }
+    this.$emit('deleteTask', task)
   }
 },
 

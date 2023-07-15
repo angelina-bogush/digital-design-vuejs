@@ -1,12 +1,4 @@
-@import '../variables.scss';
-$primary-default-color:#1F75CB;
-$primary-hover-color: #1068BF;
-$primary-active-color: #0B5CAD;
-$primary-disabled-color: #DCDCDE;
-$disabled-font-button: #8E8E8E;
-$default-placeholder: #D9D9D9;
-$hover-button-color: #ECECEF;
-$color-white: #fff;
+@import '@/components/elements/variables.scss';
 .button_default{
     padding: 12px 12px;
     font-size: 14px;

@@ -4,11 +4,12 @@ const instance = axios.create({
     baseURL:  "http://45.12.239.156:8081/api"
   });
   
-  instance.interceptors.response.use(
+  instance.interceptors.request.use(
     response => response,
     error => {
-      if (error.response && error.response.status === 401) {
-        router.push('/auth');
+      if (error.response.status === 401) {
+
+        router.push('/login');
       }
       return Promise.reject(error);
     }

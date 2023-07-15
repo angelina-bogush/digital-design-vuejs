@@ -32,8 +32,8 @@
         <template v-if="displayTasks.length">
             <TaskList :tasks='displayTasks' @deleteTask="deleteTaskClick"/>
             <template v-if="showModalDelete">
-            <ModalDelete @clickCancel="cancelDelete" @deleteTask="deleteTaskModal">
-                <p class="modal__text">Вы уверены, что хотите <span>удалить</span> задачу?</p>
+            <ModalDelete @clickCancel="cancelDelete" @deleteTask="deleteTaskModal" :agree="'Удалить'" :title="'Удаление'">
+                <p class="modal__text">Вы уверены, что хотите <span>удалить</span> задачу "{{ this.taskName }}"?</p>
             </ModalDelete>
             </template>
         </template>
@@ -122,9 +122,10 @@ export default{
             this.searchTasks();
         }
     },
-        deleteTaskClick(taskId){
+        deleteTaskClick(task){
             this.showModalDelete = true;
-            this.taskIdtoDelete = taskId;
+            this.taskName = task.taskName;
+            this.taskIdtoDelete = task.id;
         },
         cancelDelete(){
             this.showModalDelete = false
@@ -143,6 +144,7 @@ export default{
             selected: 'По названию',
             showModalDelete: false,
             taskIdToDelete: '',
+            taskName: '',
             filteredTasks: []
         }
     },

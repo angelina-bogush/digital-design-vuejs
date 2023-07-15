@@ -6,8 +6,7 @@
 
 <div class="project-dropdown" :class="{'project-dropdown_opened': isActive}">
     <ul class="dropdown__list">
-        <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
-        <li><span class="dropdown__link_delete" @click="deleteClick">Удалить</span></li>
+        <slot name="dropdown"></slot>
     </ul>
 </div>
 </button>
@@ -30,14 +29,14 @@ export default {
         }
     },
     methods: {
-            editClick() {
-                this.$emit('edit');
-            },
-            deleteClick() {
-                this.$emit('deleteTask')
-            },
+            // editClick() {
+            //     this.$emit('edit');
+            // },
+            // deleteClick() {
+            //     this.$emit('deleteTask')
+            // },
             changeIsActive(){
-                this.isActive =! this.isActive
+                this.isActive = !this.isActive
             }
         },
     computed: {
@@ -60,19 +59,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/components/elements/Button/style.scss';
-.project-dropdown{
-    display: none
-}
-.project-dropdown_opened{
-    display: block;
-    padding: 14px;
-position: absolute;
-background-color: $color-white;
-left: -90px;
-top: 45px;
-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-z-index: 2;
-}
+
 </style>

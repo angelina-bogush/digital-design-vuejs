@@ -2,7 +2,8 @@
     <div>
         <svg-icon
         v-bind="$attrs"
-        :class-name="iconDisabled"
+
+        :class="[iconDisabled, className]"
         :width="width"
         :height="height"/>
         <!-- <svg-icon icon-class="nav" class-name="navigation__user-button" /> -->

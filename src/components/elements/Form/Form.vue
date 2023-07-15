@@ -24,5 +24,6 @@ export default{
     display: flex;
     flex-direction: column;
     gap: $gap;
+padding: $gap;
 }
 </style>

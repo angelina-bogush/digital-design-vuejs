@@ -8,6 +8,7 @@ import Select from '@/components/elements/Select/Select.vue'
 import Form from '@/components/elements/Form/Form.vue'
 import Pagination from '@/components/Pagination/Pagination.vue'
 import ModalDelete from '@/components/modals/ModalDelete.vue'
+import UserDropdown from '@/components/elements/UserDropdown/UserDropdown.vue'
 
 export default [
     Button,
@@ -19,5 +20,6 @@ export default [
     Select,
     Form,
     Pagination,
-    ModalDelete
+    ModalDelete,
+    UserDropdown
 ]

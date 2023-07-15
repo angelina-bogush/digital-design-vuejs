@@ -24,7 +24,7 @@
    <style lang="scss">
 @import '@/components/elements/variables.scss';
 .textarea-container{
-    width: calc(100% - 120px)
+    width:100%
 }
 .textarea_default{
     border: 1px solid $color-border-default;

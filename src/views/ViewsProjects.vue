@@ -1,5 +1,5 @@
 <template>
-    <div class="pageProject" :class="{ disabled: getLoading}" >
+    <div class="pageProject" :class="{ disabled: getLoading}">
         <div v-if='getLoading' class="loader-container">
         <div class="loader">
         </div>
@@ -27,7 +27,7 @@
                 </template>
             </Button>
            </div>
-            <Button :buttonClass="'button_default_secondary'"><template #name>Добавить</template></Button>
+            <Button :buttonClass="'button_default_secondary'" @click="openModalCreate"><template #name>Добавить</template></Button>
         </div>
         <template v-if="displayProjects.length">
             <ProjectList :projects="displayProjects" />
@@ -41,12 +41,16 @@
             <emptyProject :text="'Нe создана ни одна задача'"><Button :buttonClass="'button_default_primary'"><template #name>Добавить</template></Button>
             </emptyProject>
         </template>
+        <template v-if="showModalCreate">
+        <ModalCreateProject @clickCancel="cancelCreation" @create="createProject"></ModalCreateProject>
+    </template>
     </div>
 </template>
 
 <script>
 import emptyProject from '@/components/empty-project/emptyProject.vue';
 import ProjectList from '@/components/projects/ProjectList/ProjectList.vue';
+import ModalCreateProject from '@/components/modals/ModalCreateProject.vue'
 import { mapActions, mapGetters } from 'vuex';
 
 export default{
@@ -57,6 +61,7 @@ export default{
         sortType: 'ask',
           inputSearch: '',
           filteredProjects: [],
+          showModalCreate: false,
           showEmptyProjects: false,
           selected: 'По названию',
           options:[
@@ -69,7 +74,8 @@ export default{
     },
     components: {
     ProjectList,
-    emptyProject
+    emptyProject,
+    ModalCreateProject
     },
     computed: {
         ...mapGetters({
@@ -95,7 +101,8 @@ export default{
             searchProjectAxios: 'projects/searchProjectAxios', 
             setSortField: 'projects/setSortField',
             setSortType: 'projects/setSortType', 
-            setFilterName: 'projects/setFilterName'}),
+            setFilterName: 'projects/setFilterName',
+        createNewProject: 'projects/createNewProject'}),
         setSortTypeClick(){
             this.isArrowUp = !this.isArrowUp;
             if(this.isArrowUp){
@@ -127,16 +134,18 @@ export default{
                 this.setFilterName(''); // Сбросить фильтр
                 this.searchProjectAxios()
             }
+        },
+        cancelCreation(){
+            this.showModalCreate = false
+        },
+        openModalCreate(){
+            this.showModalCreate = true
+        },
+        createProject(newProject){
+            this.createNewProject(newProject);
+            this.cancelCreation()
         }
     },
-beforeRouteEnter(to, from, next){
-    const isAuth = localStorage.getItem('token');
-    if(!isAuth){
-        next('/login')
-    } else {
-        next()
-    }
-},
 
     mounted(){
        this.searchProjectAxios()

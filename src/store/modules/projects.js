@@ -1,3 +1,5 @@
+import router from '@/router'
+import '@/api/axios-interceptors.js'
 import axios from 'axios'
 import { user, token, checkAnswer } from './data.js'
   export const mutation = {
@@ -25,7 +27,8 @@ export default {
   },
   getters: {
     allProjects: (state) => state.projects,
-    getLoading: (state) => state.isLoading
+    getLoading: (state) => state.isLoading,
+    
   },
 
   mutations: {
@@ -84,15 +87,45 @@ export default {
         .then((res) => {
           commit("LOAD_PROJECTS", res.data);
           commit('SET_LOADING', false);
-          console.log(res.data)
+          // console.log(res.data)
         })
-        .catch((err) => {
-          console.log(err);
-        })
+        // .catch((err) => {
+        //   if (err.response.status === 401){
+        //     this.$router.push('/auth')
+        //   }
+        //   console.log(err.response.status);
+        // })
         .finally(() => {
           commit('SET_LOADING', false)
         })
     },
+    createNewProject({commit}, newProject){
+      commit('SET_LOADING', true);
+      axios
+      .post(
+        `${user.baseUrl}/projects`,
+        {
+          code: newProject.code,
+          name: newProject.projectName
+          },
+        {
+        headers: {
+          authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+        }
+      })
+      .then((res) => {
+        console.log(res.data)
+        commit('CREATE_PROJECT', res.data)
+        commit('SET_LOADING', false);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        commit('SET_LOADING', false);
+      })
+    }
   
   },
 };

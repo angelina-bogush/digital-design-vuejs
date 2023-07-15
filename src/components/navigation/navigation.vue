@@ -20,17 +20,10 @@
             <template #name>Пользователи</template>
         </Button> 
         </router-link>
-            <div class="navigation__user">
-                <button class="navigation__user-container">
-                <span class="user-avatar"></span>
-                <svg-icon icon-class="nav" class-name="navigation__user-button" />
-                <div class="dropdown nav-dropdown">
-                        <ul class="dropdown__list nav-dropdown">
-                            <li><a class="dropdown__link nav-dropdown">Профиль</a></li>
-                            <li><a class="dropdown__link nav-dropdown">Выход</a></li>
-                        </ul>
-                    </div> </button>
-            </div>
+            <UserDropdown>
+               <router-link to="/profile"><li><span class="dropdown__link">Профиль</span></li></router-link>
+                    <router-link to="/login"><li class="dropdown__link">Выход</li></router-link>  
+            </UserDropdown>
         </div>
     </div>
 

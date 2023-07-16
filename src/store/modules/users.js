@@ -15,6 +15,8 @@ export default {
   state: {
     isLoading: false,
     currentUser: {},
+    page: '',
+    total: '',
     token: '',
     userId: '',
     users: [],
@@ -30,7 +32,9 @@ export default {
     getLoading: (state) => state.isLoading,
     getToken: (state) => state.token,
     getUserId: (state) => state.userId,
-    getCurrentUser: (state) => state.currentUser
+    getCurrentUser: (state) => state.currentUser,
+    getTotal: (state) => state.total,
+    getPage: (state) => state.page
   },
 
   mutations: {
@@ -43,6 +47,8 @@ export default {
 
     [mutation.LOAD_USERS]: (state, response) => {
       state.users = response.users;
+      state.page = response.page;
+      state.total = response.total
     },
     [mutation.CREATE_USER]: (state, res) => {
       state.users.push(res.data);
@@ -73,14 +79,15 @@ export default {
       commit('SET_FILTER_NAME', searchName)
     },
     //вывод задач
-    searchUserAxios({ commit, state}) {
+    searchUserAxios({ commit, state}, currentPage) {
       commit('SET_LOADING', true);
       axios
         .post(
           `${user.baseUrl}/users/search`,
           {
-            limit: 50,
+            limit: 10,
             sort: state.sort,
+            page: currentPage,
             filter: {
                 name: state.filter.name,
             }

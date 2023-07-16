@@ -14,7 +14,7 @@
         <div class="dropdown-container">
             <DropdownButton class="menu" :buttonClass="'button_default_secondary'" :type="''" > 
                 <template #icon>
-                    <Icon :className="'menu-image'" :iconClass="'menu'"
+                    <Icon :iconClass="'menu'"
                     width="14px" height="14px"></Icon>
                 </template>
                 <template #dropdown>

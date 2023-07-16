@@ -18,7 +18,7 @@
             <div class="dropdown-container">
                 <DropdownButton class="menu" :buttonClass="'button_default_secondary'" :type="''" @edit="editClick" @deleteTask="deleteClick">
                     <template #icon>
-                        <Icon :className="'menu-image'" :iconClass="'menu'" :width="'14px'" :height="'14px'"></Icon>
+                        <Icon  :iconClass="'menu'" :width="'14px'" :height="'14px'"></Icon>
                     </template>
                     <template #dropdown>
                         <li><span class="dropdown__link" @click="editClick">Редактировать</span></li>
@@ -76,18 +76,6 @@ methods: {
 
 <style lang="scss" >
 @import './style.scss';
-.project-dropdown{
-    display: none
-}
-.project-dropdown_opened{
-    display: block;
-    padding: 14px;
-position: absolute;
-background-color: $color-white;
-left: -90px;
-top: 45px;
-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-z-index: 2;
-}
+
 
 </style>

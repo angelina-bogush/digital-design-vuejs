@@ -29,12 +29,6 @@ export default {
         }
     },
     methods: {
-            // editClick() {
-            //     this.$emit('edit');
-            // },
-            // deleteClick() {
-            //     this.$emit('deleteTask')
-            // },
             changeIsActive(){
                 this.isActive = !this.isActive
             }
@@ -61,5 +55,24 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/components/elements/Button/style.scss';
+.project-dropdown{
+    display: none
+}
+  .project-dropdown_opened{
+      display: block;
+      padding: 16px;
+  position: absolute;
+  background-color: $color-white;
+ right: 0;
+  top: 43px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  width: max-content
+  }
+  .dropdown__list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
 </style>

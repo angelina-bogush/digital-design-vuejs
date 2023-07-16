@@ -15,6 +15,8 @@ export default {
   state: {
     isLoading: false,
     projects: [],
+    page: '',
+    total: '',
     filter: {
       search: {
         name: " "
@@ -28,6 +30,8 @@ export default {
   getters: {
     allProjects: (state) => state.projects,
     getLoading: (state) => state.isLoading,
+    getTotal: (state) => state.total,
+    getPage: (state) => state.page
     
   },
 
@@ -44,12 +48,14 @@ export default {
 
     [mutation.LOAD_PROJECTS]: (state, response) => {
       state.projects = response.projects;
+      state.page = response.page;
+      state.total = response.total
     },
     [mutation.SET_LOADING]: (state, value) => {
       state.isLoading = value
     },
     [mutation.CREATE_PROJECT]: (state, res) => {
-      state.projects.push(res.data);
+      state.projects.push(res);
     },
   },
   actions: {
@@ -64,7 +70,7 @@ export default {
       commit('SET_FILTER_NAME', searchName)
     },
     //вывод проектов
-    searchProjectAxios({ commit, state}) {
+    searchProjectAxios({ commit, state}, currentPage) {
       commit('SET_LOADING', true);
       const stateFilterSort = state.filter.sort;
       const stateFilterSearch = state.filter.search;
@@ -73,9 +79,10 @@ export default {
           `${user.baseUrl}/projects/search`,
           {
             _id: `${localStorage.getItem("id")}`,
-            limit: 100,
+            limit: 10,
             sort: stateFilterSort,
-            filter: stateFilterSearch
+            filter: stateFilterSearch,
+            page: currentPage
             },
           {
             headers: {
@@ -87,14 +94,7 @@ export default {
         .then((res) => {
           commit("LOAD_PROJECTS", res.data);
           commit('SET_LOADING', false);
-          // console.log(res.data)
         })
-        // .catch((err) => {
-        //   if (err.response.status === 401){
-        //     this.$router.push('/auth')
-        //   }
-        //   console.log(err.response.status);
-        // })
         .finally(() => {
           commit('SET_LOADING', false)
         })

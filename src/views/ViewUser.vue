@@ -7,16 +7,21 @@
     <div class="search-container">
       <div class="search-input-container">
         <SearchInput v-model="inputSearch" @input="searchUsersInput"></SearchInput>
-        <DropdownButton :buttonClass="'button_default_secondary'" @click="setSortTypeClick">
-          <template #icon>
-            <Icon :iconClass="iconClass" width="16px" height="16px"></Icon>
-          </template>
-        </DropdownButton>
+        <Button :buttonClass="'button_default_secondary'"
+             @click="setSortTypeClick">
+                <template #icon>
+                    <Icon :iconClass="iconClass"
+                    width="16px" 
+                    height="16px"></Icon>
+                </template>
+            </Button>
       </div>
       <Button class="button__user" :buttonClass="'button_default_primary'"><template #name>Добавить пользователя</template></Button>
 
     </div>
     <UsersList :users="allUsers"></UsersList>
+    <Pagination :total="this.getTotal" :currentPage="this.getPage"
+    @changePage="clickChangePage" @changePageInput="inputChangePage" @changePageArrow="clickArrowPage"></Pagination>
   </div>
 </template>
     
@@ -39,7 +44,9 @@
       },
       ...mapGetters({
           allUsers: 'users/allUsers',
-          getLoading: 'users/getLoading'
+          getLoading: 'users/getLoading',
+          getTotal: 'users/getTotal',
+            getPage: 'users/getPage'
         })
     },
     beforeRouteEnter(to,from,next){
@@ -82,7 +89,16 @@
                 this.setFilterName(''); // Сбросить фильтр
                 this.searchUsers()
             }
-       }
+       },
+       clickChangePage(currentPage){
+            this.searchUsers(currentPage)
+        },
+        inputChangePage(inputPage){
+            this.searchUsers(inputPage)
+        },
+        clickArrowPage(page){
+            this.searchUsers(page)
+        }
 
       },
       mounted(){

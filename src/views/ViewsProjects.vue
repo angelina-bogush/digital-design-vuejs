@@ -44,6 +44,8 @@
         <template v-if="showModalCreate">
         <ModalCreateProject @clickCancel="cancelCreation" @create="createProject"></ModalCreateProject>
     </template>
+    <Pagination :total="this.getTotal" :currentPage="this.getPage" 
+    @changePage="clickChangePage" @changePageInput="inputChangePage" @changePageArrow="clickArrowPage"></Pagination>
     </div>
 </template>
 
@@ -81,7 +83,9 @@ export default{
         ...mapGetters({
             allProjects: 'projects/allProjects',
             getLoading: 'projects/getLoading',
-            getToken: 'users/getToken'
+            getToken: 'users/getToken',
+            getTotal: 'projects/getTotal',
+            getPage: 'projects/getPage'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -144,6 +148,15 @@ export default{
         createProject(newProject){
             this.createNewProject(newProject);
             this.cancelCreation()
+        },
+        clickChangePage(currentPage){
+            this.searchProjectAxios(currentPage)
+        },
+        inputChangePage(inputPage){
+            this.searchProjectAxios(inputPage)
+        },
+        clickArrowPage(page){
+            this.searchProjectAxios(page)
         }
     },
 

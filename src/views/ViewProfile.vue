@@ -10,12 +10,13 @@
     </div>
         <DropdownButton :buttonClass="'button_default_secondary'" class="menu">
             <template #icon>
-                <Icon :className="'menu-image'" :iconClass="'menu'"
+                <Icon  :iconClass="'menu'"
                 width="14px" height="14px"></Icon>
             </template>
             <template #dropdown>
                 <li><span class="dropdown__link">Редактировать</span></li>
-               <li><span class="dropdown__link_delete">Удалить</span></li>
+               <li>Изменить пароль</li>
+               <li>Просмотр задач пользователя</li>
             </template>
         </DropdownButton>
       </div>
@@ -88,7 +89,5 @@ justify-content: space-between;
 .user__text{
     padding-top: 8px;
 }
-.menu{
-    position: relative;
-}
+
 </style>

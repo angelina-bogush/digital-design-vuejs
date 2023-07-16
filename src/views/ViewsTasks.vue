@@ -32,7 +32,7 @@
         <template v-if="displayTasks.length">
             <TaskList :tasks='displayTasks' @deleteTask="deleteTaskClick"/>
             <template v-if="showModalDelete">
-            <ModalDelete @clickCancel="cancelDelete" @deleteTask="deleteTaskModal" :agree="'Удалить'" :title="'Удаление'">
+            <ModalDelete @clickCancel="cancelDelete" @create="deleteTaskModal" :agree="'Удалить'" :title="'Удаление'">
                 <p class="modal__text">Вы уверены, что хотите <span>удалить</span> задачу "{{ this.taskName }}"?</p>
             </ModalDelete>
             </template>
@@ -45,7 +45,8 @@
             <emptyProject :text="'Ни одна задача не соответствует результатам поиска/фильтрации'">
             </emptyProject>
         </template>
-        <!-- <Pagination :total="this.getTotal"></Pagination> -->
+        <Pagination :total="this.getTotal" :currentPage="this.getPage" 
+        @changePage="clickChangePage" @changePageInput="inputChangePage" @changePageArrow="clickArrowPage"></Pagination>
     </div>
 </template> 
 
@@ -65,7 +66,8 @@ export default{
             tasksOptions: 'tasks/tasksOptions',
             allTasks: 'tasks/allTasks',
             getTotal: 'tasks/getTotal',
-            getUserId: 'users/getUserId'
+            getUserId: 'users/getUserId',
+            getPage: 'tasks/getPage'
         }),
         iconClass() {
             if (this.isArrowUp) {
@@ -74,9 +76,6 @@ export default{
             if (!this.isArrowUp) {
                 return 'arrow-down'
             }
-        },
-        getTotalTasks(){
-            return this.allTasks/10;
         },
         displayTasks() {
             return this.filteredTasks.length ? this.filteredTasks : this.allTasks;
@@ -134,6 +133,15 @@ export default{
             this.deleteTaskAxios(this.taskIdtoDelete);
             this.showModalDelete = false;
             this.searchTasks();
+        },
+        clickChangePage(currentPage){
+            this.searchTasks(currentPage)
+        },
+        inputChangePage(inputPage){
+            this.searchTasks(inputPage)
+        },
+        clickArrowPage(page){
+            this.searchTasks(page)
         }
     },
     data(){

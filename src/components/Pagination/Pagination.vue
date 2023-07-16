@@ -2,84 +2,106 @@
 <div class="container-pagination">
     <div class="pagination">
     <div class="buttons-container">
-        <Button :buttonClass="'button_default_secondary button_icon'">
+        <Button :buttonClass="'button_default_secondary button_icon'" @click="changePage(currentPage - 1)">
             <template #icon><Icon :iconClass="'nav-left'"
-                :color="'#8E8E8E'"
+                :color="'#1C1C1C'"
                 width="24px" height="24px"></Icon></template>
         </Button>
-        <Button :buttonClass="'button_default_primary button_number'" class="button"
-        @click="changePage(currentPage - 1)"  v-for="page in displayedPages"><template #name>{{page}}</template></Button>
-        <Button :buttonClass="'button_default_secondary button_icon'"
-        @click="changePage(currentPage + 1)">
+        <Button :buttonClass="getClass(index)" class="button" @click="clickPage(index)"
+          v-for=" (page, index) in displayedPages"><template #name>{{page}}</template></Button>
+        <Button :buttonClass="'button_default_secondary button_icon'" @click="changePage(currentPage + 1)"
+       >
             <template #icon><Icon :iconClass="'nav-right'"
                 :color="'#1C1C1C'"
                 width="24px" height="24px"></Icon></template>
         </Button>
     </div>
     <div class="to-page">
-        <p>Перейти к странице</p>
-        <Input v-model.number.trim="currentPage" @input="handleInput"></Input>
-    </div>
+      <p>Перейти к странице</p>
+      <Input v-model="currentPageInput" @input="changePageInput"></Input>
+  </div>
 </div>
-<p>Страница {{ currentPage}} из {{ total }}</p>
+<p>Страница {{ currentPage }} из {{ total }}</p>
 </div>
 </template>
 <script>
 export default{
     name: 'Pagination',
     props:{
-        page: {
-      type: Number,
-      default: 1,
-    },
-    limit: {
-      type: Number,
-      default: 10,
-    },
+      currentPage: {
+        type: Number,
+        default: null
+      },
     total: {
       type: Number,
-      default: 0,
+      default: null
     }
     },
+
     data(){
         return {
-            currentPage: 1
+          currentPageInput: '',
+          page: null,
+          activeIndex: null
         }
     },
     methods: {
+      clickPage(index){
+        this.activeIndex = index + 1;
+        this.$emit('changePage', this.activeIndex);
+      },
+      changePageInput(){
+        this.$emit('changePageInput', this.currentPageInput)
+      },
     changePage(page) {
-      if (page >= 1 && page <= this.totalPages) {
+      const pageTotal = this.total;
+      if (page >= 1 && page <= pageTotal) {
         this.currentPage = page;
+        this.$emit('changePageArrow', page)
       }
     },
-    handleInput() {
-      if (this.currentPage < 1) {
-        this.currentPage = 1;
-      } else if (this.currentPage > this.totalPages) {
-        this.currentPage = this.totalPages;
+    getClass(index) {
+      if (index + 1 === this.activeIndex) {
+        return 'button_default_primary button_number'
+      } else {
+        return 'button_default_secondary button_number'
       }
-    },
+    }
+   
   },
   computed: {
     displayedPages() {
+      const pageTotal = this.total;
       let pages = [];
-      if (this.total = 3) {
-        for (let i = 1; i <= this.total; i++) {
+      if (pageTotal === 3) {
+        for (let i = 1; i <= pageTotal; i++) {
           pages.push(i);
         }
-      } else if (this.currentPage <= 2) {
-        pages = [1, 2];
-      } else if (this.currentPage >= this.total - 1) {
-        pages = [this.total - 2, this.total - 1, this.total];
-      } else {
+      } else if (this.currentPage >= pageTotal - 1) {
+        pages = [pageTotal - 2, pageTotal - 1, pageTotal];
+      } else if(this.currentPage === 1){
+        pages = [1, 2, 3]
+      }
+      else {
         pages = [this.currentPage - 1, this.currentPage, this.currentPage + 1];
       }
       return pages;
     },
+    isFirstPage() {
+      return this.currentPage === 1
+    },
+    isLastPage() {
+      return this.currentPage === this.total 
+    }
 
+
+  },
+  mounted(){
+ 
   }
 
 }
+
 </script>
 
 <style lang="scss" scoped>

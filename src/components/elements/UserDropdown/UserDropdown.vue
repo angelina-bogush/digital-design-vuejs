@@ -101,6 +101,13 @@
 .project-dropdown{
   display: none;
 }
+.user-avatar{
+    border-radius: 50%;
+    display: block;
+    width:24px;
+    height: 24px;
+    background-image: url('@/assets/images/navAvatar.png')
+}
 .project-dropdown_opened{
     display: block;
     padding: 14px;
@@ -114,4 +121,9 @@ z-index: 2;
 .icon_active{
     color: $primary-disabled-color
 }
+.dropdown__list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
    </style>

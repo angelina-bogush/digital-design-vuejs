@@ -53,10 +53,7 @@ export default{
 
 <style lang="scss" scoped>
 @import '@/components/elements/variables.scss';
-.container{
-    width: 640px;
-    border: 1px solid black
-}
+
 label{
     font-size: 14px;
     color: $text-color-disabled;

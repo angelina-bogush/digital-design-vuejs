@@ -109,13 +109,14 @@ export default {
       commit("SET_FILTER_NAME", searchName);
     },
     //вывод задач
-    searchTaskAxios({ commit, state }) {
+    searchTaskAxios({ commit, state }, payload) {
       commit('SET_LOADING', true);
       axios
         .post(
           `${user.baseUrl}/tasks/search`,
           {
-            limit: 150,
+            limit: 10,
+            page: payload,
             sort: {
               field: state.sort.field,
               type: state.sort.type,

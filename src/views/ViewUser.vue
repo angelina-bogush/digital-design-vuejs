@@ -86,7 +86,7 @@
             this.setFilterName(searchValue);
             this.searchUsers()
             } else {
-                this.setFilterName(''); // Сбросить фильтр
+                this.setFilterName(''); 
                 this.searchUsers()
             }
        },

@@ -22,7 +22,7 @@ export default {
         name: " "
       },
       sort: {
-        field: "name", //по умолчанию
+        field: "name", 
         type: "asc",
       },
     },
@@ -115,7 +115,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res.data)
         commit('CREATE_PROJECT', res.data)
         commit('SET_LOADING', false);
       })

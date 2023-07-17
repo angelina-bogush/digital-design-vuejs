@@ -68,7 +68,7 @@ export default {
 
   },
   actions: {
-    //установка значения в поле сортировки
+   
     setInputSearch({commit}, input){
         commit('SET_INPUTSEARCH', input)
     },
@@ -78,7 +78,7 @@ export default {
     setFilterName({commit}, searchName){
       commit('SET_FILTER_NAME', searchName)
     },
-    //вывод задач
+ 
     searchUserAxios({ commit, state}, currentPage) {
       commit('SET_LOADING', true);
       axios

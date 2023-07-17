@@ -22,19 +22,18 @@ export default {
     currentTask: {},
     page: 1, 
     total: '',
-    //  limit: ,
     filter: {
       name: " ",
-      status: ["DRAFT"], // см. рест /statuses
+      status: ["DRAFT"],
       author: "id",
       executor: "id",
       projectId: "id",
-      dateStart: "2023-06-28", // формат ISO
-      dateEnd: "2023-06-28", // формат ISO
+      dateStart: "2023-06-28", 
+      dateEnd: "2023-06-28", 
     },
     sort: {
-      field: "name", // name, author, status, executor,     dateCreated, dateEdited
-      type: "asc", // asc, des
+      field: "name", 
+      type: "asc", 
     },
     options: [
       { name: "По названию", value: "name" },
@@ -135,7 +134,6 @@ export default {
         .then((res) => {
           commit('SET_LOADING', false);
           commit("LOAD_TASKS", res.data);
-          console.log(res.data)
         })
         .catch((err) => {
           console.log(err);
@@ -175,7 +173,6 @@ export default {
         }
       )
         .then((res) => {
-          console.log(res.data);
           commit('SET_LOADING', false),
           commit('CREATE_TASK', res.data),
           commit('SET_TASK_ID', res.data)
@@ -206,8 +203,7 @@ export default {
         }
       )
       .then((res) => {
-      commit('SET_UPDATED_TASK', res.data)
-    console.log(res.data)}
+      commit('SET_UPDATED_TASK', res.data)}
       )
       .catch((err) => {
         console.log(err)
